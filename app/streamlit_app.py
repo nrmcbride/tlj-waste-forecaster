@@ -2146,21 +2146,28 @@ components.html("""
         doc.body._tljConfidenceLinkAttached = true;
 
         doc.addEventListener('click', function(e) {
-            var link = e.target.closest('.tlj-confidence-info');
+            var target = e.target;
+            if (target && target.nodeType === 3) target = target.parentElement;
+            var link = target && target.closest ? target.closest('.tlj-confidence-info') : null;
             if (!link) return;
             e.preventDefault();
+            e.stopPropagation();
 
-            var tabButtons = doc.querySelectorAll('button[data-baseweb="tab"]');
+            var tabButtons = doc.querySelectorAll('div[data-testid="stTabs"] button[data-baseweb="tab"]');
             var targetTab = null;
             tabButtons.forEach(function(btn) {
-                if (btn.textContent.trim() === 'Confidence Detail') targetTab = btn;
+                var label = (btn.textContent || '').replace(/\s+/g, ' ').trim();
+                if (label === 'Confidence Detail') targetTab = btn;
             });
+            if (!targetTab && tabButtons.length) {
+                targetTab = tabButtons[tabButtons.length - 1];
+            }
 
             if (targetTab) {
                 targetTab.click();
                 setTimeout(function() {
                     targetTab.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                }, 100);
+                }, 150);
             }
         }, true);
     }
