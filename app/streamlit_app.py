@@ -1212,7 +1212,7 @@ else:
 from core.data_loader import get_top_volatile_products
 vol_df = get_top_volatile_products(tracker_df, pricing_df, n=12, backtest_path=backtest_path)
 
-tab_latest, tab_insights, tab_volatility, tab_validation, tab_confidence = st.tabs(["Latest Forecast Run", "Insights", "The Shortlist Logic", "Validation History", "Confidence Detail"])
+tab_latest, tab_insights, tab_volatility, tab_validation, tab_confidence = st.tabs(["Latest Forecast Run", "Insights", "What Gets Forecasted", "Validation History", "Confidence Score Breakdown"])
 
 with tab_latest:
     run_date = datetime.date.today().strftime("%B %-d, %Y")
@@ -1471,27 +1471,6 @@ with tab_volatility:
     display_vol_df['Price/Unit'] = display_vol_df['Price/Unit'].apply(lambda x: f"${x:.2f}")
     display_vol_df['Avg Nightly Loss'] = display_vol_df['Avg Nightly Loss'].apply(lambda x: f"${x:.2f}")
     display_vol_df['Volatility (CV)'] = display_vol_df['Volatility (CV)'].apply(lambda x: f"{x:.2f}")
-
-    st.markdown('<div style="height:2rem"></div>', unsafe_allow_html=True)
-    st.markdown('<h4 style="text-align:center">Price &amp; Nightly Loss By Product</h4>', unsafe_allow_html=True)
-
-    def render_html_table(headers, rows):
-        head_cells = "".join(
-            f'<th style="padding:0.6rem 0.8rem;text-align:left;border-bottom:1px solid rgba(176,137,104,0.4);color:#3D2008;font-family:\'DM Sans\',sans-serif;font-size:14px;font-weight:500;line-height:1.4">{h}</th>'
-            for h in headers
-        )
-        body_rows = ""
-        for row in rows:
-            cells = "".join(
-                f'<td style="padding:0.6rem 0.8rem;border-bottom:1px solid rgba(176,137,104,0.2);color:#3D2008;font-family:\'DM Sans\',sans-serif;font-size:14px;line-height:1.4">{val}</td>'
-                for val in row
-            )
-            body_rows += f'<tr style="background-color:#FFFFFF">{cells}</tr>'
-        table_html = f'<div style="border:none solid rgba(176,137,104,0.4);overflow:hidden"><table style="width:100%;border-collapse:collapse"><thead><tr style="background:#FFFFFF">{head_cells}</tr></thead><tbody>{body_rows}</tbody></table></div>'
-        st.markdown(table_html, unsafe_allow_html=True)
-
-    rows = display_vol_df.values.tolist()
-    render_html_table(headers=['Product', 'Price/Unit', 'Avg Nightly Loss', 'Volatility (CV)'], rows=rows)
 
 with tab_validation:
     if has_backtest:
