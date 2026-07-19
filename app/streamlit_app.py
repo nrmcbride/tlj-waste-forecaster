@@ -1218,15 +1218,6 @@ with tab_latest:
     </div>
     """, unsafe_allow_html=True)
 
-    st.markdown('<div style="height:1.25rem"></div>', unsafe_allow_html=True)
-
-    if generated_note:
-        st.caption(f"Generated {generated_note} (nightly batch) · {len(latest_run_df)} products evaluated")
-    else:
-        st.caption(f"Generated {run_date} · demo data — nightly batch has not run yet")
-
-    st.markdown('<div style="height:2.25rem"></div>', unsafe_allow_html=True)
-
     nightly_forecast_path = os.path.join(DATA_DIR, 'latest_forecast.csv')
     if os.path.exists(nightly_forecast_path) and os.path.getsize(nightly_forecast_path) > 0:
         latest_run_df = pd.read_csv(nightly_forecast_path)
@@ -1249,6 +1240,15 @@ with tab_latest:
             ]
         })
         generated_note = None
+
+    st.markdown('<div style="height:1.25rem"></div>', unsafe_allow_html=True)
+
+    if generated_note:
+        st.caption(f"Generated {generated_note} (nightly batch) · {len(latest_run_df)} products evaluated")
+    else:
+        st.caption(f"Generated {run_date} · demo data — nightly batch has not run yet")
+
+    st.markdown('<div style="height:2.25rem"></div>', unsafe_allow_html=True)
 
     def render_highlighted_table(df):
         rows_html = ""
