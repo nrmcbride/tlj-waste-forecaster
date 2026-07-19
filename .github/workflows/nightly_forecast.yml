@@ -1,0 +1,40 @@
+name: Nightly Forecast
+
+on:
+  schedule:
+    # 8:00 AM UTC = 4:00 AM Eastern (adjust as needed) — runs well before
+    # the store opens so the forecast is ready for the day.
+    - cron: '0 8 * * *'
+  workflow_dispatch: {}  # lets you trigger a run manually from the Actions tab
+
+permissions:
+  contents: write
+
+jobs:
+  run-forecast:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run nightly forecast
+        env:
+          AI_KEY: ${{ secrets.AI_KEY }}
+          WEATHER_KEY: ${{ secrets.WEATHER_KEY }}
+        run: python scripts/run_nightly_forecast.py
+
+      - name: Commit updated forecast
+        run: |
+          git config --global user.name "nightly-forecast-bot"
+          git config --global user.email "actions@github.com"
+          git add data/latest_forecast.csv
+          git diff --cached --quiet || git commit -m "chore: nightly forecast update $(date -u +'%Y-%m-%d')"
+          git push
