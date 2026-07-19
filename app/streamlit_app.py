@@ -1250,17 +1250,58 @@ with tab_latest:
 
     st.markdown('<div style="height:2.25rem"></div>', unsafe_allow_html=True)
 
+    import re as _re
+
+    def condense_explanation(text, max_bullets=3, max_chars=95):
+        """Break a long single-sentence Gemini explanation into a few short
+        bullet points instead of one dense paragraph."""
+        if not isinstance(text, str) or not text.strip():
+            return ["No explanation returned."]
+
+        # Gemini's explanations naturally break into clauses at semicolons.
+        parts = [p.strip() for p in text.split(';') if p.strip()]
+
+        if len(parts) == 1:
+            # Fallback: split on connector phrases that mark a new reason.
+            parts = _re.split(r',\s+(?:as|since|while|because)\s+', text)
+            parts = [p.strip() for p in parts if p.strip()]
+
+        bullets = []
+        for p in parts[:max_bullets]:
+            p = p[0].upper() + p[1:] if p else p
+            if len(p) > max_chars:
+                cut = p[:max_chars].rsplit(' ', 1)[0]
+                p = cut.rstrip(',;') + '…'
+            if not p.endswith(('.', '…')):
+                p += '.'
+            bullets.append(p)
+        return bullets
+
     def render_highlighted_table(df):
         rows_html = ""
         for _, row in df.iterrows():
             bg = "rgba(154,75,62,0.10)" if row['Predicted Waste'] > 0 else "rgba(11,61,46,0.08)"
-            rows_html += f'<tr style="background-color:{bg}"><td style="padding:0.6rem 0.8rem;border-bottom:1px solid rgba(176,137,104,0.2);color:#3D2008;font-family:\'DM Sans\',sans-serif;font-size:14px;line-height:1.4">{row["Product"]}</td><td style="padding:0.6rem 0.8rem;border-bottom:1px solid rgba(176,137,104,0.2);color:#3D2008;font-family:\'DM Sans\',sans-serif;font-size:14px;line-height:1.4;text-align:right">{row["Predicted Waste"]}</td><td style="padding:0.6rem 0.8rem;border-bottom:1px solid rgba(176,137,104,0.2);color:#3D2008;font-family:\'DM Sans\',sans-serif;font-size:14px;line-height:1.4">{row["Loss"]}</td><td style="padding:0.6rem 0.8rem;border-bottom:1px solid rgba(176,137,104,0.2);color:#3D2008;font-family:\'DM Sans\',sans-serif;font-size:14px;line-height:1.4">{row["Explanation"]}</td></tr>'
+            bullets = condense_explanation(row["Explanation"])
+            explanation_html = ''.join(
+                f'<li style="margin-bottom:0.2rem">{b}</li>' for b in bullets
+            )
+            explanation_cell = f'<ul style="margin:0;padding-left:1.1rem;font-size:13px;line-height:1.5">{explanation_html}</ul>'
+            rows_html += f'<tr style="background-color:{bg}"><td style="padding:0.6rem 0.8rem;border-bottom:1px solid rgba(176,137,104,0.2);color:#3D2008;font-family:\'DM Sans\',sans-serif;font-size:14px;line-height:1.4">{row["Product"]}</td><td style="padding:0.6rem 0.8rem;border-bottom:1px solid rgba(176,137,104,0.2);color:#3D2008;font-family:\'DM Sans\',sans-serif;font-size:14px;line-height:1.4;text-align:right">{row["Predicted Waste"]}</td><td style="padding:0.6rem 0.8rem;border-bottom:1px solid rgba(176,137,104,0.2);color:#3D2008;font-family:\'DM Sans\',sans-serif;font-size:14px;line-height:1.4">{row["Loss"]}</td><td style="padding:0.6rem 0.8rem;border-bottom:1px solid rgba(176,137,104,0.2);color:#3D2008;font-family:\'DM Sans\',sans-serif;font-size:14px;line-height:1.4">{explanation_cell}</td></tr>'
 
         table_html = f'<div style="border:none solid rgba(176,137,104,0.4);overflow:hidden"><table style="width:100%;border-collapse:collapse"><thead><tr style="background:#FFFFFF"><th style="padding:0.6rem 0.8rem;text-align:left;border-bottom:1px solid rgba(176,137,104,0.4);color:#3D2008;font-family:\'DM Sans\',sans-serif;font-size:14px;font-weight:500;line-height:1.4">Product</th><th style="padding:0.6rem 0.8rem;text-align:right;border-bottom:1px solid rgba(176,137,104,0.4);color:#3D2008;font-family:\'DM Sans\',sans-serif;font-size:14px;font-weight:500;line-height:1.4">Predicted Waste</th><th style="padding:0.6rem 0.8rem;text-align:left;border-bottom:1px solid rgba(176,137,104,0.4);color:#3D2008;font-family:\'DM Sans\',sans-serif;font-size:14px;font-weight:500;line-height:1.4">Loss</th><th style="padding:0.6rem 0.8rem;text-align:left;border-bottom:1px solid rgba(176,137,104,0.4);color:#3D2008;font-family:\'DM Sans\',sans-serif;font-size:14px;font-weight:500;line-height:1.4">Explanation</th></tr></thead><tbody>{rows_html}</tbody></table></div>'
 
         st.markdown(table_html, unsafe_allow_html=True)
 
     render_highlighted_table(latest_run_df)
+
+    def render_confidence_table(df):
+        rows_html = ""
+        for _, row in df.iterrows():
+            rows_html += f'<tr style="background-color:#FFFFFF"><td style="padding:0.6rem 0.8rem;border-bottom:1px solid rgba(176,137,104,0.2);color:#3D2008;font-family:\'DM Sans\',sans-serif;font-size:14px;line-height:1.4">{row["Factor"]}</td><td style="padding:0.6rem 0.8rem;border-bottom:1px solid rgba(176,137,104,0.2);color:#3D2008;font-family:\'DM Sans\',sans-serif;font-size:14px;line-height:1.4">{row["Basis"]}</td><td style="padding:0.6rem 0.8rem;border-bottom:1px solid rgba(176,137,104,0.2);color:#3D2008;font-family:\'DM Sans\',sans-serif;font-size:14px;line-height:1.4;text-align:right">{row["Score"]}</td></tr>'
+
+        table_html = f'<div style="border:none solid rgba(176,137,104,0.4);overflow:hidden"><table style="width:100%;border-collapse:collapse"><thead><tr style="background:#FFFFFF"><th style="padding:0.6rem 0.8rem;text-align:left;border-bottom:1px solid rgba(176,137,104,0.4);color:#3D2008;font-family:\'DM Sans\',sans-serif;font-size:14px;font-weight:500;line-height:1.4">Factor</th><th style="padding:0.6rem 0.8rem;text-align:left;border-bottom:1px solid rgba(176,137,104,0.4);color:#3D2008;font-family:\'DM Sans\',sans-serif;font-size:14px;font-weight:500;line-height:1.4">Basis</th><th style="padding:0.6rem 0.8rem;text-align:right;border-bottom:1px solid rgba(176,137,104,0.4);color:#3D2008;font-family:\'DM Sans\',sans-serif;font-size:14px;font-weight:500;line-height:1.4">Score</th></tr></thead><tbody>{rows_html}</tbody></table></div>'
+
+        st.markdown(table_html, unsafe_allow_html=True)
 
     st.markdown('<div style="height:2.75rem"></div>', unsafe_allow_html=True)
 
@@ -1310,9 +1351,30 @@ with tab_latest:
         <div class="anim-pop-in metric-card tlj-confidence-card" style="transition-delay:0.3s;background:{conf_bg};border-color:{conf_border};position:relative">
             <div class="metric-value" style="color:{conf_text}">{score}<span style="font-size:1.2rem">/100</span></div>
             <div class="metric-label">Confidence in Today's Prediction</div>
-            <a href="#confidence-detail" class="tlj-confidence-info" title="See confidence breakdown">?</a>
+            <span class="tlj-confidence-info" title="See breakdown below">?</span>
         </div>
         """, unsafe_allow_html=True)
+
+    st.markdown('<div style="height:0.8rem"></div>', unsafe_allow_html=True)
+
+    if 'show_confidence_breakdown' not in st.session_state:
+        st.session_state['show_confidence_breakdown'] = False
+
+    btn_spacer_l, btn_col, btn_spacer_r = st.columns([2.5, 1.5, 2.5])
+    with btn_col:
+        if st.button(
+            "Hide confidence breakdown" if st.session_state['show_confidence_breakdown'] else "See confidence breakdown",
+            key="toggle_confidence_breakdown",
+            use_container_width=True
+        ):
+            st.session_state['show_confidence_breakdown'] = not st.session_state['show_confidence_breakdown']
+
+    if st.session_state['show_confidence_breakdown']:
+        st.markdown('<div style="height:1rem"></div>', unsafe_allow_html=True)
+        breakdown_df = pd.DataFrame(confidence_result['breakdown'])
+        breakdown_df['Score'] = breakdown_df.apply(lambda r: f"{r['points']:.0f} / {r['max_points']}", axis=1)
+        display_df = breakdown_df[['factor', 'detail', 'Score']].rename(columns={'factor': 'Factor', 'detail': 'Basis'})
+        render_confidence_table(display_df)
 
 
 
@@ -1548,15 +1610,6 @@ with tab_confidence:
     breakdown_df = pd.DataFrame(confidence_result['breakdown'])
     breakdown_df['Score'] = breakdown_df.apply(lambda r: f"{r['points']:.0f} / {r['max_points']}", axis=1)
     display_df = breakdown_df[['factor', 'detail', 'Score']].rename(columns={'factor': 'Factor', 'detail': 'Basis'})
-    def render_confidence_table(df):
-        rows_html = ""
-        for _, row in df.iterrows():
-            rows_html += f'<tr style="background-color:#FFFFFF"><td style="padding:0.6rem 0.8rem;border-bottom:1px solid rgba(176,137,104,0.2);color:#3D2008;font-family:\'DM Sans\',sans-serif;font-size:14px;line-height:1.4">{row["Factor"]}</td><td style="padding:0.6rem 0.8rem;border-bottom:1px solid rgba(176,137,104,0.2);color:#3D2008;font-family:\'DM Sans\',sans-serif;font-size:14px;line-height:1.4">{row["Basis"]}</td><td style="padding:0.6rem 0.8rem;border-bottom:1px solid rgba(176,137,104,0.2);color:#3D2008;font-family:\'DM Sans\',sans-serif;font-size:14px;line-height:1.4;text-align:right">{row["Score"]}</td></tr>'
-
-        table_html = f'<div style="border:none solid rgba(176,137,104,0.4);overflow:hidden"><table style="width:100%;border-collapse:collapse"><thead><tr style="background:#FFFFFF"><th style="padding:0.6rem 0.8rem;text-align:left;border-bottom:1px solid rgba(176,137,104,0.4);color:#3D2008;font-family:\'DM Sans\',sans-serif;font-size:14px;font-weight:500;line-height:1.4">Factor</th><th style="padding:0.6rem 0.8rem;text-align:left;border-bottom:1px solid rgba(176,137,104,0.4);color:#3D2008;font-family:\'DM Sans\',sans-serif;font-size:14px;font-weight:500;line-height:1.4">Basis</th><th style="padding:0.6rem 0.8rem;text-align:right;border-bottom:1px solid rgba(176,137,104,0.4);color:#3D2008;font-family:\'DM Sans\',sans-serif;font-size:14px;font-weight:500;line-height:1.4">Score</th></tr></thead><tbody>{rows_html}</tbody></table></div>'
-
-        st.markdown(table_html, unsafe_allow_html=True)
-
     render_confidence_table(display_df)
 
 # ══════════════════════════════════════════════════════════════════════════════
@@ -2141,37 +2194,6 @@ components.html("""
         }
     }
 
-    function styleConfidenceInfoLink() {
-        if (doc.body._tljConfidenceLinkAttached) return;
-        doc.body._tljConfidenceLinkAttached = true;
-
-        doc.addEventListener('click', function(e) {
-            var target = e.target;
-            if (target && target.nodeType === 3) target = target.parentElement;
-            var link = target && target.closest ? target.closest('.tlj-confidence-info') : null;
-            if (!link) return;
-            e.preventDefault();
-            e.stopPropagation();
-
-            var tabButtons = doc.querySelectorAll('div[data-testid="stTabs"] button[data-baseweb="tab"]');
-            var targetTab = null;
-            tabButtons.forEach(function(btn) {
-                var label = (btn.textContent || '').replace(/\s+/g, ' ').trim();
-                if (label === 'Confidence Detail') targetTab = btn;
-            });
-            if (!targetTab && tabButtons.length) {
-                targetTab = tabButtons[tabButtons.length - 1];
-            }
-
-            if (targetTab) {
-                targetTab.click();
-                setTimeout(function() {
-                    targetTab.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                }, 150);
-            }
-        }, true);
-    }
-
     function run() {
         fixSidebar();
         buildToggle();
@@ -2185,7 +2207,6 @@ components.html("""
         styleLiveDemoCard();
         styleLiveDemoRow();
         styleTabReveal();
-        styleConfidenceInfoLink();
         initCounters();
     }
 
