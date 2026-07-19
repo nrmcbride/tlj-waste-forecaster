@@ -735,7 +735,7 @@ div[data-testid="stSelectbox"] div[data-baseweb="select"] > div:first-child > di
 }
 
 /* ── TABS (Forecasting Engine) ───────────────────────────────────── */
-div[data-testid="stTabs"] button[data-baseweb="tab"] {
+div[data-testid="stTabs"] div[data-testid="stTab"][role="tab"] {
     font-family: 'DM Sans', sans-serif !important;
     font-size: 0.88rem !important;
     font-weight: 500 !important;
@@ -751,8 +751,8 @@ div[data-testid="stTabs"] [data-baseweb="tab-highlight"] {
     background-color: #B08968 !important;
 }
 
-div[data-testid="stTabs"] button[data-baseweb="tab"]:nth-child(1) p,
-div[data-testid="stTabs"] button[data-baseweb="tab"]:nth-child(2) p {
+div[data-testid="stTabs"] div[data-testid="stTab"][role="tab"]:nth-child(1) p,
+div[data-testid="stTabs"] div[data-testid="stTab"][role="tab"]:nth-child(2) p {
     font-weight: 700 !important;
     color: #0B3D2E !important;
 }
@@ -2103,7 +2103,7 @@ components.html("""
         doc.body._tljTabListenerAttached = true;
 
         doc.addEventListener('click', function(e) {
-            var tabBtn = e.target.closest('button[data-baseweb="tab"]');
+            var tabBtn = e.target.closest('div[data-testid="stTab"][role="tab"]');
             if (!tabBtn) return;
             setTimeout(function() {
                 doc.querySelectorAll('.anim-card, .arch-box, .anim-fade-left, .anim-pop-in, [data-testid="stPlotlyChart"]').forEach(function(el) {
@@ -2116,7 +2116,7 @@ components.html("""
         }, true);
 
         doc.addEventListener('click', function(e) {
-            var tabBtn = e.target.closest('button[data-baseweb="tab"]');
+            var tabBtn = e.target.closest('div[data-testid="stTab"][role="tab"]');
             if (!tabBtn) return;
             setTimeout(function() {
                 doc.querySelectorAll('.anim-card, .arch-box, .anim-fade-left, .anim-pop-in, [data-testid="stPlotlyChart"]').forEach(function(el) {
@@ -2152,22 +2152,46 @@ components.html("""
         if (doc.body._tljConfidenceLinkAttached) return;
         doc.body._tljConfidenceLinkAttached = true;
 
+        function fireTabPress(el) {
+            var rect = el.getBoundingClientRect();
+            var cx = rect.left + rect.width / 2;
+            var cy = rect.top + rect.height / 2;
+            var opts = {
+                bubbles: true, cancelable: true, view: win,
+                clientX: cx, clientY: cy,
+                pointerId: 1, pointerType: 'mouse', isPrimary: true
+            };
+            ['pointerdown', 'mousedown', 'pointerup', 'mouseup', 'click'].forEach(function(type) {
+                var EventCtor = (type.indexOf('pointer') === 0 && win.PointerEvent) ? win.PointerEvent : win.MouseEvent;
+                var evt;
+                try {
+                    evt = new EventCtor(type, opts);
+                } catch (err) {
+                    evt = doc.createEvent('MouseEvents');
+                    evt.initEvent(type, true, true);
+                }
+                el.dispatchEvent(evt);
+            });
+        }
+
         doc.addEventListener('click', function(e) {
             var link = e.target.closest('.tlj-confidence-info');
             if (!link) return;
             e.preventDefault();
 
-            var tabButtons = doc.querySelectorAll('button[data-baseweb="tab"]');
+            var tabs = doc.querySelectorAll('div[data-testid="stTab"][role="tab"]');
             var targetTab = null;
-            tabButtons.forEach(function(btn) {
-                if (btn.textContent.trim() === 'Confidence Detail') targetTab = btn;
+            tabs.forEach(function(t) {
+                var label = (t.textContent || '').replace(/\s+/g, ' ').trim();
+                if (label === 'Confidence Detail') targetTab = t;
             });
+            if (!targetTab && tabs.length) targetTab = tabs[tabs.length - 1];
 
             if (targetTab) {
-                targetTab.click();
+                fireTabPress(targetTab);
                 setTimeout(function() {
                     targetTab.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                }, 100);
+                }, 150);
             }
         }, true);
     }
