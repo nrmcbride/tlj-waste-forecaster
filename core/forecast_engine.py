@@ -47,7 +47,7 @@ FK PROXY DATA:
 Return exactly three lines, no markdown, no extra text:
 FORECAST: {target_product} | Predicted Leftover Count at Closing: [whole number]
 FINANCIAL RISK: Projected Waste Capital Loss: $[{unit_price if unit_price else 'unit price'} x leftover count]
-STRATEGIC LOGIC: [One sentence: which tracker rows drove the prediction, how CaryHigh_ Status correlated with waste for this item, and how Shift_Notes affected the estimate]"""
+STRATEGIC LOGIC: [2-3 short reasons separated by " | ", each under 12 words, written in plain everyday language for a store manager — NOT a data analyst. Do not use internal field names, enum values, or technical jargon anywhere in this line (never write things like NO_STUDENT_DAY, REGULAR_SCHOOL_DAY, CaryHigh_ Status, Traffic_Density, BOGO, Shift_Notes, or row/column references). Instead translate them into natural phrasing, for example: NO_STUDENT_DAY -> "school is out", REGULAR_SCHOOL_DAY -> "school is in session", BOGO -> "a buy-one-get-one deal", Traffic_Density 1/2/3 -> "quiet/typical/busy foot traffic", Shift_Notes about rain -> "rainy weather". Each reason should read like a manager explaining their gut call to a coworker, e.g.: "School's out, so fewer walk-in customers" | "Similar warm days sold out completely" | "No promo running, unlike last time"]"""
 
 
 def call_gemini_with_retry(client, prompt, max_retries=3, base_delay=15):

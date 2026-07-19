@@ -969,11 +969,18 @@ with col_demo:
 
     strategic_block = ""
     if strategic_logic:
+        reason_parts = [r.strip() for r in str(strategic_logic).split('|') if r.strip()]
+        if reason_parts:
+            reasons_html = ''.join(
+                f'<div style="margin-bottom:0.3rem">{r}</div>' for r in reason_parts
+            )
+        else:
+            reasons_html = str(strategic_logic)
         strategic_block = (
             '<div style="font-family:Playfair Display,serif;font-style:italic;'
-            'font-size:0.82rem;color:#0B3D2E;text-align:center;line-height:1.6;'
+            'font-size:0.82rem;color:#0B3D2E;text-align:center;line-height:1.5;'
             'padding:0.8rem 0;border-top:1px solid rgba(11,61,46,0.08);">'
-            + str(strategic_logic)
+            + reasons_html
             + '</div>'
         )
 
@@ -1232,11 +1239,11 @@ with tab_latest:
             'Predicted Waste': [11, 8, 6, 5, 4],
             'Loss': ['$17', '$12', '$9', '$7', '$6'],
             'Explanation': [
-                'School closure and low traffic drive up leftover.',
-                'Weekend rows show consistent oversupply.',
-                'Weather-sensitive; clear skies favor lower waste.',
-                'Weekend volatility widens the prediction range.',
-                'Sells out consistently on comparable shifts.'
+                'School\'s out, so fewer walk-in customers | Low traffic on similar past days',
+                'Weekends tend to run heavier than expected | No promo running tomorrow',
+                'Sunny days usually mean lighter leftovers | Matches a few recent clear days',
+                'Weekends are harder to predict here | Wider range of past outcomes',
+                'Sells out on comparable days | No unusual conditions expected tomorrow'
             ]
         })
         generated_note = None
@@ -1253,18 +1260,21 @@ with tab_latest:
     import re as _re
 
     def condense_explanation(text, max_bullets=3, max_chars=95):
-        """Break a long single-sentence Gemini explanation into a few short
-        bullet points instead of one dense paragraph."""
+        """Break a Gemini explanation into a few short bullet points.
+        Gemini is now asked to pipe-separate 2-3 plain-language reasons
+        directly, so that's the primary split; older cached rows that
+        predate this format fall back to semicolon/connector splitting."""
         if not isinstance(text, str) or not text.strip():
             return ["No explanation returned."]
 
-        # Gemini's explanations naturally break into clauses at semicolons.
-        parts = [p.strip() for p in text.split(';') if p.strip()]
-
-        if len(parts) == 1:
-            # Fallback: split on connector phrases that mark a new reason.
-            parts = _re.split(r',\s+(?:as|since|while|because)\s+', text)
-            parts = [p.strip() for p in parts if p.strip()]
+        if '|' in text:
+            parts = [p.strip() for p in text.split('|') if p.strip()]
+        else:
+            # Legacy fallback for explanations generated before the pipe format.
+            parts = [p.strip() for p in text.split(';') if p.strip()]
+            if len(parts) == 1:
+                parts = _re.split(r',\s+(?:as|since|while|because)\s+', text)
+                parts = [p.strip() for p in parts if p.strip()]
 
         bullets = []
         for p in parts[:max_bullets]:
@@ -1351,30 +1361,9 @@ with tab_latest:
         <div class="anim-pop-in metric-card tlj-confidence-card" style="transition-delay:0.3s;background:{conf_bg};border-color:{conf_border};position:relative">
             <div class="metric-value" style="color:{conf_text}">{score}<span style="font-size:1.2rem">/100</span></div>
             <div class="metric-label">Confidence in Today's Prediction</div>
-            <span class="tlj-confidence-info" title="See breakdown below">?</span>
+            <span class="tlj-confidence-info" title="See confidence breakdown">?</span>
         </div>
         """, unsafe_allow_html=True)
-
-    st.markdown('<div style="height:0.8rem"></div>', unsafe_allow_html=True)
-
-    if 'show_confidence_breakdown' not in st.session_state:
-        st.session_state['show_confidence_breakdown'] = False
-
-    btn_spacer_l, btn_col, btn_spacer_r = st.columns([2.5, 1.5, 2.5])
-    with btn_col:
-        if st.button(
-            "Hide confidence breakdown" if st.session_state['show_confidence_breakdown'] else "See confidence breakdown",
-            key="toggle_confidence_breakdown",
-            use_container_width=True
-        ):
-            st.session_state['show_confidence_breakdown'] = not st.session_state['show_confidence_breakdown']
-
-    if st.session_state['show_confidence_breakdown']:
-        st.markdown('<div style="height:1rem"></div>', unsafe_allow_html=True)
-        breakdown_df = pd.DataFrame(confidence_result['breakdown'])
-        breakdown_df['Score'] = breakdown_df.apply(lambda r: f"{r['points']:.0f} / {r['max_points']}", axis=1)
-        display_df = breakdown_df[['factor', 'detail', 'Score']].rename(columns={'factor': 'Factor', 'detail': 'Basis'})
-        render_confidence_table(display_df)
 
 
 
@@ -2194,6 +2183,50 @@ components.html("""
         }
     }
 
+    function styleConfidenceInfoLink() {
+        if (doc.body._tljConfidenceLinkAttached) return;
+        doc.body._tljConfidenceLinkAttached = true;
+
+        function simulateRealClick(el) {
+            ['pointerdown', 'mousedown', 'pointerup', 'mouseup', 'click'].forEach(function(type) {
+                var evt;
+                try {
+                    evt = new MouseEvent(type, { bubbles: true, cancelable: true, view: win });
+                } catch (err) {
+                    evt = doc.createEvent('MouseEvents');
+                    evt.initEvent(type, true, true);
+                }
+                el.dispatchEvent(evt);
+            });
+        }
+
+        doc.addEventListener('click', function(e) {
+            var target = e.target;
+            if (target && target.nodeType === 3) target = target.parentElement;
+            var link = target && target.closest ? target.closest('.tlj-confidence-info') : null;
+            if (!link) return;
+            e.preventDefault();
+            e.stopPropagation();
+
+            var tabButtons = doc.querySelectorAll('div[data-testid="stTabs"] button[data-baseweb="tab"]');
+            var targetTab = null;
+            tabButtons.forEach(function(btn) {
+                var label = (btn.textContent || '').replace(/\s+/g, ' ').trim();
+                if (label === 'Confidence Detail') targetTab = btn;
+            });
+            if (!targetTab && tabButtons.length) {
+                targetTab = tabButtons[tabButtons.length - 1];
+            }
+
+            if (targetTab) {
+                simulateRealClick(targetTab);
+                setTimeout(function() {
+                    targetTab.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }, 150);
+            }
+        }, true);
+    }
+
     function run() {
         fixSidebar();
         buildToggle();
@@ -2207,6 +2240,7 @@ components.html("""
         styleLiveDemoCard();
         styleLiveDemoRow();
         styleTabReveal();
+        styleConfidenceInfoLink();
         initCounters();
     }
 
