@@ -1257,46 +1257,11 @@ with tab_latest:
 
     st.markdown('<div style="height:2.25rem"></div>', unsafe_allow_html=True)
 
-    import re as _re
-
-    def condense_explanation(text, max_bullets=3, max_chars=95):
-        """Break a Gemini explanation into a few short bullet points.
-        Gemini is now asked to pipe-separate 2-3 plain-language reasons
-        directly, so that's the primary split; older cached rows that
-        predate this format fall back to semicolon/connector splitting."""
-        if not isinstance(text, str) or not text.strip():
-            return ["No explanation returned."]
-
-        if '|' in text:
-            parts = [p.strip() for p in text.split('|') if p.strip()]
-        else:
-            # Legacy fallback for explanations generated before the pipe format.
-            parts = [p.strip() for p in text.split(';') if p.strip()]
-            if len(parts) == 1:
-                parts = _re.split(r',\s+(?:as|since|while|because)\s+', text)
-                parts = [p.strip() for p in parts if p.strip()]
-
-        bullets = []
-        for p in parts[:max_bullets]:
-            p = p[0].upper() + p[1:] if p else p
-            if len(p) > max_chars:
-                cut = p[:max_chars].rsplit(' ', 1)[0]
-                p = cut.rstrip(',;') + '…'
-            if not p.endswith(('.', '…')):
-                p += '.'
-            bullets.append(p)
-        return bullets
-
     def render_highlighted_table(df):
         rows_html = ""
         for _, row in df.iterrows():
             bg = "rgba(154,75,62,0.10)" if row['Predicted Waste'] > 0 else "rgba(11,61,46,0.08)"
-            bullets = condense_explanation(row["Explanation"])
-            explanation_html = ''.join(
-                f'<li style="margin-bottom:0.2rem">{b}</li>' for b in bullets
-            )
-            explanation_cell = f'<ul style="margin:0;padding-left:1.1rem;font-size:13px;line-height:1.5">{explanation_html}</ul>'
-            rows_html += f'<tr style="background-color:{bg}"><td style="padding:0.6rem 0.8rem;border-bottom:1px solid rgba(176,137,104,0.2);color:#3D2008;font-family:\'DM Sans\',sans-serif;font-size:14px;line-height:1.4">{row["Product"]}</td><td style="padding:0.6rem 0.8rem;border-bottom:1px solid rgba(176,137,104,0.2);color:#3D2008;font-family:\'DM Sans\',sans-serif;font-size:14px;line-height:1.4;text-align:right">{row["Predicted Waste"]}</td><td style="padding:0.6rem 0.8rem;border-bottom:1px solid rgba(176,137,104,0.2);color:#3D2008;font-family:\'DM Sans\',sans-serif;font-size:14px;line-height:1.4">{row["Loss"]}</td><td style="padding:0.6rem 0.8rem;border-bottom:1px solid rgba(176,137,104,0.2);color:#3D2008;font-family:\'DM Sans\',sans-serif;font-size:14px;line-height:1.4">{explanation_cell}</td></tr>'
+            rows_html += f'<tr style="background-color:{bg}"><td style="padding:0.6rem 0.8rem;border-bottom:1px solid rgba(176,137,104,0.2);color:#3D2008;font-family:\'DM Sans\',sans-serif;font-size:14px;line-height:1.4">{row["Product"]}</td><td style="padding:0.6rem 0.8rem;border-bottom:1px solid rgba(176,137,104,0.2);color:#3D2008;font-family:\'DM Sans\',sans-serif;font-size:14px;line-height:1.4;text-align:right">{row["Predicted Waste"]}</td><td style="padding:0.6rem 0.8rem;border-bottom:1px solid rgba(176,137,104,0.2);color:#3D2008;font-family:\'DM Sans\',sans-serif;font-size:14px;line-height:1.4">{row["Loss"]}</td><td style="padding:0.6rem 0.8rem;border-bottom:1px solid rgba(176,137,104,0.2);color:#3D2008;font-family:\'DM Sans\',sans-serif;font-size:14px;line-height:1.4">{row["Explanation"]}</td></tr>'
 
         table_html = f'<div style="border:none solid rgba(176,137,104,0.4);overflow:hidden"><table style="width:100%;border-collapse:collapse"><thead><tr style="background:#FFFFFF"><th style="padding:0.6rem 0.8rem;text-align:left;border-bottom:1px solid rgba(176,137,104,0.4);color:#3D2008;font-family:\'DM Sans\',sans-serif;font-size:14px;font-weight:500;line-height:1.4">Product</th><th style="padding:0.6rem 0.8rem;text-align:right;border-bottom:1px solid rgba(176,137,104,0.4);color:#3D2008;font-family:\'DM Sans\',sans-serif;font-size:14px;font-weight:500;line-height:1.4">Predicted Waste</th><th style="padding:0.6rem 0.8rem;text-align:left;border-bottom:1px solid rgba(176,137,104,0.4);color:#3D2008;font-family:\'DM Sans\',sans-serif;font-size:14px;font-weight:500;line-height:1.4">Loss</th><th style="padding:0.6rem 0.8rem;text-align:left;border-bottom:1px solid rgba(176,137,104,0.4);color:#3D2008;font-family:\'DM Sans\',sans-serif;font-size:14px;font-weight:500;line-height:1.4">Explanation</th></tr></thead><tbody>{rows_html}</tbody></table></div>'
 
@@ -1361,7 +1326,7 @@ with tab_latest:
         <div class="anim-pop-in metric-card tlj-confidence-card" style="transition-delay:0.3s;background:{conf_bg};border-color:{conf_border};position:relative">
             <div class="metric-value" style="color:{conf_text}">{score}<span style="font-size:1.2rem">/100</span></div>
             <div class="metric-label">Confidence in Today's Prediction</div>
-            <span class="tlj-confidence-info" title="See confidence breakdown">?</span>
+            <a href="#confidence-detail" class="tlj-confidence-info" title="See confidence breakdown">?</a>
         </div>
         """, unsafe_allow_html=True)
 
@@ -2187,42 +2152,22 @@ components.html("""
         if (doc.body._tljConfidenceLinkAttached) return;
         doc.body._tljConfidenceLinkAttached = true;
 
-        function simulateRealClick(el) {
-            ['pointerdown', 'mousedown', 'pointerup', 'mouseup', 'click'].forEach(function(type) {
-                var evt;
-                try {
-                    evt = new MouseEvent(type, { bubbles: true, cancelable: true, view: win });
-                } catch (err) {
-                    evt = doc.createEvent('MouseEvents');
-                    evt.initEvent(type, true, true);
-                }
-                el.dispatchEvent(evt);
-            });
-        }
-
         doc.addEventListener('click', function(e) {
-            var target = e.target;
-            if (target && target.nodeType === 3) target = target.parentElement;
-            var link = target && target.closest ? target.closest('.tlj-confidence-info') : null;
+            var link = e.target.closest('.tlj-confidence-info');
             if (!link) return;
             e.preventDefault();
-            e.stopPropagation();
 
-            var tabButtons = doc.querySelectorAll('div[data-testid="stTabs"] button[data-baseweb="tab"]');
+            var tabButtons = doc.querySelectorAll('button[data-baseweb="tab"]');
             var targetTab = null;
             tabButtons.forEach(function(btn) {
-                var label = (btn.textContent || '').replace(/\s+/g, ' ').trim();
-                if (label === 'Confidence Detail') targetTab = btn;
+                if (btn.textContent.trim() === 'Confidence Detail') targetTab = btn;
             });
-            if (!targetTab && tabButtons.length) {
-                targetTab = tabButtons[tabButtons.length - 1];
-            }
 
             if (targetTab) {
-                simulateRealClick(targetTab);
+                targetTab.click();
                 setTimeout(function() {
                     targetTab.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                }, 150);
+                }, 100);
             }
         }, true);
     }
