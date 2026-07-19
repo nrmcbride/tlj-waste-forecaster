@@ -2051,11 +2051,26 @@ components.html("""
         var stMain = doc.querySelector('[data-testid="stMain"]');
         if (!stMain) return;
         doc.querySelectorAll('.metric-value').forEach(function(el) {
-            var text = el.textContent.trim();
-            var num = parseFloat(text.replace(/[^0-9.]/g, ''));
-            var suffix = text.replace(/[0-9.]/g, '').trim();
+            if (el._tljCounterSetup) return;
+            el._tljCounterSetup = true;
+
+            var rawText = el.textContent.trim();
+
+            // Skip anything with a slash — ratios (3/12) and scores-out-of-100 (72/100)
+            // don't make sense to "count up" and previously produced garbled output.
+            if (rawText.indexOf('/') !== -1) return;
+
+            var match = rawText.match(/^([^\d]*)(\d+(?:\.\d+)?)([^\d]*)$/);
+            if (!match) return;
+
+            var prefix = match[1];
+            var num = parseFloat(match[2]);
+            var suffix = match[3];
             if (isNaN(num) || num === 0) return;
-            el._countOriginal = text; el._counting = false;
+
+            el._countOriginalHTML = el.innerHTML;
+            el._counting = false;
+
             new IntersectionObserver(function(entries) {
                 entries.forEach(function(entry) {
                     if (entry.isIntersecting && !el._counting) {
@@ -2065,9 +2080,9 @@ components.html("""
                             if (!t0) t0 = ts;
                             var p = Math.min((ts - t0) / 1000, 1);
                             var e = 1 - Math.pow(1 - p, 3);
-                            el.textContent = Math.round(num * e) + (suffix || '');
+                            el.textContent = prefix + Math.round(num * e) + suffix;
                             if (p < 1) requestAnimationFrame(step);
-                            else { el.textContent = el._countOriginal; el._counting = false; }
+                            else { el.innerHTML = el._countOriginalHTML; el._counting = false; }
                         }
                         requestAnimationFrame(step);
                     }
