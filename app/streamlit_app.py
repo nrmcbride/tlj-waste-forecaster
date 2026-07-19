@@ -1220,32 +1220,43 @@ with tab_latest:
 
     st.markdown('<div style="height:1.25rem"></div>', unsafe_allow_html=True)
 
-    st.caption(f"Generated {run_date} · 12 products evaluated")
+    if generated_note:
+        st.caption(f"Generated {generated_note} (nightly batch) · {len(latest_run_df)} products evaluated")
+    else:
+        st.caption(f"Generated {run_date} · demo data — nightly batch has not run yet")
 
     st.markdown('<div style="height:2.25rem"></div>', unsafe_allow_html=True)
 
-    # TODO: replace with real daily Gemini batch output once deployed
-    latest_run_df = pd.DataFrame({
-        'Product': ['CroissantPlain', 'PainAuChocolat', 'BlueberryMuffin', 'CustardBun', 'KimchiCroquette'],
-        'Predicted Waste': [11, 8, 6, 5, 4],
-        'Loss': ['$17', '$12', '$9', '$7', '$6'],
-        'Confidence': ['High', 'Medium', 'High', 'Medium', 'Low'],
-        'Explanation': [
-            'School closure and low traffic historically increase leftover.',
-            'Weekend rows show consistent oversupply for this item.',
-            'Weather-sensitive item; clear skies favor lower waste.',
-            'Weekend volatility drives wider prediction range.',
-            'Consistently sells out on comparable historical shifts.'
-        ]
-    })
+    nightly_forecast_path = os.path.join(DATA_DIR, 'latest_forecast.csv')
+    if os.path.exists(nightly_forecast_path) and os.path.getsize(nightly_forecast_path) > 0:
+        latest_run_df = pd.read_csv(nightly_forecast_path)
+        generated_note = None
+        if 'Generated' in latest_run_df.columns and not latest_run_df.empty:
+            generated_note = latest_run_df['Generated'].iloc[0]
+        latest_run_df = latest_run_df.drop(columns=[c for c in ['Generated', 'Target Date'] if c in latest_run_df.columns])
+    else:
+        # Fallback demo rows — shown only until the nightly batch job has produced its first run.
+        latest_run_df = pd.DataFrame({
+            'Product': ['CroissantPlain ($1.50)', 'PainAuChocolat ($1.50)', 'BlueberryMuffin ($1.50)', 'CustardBun ($1.50)', 'KimchiCroquette ($1.50)'],
+            'Predicted Waste': [11, 8, 6, 5, 4],
+            'Loss': ['$17', '$12', '$9', '$7', '$6'],
+            'Explanation': [
+                'School closure and low traffic drive up leftover.',
+                'Weekend rows show consistent oversupply.',
+                'Weather-sensitive; clear skies favor lower waste.',
+                'Weekend volatility widens the prediction range.',
+                'Sells out consistently on comparable shifts.'
+            ]
+        })
+        generated_note = None
 
     def render_highlighted_table(df):
         rows_html = ""
         for _, row in df.iterrows():
             bg = "rgba(154,75,62,0.10)" if row['Predicted Waste'] > 0 else "rgba(11,61,46,0.08)"
-            rows_html += f'<tr style="background-color:{bg}"><td style="padding:0.6rem 0.8rem;border-bottom:1px solid rgba(176,137,104,0.2);color:#3D2008;font-family:\'DM Sans\',sans-serif;font-size:14px;line-height:1.4">{row["Product"]}</td><td style="padding:0.6rem 0.8rem;border-bottom:1px solid rgba(176,137,104,0.2);color:#3D2008;font-family:\'DM Sans\',sans-serif;font-size:14px;line-height:1.4;text-align:right">{row["Predicted Waste"]}</td><td style="padding:0.6rem 0.8rem;border-bottom:1px solid rgba(176,137,104,0.2);color:#3D2008;font-family:\'DM Sans\',sans-serif;font-size:14px;line-height:1.4">{row["Loss"]}</td><td style="padding:0.6rem 0.8rem;border-bottom:1px solid rgba(176,137,104,0.2);color:#3D2008;font-family:\'DM Sans\',sans-serif;font-size:14px;line-height:1.4">{row["Confidence"]}</td><td style="padding:0.6rem 0.8rem;border-bottom:1px solid rgba(176,137,104,0.2);color:#3D2008;font-family:\'DM Sans\',sans-serif;font-size:14px;line-height:1.4">{row["Explanation"]}</td></tr>'
+            rows_html += f'<tr style="background-color:{bg}"><td style="padding:0.6rem 0.8rem;border-bottom:1px solid rgba(176,137,104,0.2);color:#3D2008;font-family:\'DM Sans\',sans-serif;font-size:14px;line-height:1.4">{row["Product"]}</td><td style="padding:0.6rem 0.8rem;border-bottom:1px solid rgba(176,137,104,0.2);color:#3D2008;font-family:\'DM Sans\',sans-serif;font-size:14px;line-height:1.4;text-align:right">{row["Predicted Waste"]}</td><td style="padding:0.6rem 0.8rem;border-bottom:1px solid rgba(176,137,104,0.2);color:#3D2008;font-family:\'DM Sans\',sans-serif;font-size:14px;line-height:1.4">{row["Loss"]}</td><td style="padding:0.6rem 0.8rem;border-bottom:1px solid rgba(176,137,104,0.2);color:#3D2008;font-family:\'DM Sans\',sans-serif;font-size:14px;line-height:1.4">{row["Explanation"]}</td></tr>'
 
-        table_html = f'<div style="border:none solid rgba(176,137,104,0.4);overflow:hidden"><table style="width:100%;border-collapse:collapse"><thead><tr style="background:#FFFFFF"><th style="padding:0.6rem 0.8rem;text-align:left;border-bottom:1px solid rgba(176,137,104,0.4);color:#3D2008;font-family:\'DM Sans\',sans-serif;font-size:14px;font-weight:500;line-height:1.4">Product</th><th style="padding:0.6rem 0.8rem;text-align:right;border-bottom:1px solid rgba(176,137,104,0.4);color:#3D2008;font-family:\'DM Sans\',sans-serif;font-size:14px;font-weight:500;line-height:1.4">Predicted Waste</th><th style="padding:0.6rem 0.8rem;text-align:left;border-bottom:1px solid rgba(176,137,104,0.4);color:#3D2008;font-family:\'DM Sans\',sans-serif;font-size:14px;font-weight:500;line-height:1.4">Loss</th><th style="padding:0.6rem 0.8rem;text-align:left;border-bottom:1px solid rgba(176,137,104,0.4);color:#3D2008;font-family:\'DM Sans\',sans-serif;font-size:14px;font-weight:500;line-height:1.4">Confidence</th><th style="padding:0.6rem 0.8rem;text-align:left;border-bottom:1px solid rgba(176,137,104,0.4);color:#3D2008;font-family:\'DM Sans\',sans-serif;font-size:14px;font-weight:500;line-height:1.4">Explanation</th></tr></thead><tbody>{rows_html}</tbody></table></div>'
+        table_html = f'<div style="border:none solid rgba(176,137,104,0.4);overflow:hidden"><table style="width:100%;border-collapse:collapse"><thead><tr style="background:#FFFFFF"><th style="padding:0.6rem 0.8rem;text-align:left;border-bottom:1px solid rgba(176,137,104,0.4);color:#3D2008;font-family:\'DM Sans\',sans-serif;font-size:14px;font-weight:500;line-height:1.4">Product</th><th style="padding:0.6rem 0.8rem;text-align:right;border-bottom:1px solid rgba(176,137,104,0.4);color:#3D2008;font-family:\'DM Sans\',sans-serif;font-size:14px;font-weight:500;line-height:1.4">Predicted Waste</th><th style="padding:0.6rem 0.8rem;text-align:left;border-bottom:1px solid rgba(176,137,104,0.4);color:#3D2008;font-family:\'DM Sans\',sans-serif;font-size:14px;font-weight:500;line-height:1.4">Loss</th><th style="padding:0.6rem 0.8rem;text-align:left;border-bottom:1px solid rgba(176,137,104,0.4);color:#3D2008;font-family:\'DM Sans\',sans-serif;font-size:14px;font-weight:500;line-height:1.4">Explanation</th></tr></thead><tbody>{rows_html}</tbody></table></div>'
 
         st.markdown(table_html, unsafe_allow_html=True)
 
