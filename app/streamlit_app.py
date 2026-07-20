@@ -1682,10 +1682,10 @@ with col1:
         <div class="arch-box-inner"><div style="font-size:1.3rem">📋</div><div class="arch-box-label">Shift Tracker</div><div class="arch-box-desc">Every closing shift, I log waste across 65 items, plus foot traffic, weather, and school status</div></div>
     </div>
     <div class="anim-fade-left" style="transition-delay:0.1s">
-        <div class="arch-box-inner"><div style="font-size:1.3rem">🌤️</div><div class="arch-box-label">Weather API</div><div class="arch-box-desc">I pull tomorrow's weather at open, midday, and close, straight from a live weather API</div></div>
+        <div class="arch-box-inner"><div style="font-size:1.3rem">🌤️</div><div class="arch-box-label">Weather API</div><div class="arch-box-desc">Pulls tomorrow's weather automatically — open, midday, and close — from a live weather API</div></div>
     </div>
     <div class="anim-fade-left" style="transition-delay:0.2s">
-        <div class="arch-box-inner"><div style="font-size:1.3rem">🏫</div><div class="arch-box-label">School Calendar</div><div class="arch-box-desc">Cary High's calendar tells me when school's in or out, which shifts how busy we get</div></div>
+        <div class="arch-box-inner"><div style="font-size:1.3rem">🏫</div><div class="arch-box-label">School Calendar</div><div class="arch-box-desc">Automatically checks Cary High's calendar for school status, since that shifts how busy we get</div></div>
     </div>
     <div class="anim-fade-left" style="transition-delay:0.3s">
         <div class="arch-box-inner"><div style="font-size:1.3rem">📊</div><div class="arch-box-label">Proxy Dataset</div><div class="arch-box-desc">A Kaggle dataset from another French-Korean bakery, filling gaps while my own data is still young</div></div>
