@@ -1208,6 +1208,7 @@ if has_backtest and 'abs_error' in backtest_df.columns:
     accuracy_caveat = f"within 3 units · median error {median_error:.0f} unit(s) · {len(backtest_df)} predictions"
 else:
     accuracy_display, accuracy_caveat = "—", "Populates as backtesting continues"
+    within_3_pct = None
 
 from core.data_loader import get_top_volatile_products
 vol_df = get_top_volatile_products(tracker_df, pricing_df, n=12, backtest_path=backtest_path)
@@ -1307,7 +1308,8 @@ with tab_latest:
         tracker_df,
         is_weekend_tomorrow=is_weekend_tomorrow,
         tomorrow_day_name=tomorrow_dow,
-        school_status_tomorrow=tomorrow_school_status
+        school_status_tomorrow=tomorrow_school_status,
+        backtest_accuracy_pct=within_3_pct
     )
     score = confidence_result['score']
     if score >= 70:
