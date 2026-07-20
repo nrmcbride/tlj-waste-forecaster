@@ -1418,7 +1418,7 @@ with tab_latest:
             <div class="metric-value-sm">{annual_recovery_display}</div>
             <div class="metric-label">Annual Recovery Potential</div>
             <details class="tlj-metric-info"><summary>?</summary>
-                <div class="tlj-metric-popup">If I cut production to match the model's predictions every day for a year, this is roughly what I'd save — based on the backtest so far, not a guarantee.</div>
+                <div class="tlj-metric-popup">The Daily Savings number to the right, projected across a full year (× 365) — a rough estimate based on the backtest so far, not a guarantee.</div>
             </details>
         </div>
         """, unsafe_allow_html=True)
@@ -1429,7 +1429,7 @@ with tab_latest:
             <div class="metric-value-sm">{daily_savings_display}</div>
             <div class="metric-label">Daily Savings Opportunity</div>
             <details class="tlj-metric-info"><summary>?</summary>
-                <div class="tlj-metric-popup">The average I'd save per shift by cutting production down to what the model predicts I'll waste, based on the backtest so far.</div>
+                <div class="tlj-metric-popup">For each backtested shift, I compare what actually got wasted to what the model predicted, and take whichever number is smaller — that's what I'd have realistically avoided by cutting production to match the forecast. This is the average of that, per shift.</div>
             </details>
         </div>
         """, unsafe_allow_html=True)
@@ -1440,7 +1440,7 @@ with tab_latest:
             <div class="metric-value-sm">{accuracy_display}</div>
             <div class="metric-label">of Predictions Within 3 Units</div>
             <details class="tlj-metric-info"><summary>?</summary>
-                <div class="tlj-metric-popup">Out of all my backtested predictions, this is the share that landed within 3 units of what actually happened — close, even if not exact.</div>
+                <div class="tlj-metric-popup">For every backtested prediction, I check whether it landed within 3 units of what actually happened. This is the percentage that did — close, even if not exact.</div>
             </details>
         </div>
         """, unsafe_allow_html=True)
