@@ -947,7 +947,9 @@ with col_demo:
     product_list = get_product_list(tracker_df)
 
     import datetime
-    tomorrow_date = datetime.date.today() + datetime.timedelta(days=1)
+    from zoneinfo import ZoneInfo
+    eastern_now = datetime.datetime.now(ZoneInfo("America/New_York"))
+    tomorrow_date = eastern_now.date() + datetime.timedelta(days=1)
     tomorrow = "Tomorrow's Forecast — " + tomorrow_date.strftime("%A, %B %-d")
 
     weather_string = "Forecast for tomorrow -> Open (9:00 AM): 74°F, Clear Sky | Midday (2:00 PM): 79°F, Scattered Clouds | Close (7:30 PM): 82°F, Clear Sky"
@@ -1216,8 +1218,9 @@ vol_df = get_top_volatile_products(tracker_df, pricing_df, n=12, backtest_path=b
 tab_latest, tab_insights, tab_volatility, tab_validation, tab_confidence = st.tabs(["Latest Forecast Run", "Insights", "What Gets Forecasted", "Validation History", "Confidence Score Breakdown"])
 
 with tab_latest:
-    run_date = datetime.date.today().strftime("%B %-d, %Y")
-    tomorrow_date = datetime.date.today() + datetime.timedelta(days=1)
+    eastern_now_latest = datetime.datetime.now(ZoneInfo("America/New_York"))
+    run_date = eastern_now_latest.strftime("%B %-d, %Y")
+    tomorrow_date = eastern_now_latest.date() + datetime.timedelta(days=1)
     tomorrow_label = tomorrow_date.strftime("%A, %B %-d")
 
     st.markdown(f"""
@@ -1290,7 +1293,7 @@ with tab_latest:
 
     from core.data_loader import compute_daily_confidence
     import datetime as _dt
-    tomorrow_dow = (_dt.date.today() + _dt.timedelta(days=1)).strftime("%A")
+    tomorrow_dow = (datetime.datetime.now(ZoneInfo("America/New_York")).date() + _dt.timedelta(days=1)).strftime("%A")
     is_weekend_tomorrow = tomorrow_dow in ["Saturday", "Sunday"]
 
     def normalize_school_status(status_text):
