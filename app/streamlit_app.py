@@ -1247,21 +1247,47 @@ else:
 log_df = load_log()
 accuracy_stats = calculate_accuracy(log_df)
 
-if has_backtest and 'abs_error' in backtest_df.columns and 'unit_price' in backtest_df.columns:
-    # Savings represent waste that would have been avoided by cutting production
-    # down to the model's predicted leftover count. Using min(actual, predicted)
-    # per shift: if the model matched or overestimated waste, the full predicted
-    # cut would have avoided all of it; if the model underestimated, only the
-    # smaller amount is credited, since that's genuinely what trusting the
-    # forecast would have avoided that day.
-    backtest_df['savings'] = backtest_df[['actual', 'predicted']].min(axis=1) * backtest_df['unit_price']
-    daily_savings = round(backtest_df.groupby('date')['savings'].sum().mean(), 2)
-    annual_recovery = round(daily_savings * 365)
-    daily_savings_display = f"${daily_savings}/day"
-    annual_recovery_display = f"${annual_recovery:,}"
-    savings_caveat = "From backtest, in-sample"
+from core.data_loader import get_top_volatile_products
+vol_df = get_top_volatile_products(tracker_df, pricing_df, n=12, backtest_path=backtest_path)
+
+# ---- Shared scope for the two dollar-figure cards below ----
+# Both "Real Financial Loss" and "Annual Recovery Potential" are scoped to the
+# same set of products — today's top-12 forecasted items, intersected with
+# whichever of those actually have backtest history — and use the identical
+# two-step method: sum across those products for a given shift, average that
+# per-shift total across shifts, then project ×365. The only difference is
+# which number gets summed per product: real logged waste for Financial Loss,
+# vs. min(actual, predicted) for Recovery Potential.
+current_top12 = vol_df['product'].tolist()
+scoped_products = [p for p in current_top12 if p in backtest_df['product'].unique()] if has_backtest else []
+pricing_dict_scope = dict(zip(pricing_df.columns.tolist(), pricing_df.iloc[0].tolist())) if scoped_products else {}
+
+# ---- Real Financial Loss (This Year) — real logged waste, no model involved ----
+if scoped_products:
+    waste_cols_scope = [f"{p}_Waste_Count" for p in scoped_products if f"{p}_Waste_Count" in tracker_df.columns]
+    per_shift_real_loss = sum(
+        tracker_df[col] * pricing_dict_scope.get(col.replace('_Waste_Count', ''), 0)
+        for col in waste_cols_scope
+    )
+    avg_shift_real_loss = per_shift_real_loss.mean()
+    annual_real_loss = round(avg_shift_real_loss * 365)
+    annual_real_loss_display = f"${annual_real_loss:,}"
 else:
-    daily_savings_display, annual_recovery_display, savings_caveat = "—", "—", "Populates July 15"
+    annual_real_loss_display = "—"
+
+# ---- Annual Recovery Potential — same method, using min(actual, predicted) ----
+# per product: if the model matched or overestimated waste, the full predicted
+# cut would have avoided all of it; if the model underestimated, only the
+# smaller amount is credited, since that's genuinely what trusting the
+# forecast would have avoided that shift.
+if scoped_products:
+    scoped_backtest = backtest_df[backtest_df['product'].isin(scoped_products)].copy()
+    scoped_backtest['savings'] = scoped_backtest[['actual', 'predicted']].min(axis=1) * scoped_backtest['unit_price']
+    avg_shift_recovery = scoped_backtest.groupby('date')['savings'].sum().mean()
+    annual_recovery = round(avg_shift_recovery * 365)
+    annual_recovery_display = f"${annual_recovery:,}"
+else:
+    annual_recovery_display = "—"
 
 if has_backtest and 'abs_error' in backtest_df.columns:
     within_3_units = (backtest_df['abs_error'] <= 3).sum()
@@ -1272,9 +1298,6 @@ if has_backtest and 'abs_error' in backtest_df.columns:
 else:
     accuracy_display, accuracy_caveat = "—", "Populates as backtesting continues"
     within_3_pct = None
-
-from core.data_loader import get_top_volatile_products
-vol_df = get_top_volatile_products(tracker_df, pricing_df, n=12, backtest_path=backtest_path)
 
 tab_latest, tab_validation, tab_insights, tab_volatility, tab_confidence = st.tabs(["Latest Forecast Run", "Backtesting Validation", "Insights", "What Gets Forecasted", "Confidence Score Breakdown"])
 
@@ -1415,10 +1438,10 @@ with tab_latest:
         st.markdown('<div style="height:3rem"></div>', unsafe_allow_html=True)
         st.markdown(f"""
         <div class="metric-card-secondary">
-            <div class="metric-value-sm">{annual_recovery_display}</div>
-            <div class="metric-label">Annual Recovery Potential</div>
+            <div class="metric-value-sm">{annual_real_loss_display}</div>
+            <div class="metric-label">Real Financial Loss — This Year</div>
             <details class="tlj-metric-info"><summary>?</summary>
-                <div class="tlj-metric-popup">The Daily Savings number to the right, projected across a full year (× 365) — a rough estimate based on the backtest so far, not a guarantee.</div>
+                <div class="tlj-metric-popup">For each shift, I add up the real dollar value of what got wasted across the items I forecast. I average that per-shift total across every shift I've logged, then multiply by 365.</div>
             </details>
         </div>
         """, unsafe_allow_html=True)
@@ -1426,10 +1449,10 @@ with tab_latest:
         st.markdown('<div style="height:3rem"></div>', unsafe_allow_html=True)
         st.markdown(f"""
         <div class="metric-card-secondary">
-            <div class="metric-value-sm">{daily_savings_display}</div>
-            <div class="metric-label">Daily Savings Opportunity</div>
+            <div class="metric-value-sm">{annual_recovery_display}</div>
+            <div class="metric-label">Annual Recovery Potential</div>
             <details class="tlj-metric-info"><summary>?</summary>
-                <div class="tlj-metric-popup">For each backtested shift, I compare what actually got wasted to what the model predicted, and take whichever number is smaller — that's what I'd have realistically avoided by cutting production to match the forecast. This is the average of that, per shift.</div>
+                <div class="tlj-metric-popup">Same method as Real Financial Loss to the left — but instead of the real waste, I use whichever is smaller: what actually happened, or what the model predicted, for each backtested shift. Averaged across backtested shifts, then × 365.</div>
             </details>
         </div>
         """, unsafe_allow_html=True)
@@ -1440,7 +1463,7 @@ with tab_latest:
             <div class="metric-value-sm">{accuracy_display}</div>
             <div class="metric-label">of Predictions Within 3 Units</div>
             <details class="tlj-metric-info"><summary>?</summary>
-                <div class="tlj-metric-popup">For every backtested prediction, I check whether it landed within 3 units of what actually happened. This is the percentage that did — close, even if not exact.</div>
+                <div class="tlj-metric-popup">For every backtested prediction, I check whether it landed within 3 units of what actually happened — e.g. predicted 4, actual 6 counts as a hit; predicted 4, actual 9 doesn't. This is the percentage that did.</div>
             </details>
         </div>
         """, unsafe_allow_html=True)
