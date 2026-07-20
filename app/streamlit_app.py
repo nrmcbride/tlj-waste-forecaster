@@ -1441,7 +1441,7 @@ with tab_latest:
             <div class="metric-value-sm">{annual_real_loss_display}</div>
             <div class="metric-label">Real Financial Loss — This Year</div>
             <details class="tlj-metric-info"><summary>?</summary>
-                <div class="tlj-metric-popup">For each shift, I add up the real dollar value of what got wasted across the items I forecast. I average that per-shift total across every shift I've logged, then multiply by 365.</div>
+                <div class="tlj-metric-popup">This is the average dollar value of the waste that actually happened, across every shift I've logged, multiplied by 365.</div>
             </details>
         </div>
         """, unsafe_allow_html=True)
@@ -1452,7 +1452,7 @@ with tab_latest:
             <div class="metric-value-sm">{annual_recovery_display}</div>
             <div class="metric-label">Annual Recovery Potential</div>
             <details class="tlj-metric-info"><summary>?</summary>
-                <div class="tlj-metric-popup">Same method as Real Financial Loss to the left — but instead of the real waste, I use whichever is smaller: what actually happened, or what the model predicted, for each backtested shift. Averaged across backtested shifts, then × 365.</div>
+                <div class="tlj-metric-popup">This is the average dollar value of the waste my pipeline would have saved each shift (e.g. predicted 2, actual 3 → would have saved 2 of the 3 actual pastries), multiplied by 365.</div>
             </details>
         </div>
         """, unsafe_allow_html=True)
