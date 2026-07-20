@@ -887,8 +887,8 @@ div[data-testid="stTable"]:not(.tlj-secondary-table) td[style*="background-color
 /* ── Secondary metric card info popups (native details/summary — no JS) ──── */
 .tlj-metric-info {
     position: absolute;
-    top: 0.5rem;
-    right: 0.5rem;
+    bottom: 0.5rem;
+    right: 0.6rem;
 }
 
 .tlj-metric-info summary {
@@ -897,8 +897,8 @@ div[data-testid="stTable"]:not(.tlj-secondary-table) td[style*="background-color
     width: 18px;
     height: 18px;
     border-radius: 50%;
-    background: rgba(11,61,46,0.15);
-    color: #0B3D2E;
+    background: rgba(154,112,80,0.18);
+    color: #6B4C2A;
     font-family: 'DM Sans', sans-serif;
     font-size: 0.68rem;
     font-weight: 900;
@@ -916,12 +916,12 @@ div[data-testid="stTable"]:not(.tlj-secondary-table) td[style*="background-color
 
 .tlj-metric-info summary:hover,
 .tlj-metric-info[open] summary {
-    background: rgba(11,61,46,0.3);
+    background: rgba(154,112,80,0.32);
 }
 
 .tlj-metric-popup {
     position: absolute;
-    top: 1.7rem;
+    bottom: 1.7rem;
     right: 0;
     z-index: 60;
     width: 190px;
@@ -1248,7 +1248,13 @@ log_df = load_log()
 accuracy_stats = calculate_accuracy(log_df)
 
 if has_backtest and 'abs_error' in backtest_df.columns and 'unit_price' in backtest_df.columns:
-    backtest_df['savings'] = (backtest_df['actual'] - backtest_df['predicted']).clip(lower=0) * backtest_df['unit_price']
+    # Savings represent waste that would have been avoided by cutting production
+    # down to the model's predicted leftover count. Using min(actual, predicted)
+    # per shift: if the model matched or overestimated waste, the full predicted
+    # cut would have avoided all of it; if the model underestimated, only the
+    # smaller amount is credited, since that's genuinely what trusting the
+    # forecast would have avoided that day.
+    backtest_df['savings'] = backtest_df[['actual', 'predicted']].min(axis=1) * backtest_df['unit_price']
     daily_savings = round(backtest_df.groupby('date')['savings'].sum().mean(), 2)
     annual_recovery = round(daily_savings * 365)
     daily_savings_display = f"${daily_savings}/day"
@@ -1412,7 +1418,7 @@ with tab_latest:
             <div class="metric-value-sm">{annual_recovery_display}</div>
             <div class="metric-label">Annual Recovery Potential</div>
             <details class="tlj-metric-info"><summary>?</summary>
-                <div class="tlj-metric-popup">Daily backtested savings × 365 — a projection of what a full year could look like if this in-sample edge holds, not a guarantee.</div>
+                <div class="tlj-metric-popup">If I cut production to match the model's predictions every day for a year, this is roughly what I'd save — based on the backtest so far, not a guarantee.</div>
             </details>
         </div>
         """, unsafe_allow_html=True)
@@ -1423,7 +1429,7 @@ with tab_latest:
             <div class="metric-value-sm">{daily_savings_display}</div>
             <div class="metric-label">Daily Savings Opportunity</div>
             <details class="tlj-metric-info"><summary>?</summary>
-                <div class="tlj-metric-popup">Average dollars saved per backtested shift by trusting the model's leftover count instead of over-baking.</div>
+                <div class="tlj-metric-popup">The average I'd save per shift by cutting production down to what the model predicts I'll waste, based on the backtest so far.</div>
             </details>
         </div>
         """, unsafe_allow_html=True)
@@ -1434,7 +1440,7 @@ with tab_latest:
             <div class="metric-value-sm">{accuracy_display}</div>
             <div class="metric-label">of Predictions Within 3 Units</div>
             <details class="tlj-metric-info"><summary>?</summary>
-                <div class="tlj-metric-popup">Share of backtested predictions that landed within 3 units of the actual closing leftover count — a looser bar than an exact match.</div>
+                <div class="tlj-metric-popup">Out of all my backtested predictions, this is the share that landed within 3 units of what actually happened — close, even if not exact.</div>
             </details>
         </div>
         """, unsafe_allow_html=True)
