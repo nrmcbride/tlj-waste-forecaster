@@ -111,29 +111,33 @@ def get_weekday_weekend_waste(tracker_df):
     weekend_totals = totals[is_weekend]
     return weekday_totals, weekend_totals
 
-def compute_daily_confidence(tracker_df, is_weekend_tomorrow, tomorrow_day_name=None, school_status_tomorrow=None, weather_forecast_tomorrow=None):
+def compute_daily_confidence(tracker_df, is_weekend_tomorrow, tomorrow_day_name=None, school_status_tomorrow=None):
     """Compute a 0-100 confidence score for tomorrow's batch of predictions,
     based purely on historical data coverage — no LLM involved.
 
-    Factors (25 + 20 + 20 + 20 + 15 = 100 points):
-    - Historical sample size (25 pts): more logged shifts overall = more
+    Factors (30 + 20 + 25 + 25 = 100 points):
+    - Historical sample size (30 pts): more logged shifts overall = more
       reliable predictions in general.
     - Day type (20 pts): weekends are historically more volatile than
       weekdays, so weekend predictions carry inherently more uncertainty.
-    - Day-specific coverage (20 pts): how many historical shifts share
+    - Day-specific coverage (25 pts): how many historical shifts share
       tomorrow's exact day name (e.g., specifically Tuesdays), a tighter
       signal than the weekday/weekend binary alone.
-    - School calendar match (20 pts): how many historical shifts share
+    - School calendar match (25 pts): how many historical shifts share
       tomorrow's school-in-session status.
-    - Weather similarity (15 pts): placeholder until the Weather API is
-      integrated — currently a neutral fixed value.
+
+    (A weather-similarity factor was previously included as a placeholder
+    but was never actually implemented — it always returned a fixed
+    neutral value regardless of input. It's been removed rather than kept
+    as dead weight, and its 15 points redistributed above to the three
+    factors that have real logic behind them.)
 
     Returns a dict: {'score': int, 'breakdown': list of factor dicts}
     """
     n_shifts = len(tracker_df)
 
-    # ---- Factor 1: historical sample size (0-25 points) ----
-    sample_size_score = min(n_shifts / 30, 1.0) * 25
+    # ---- Factor 1: historical sample size (0-30 points) ----
+    sample_size_score = min(n_shifts / 30, 1.0) * 30
 
     # ---- Factor 2: day type — weekday vs weekend (0-20 points) ----
     weekday_totals, weekend_totals = get_weekday_weekend_waste(tracker_df)
@@ -151,35 +155,30 @@ def compute_daily_confidence(tracker_df, is_weekend_tomorrow, tomorrow_day_name=
     else:
         day_type_score = 20
 
-    # ---- Factor 3: specific day-of-week coverage (0-20 points) ----
+    # ---- Factor 3: specific day-of-week coverage (0-25 points) ----
     if tomorrow_day_name and 'Day_of_Week' in tracker_df.columns:
         same_day_shifts = tracker_df[tracker_df['Day_of_Week'] == tomorrow_day_name]
         n_same_day = len(same_day_shifts)
         # scale up to full marks at 5+ shifts sharing this exact day
-        day_specific_score = min(n_same_day / 5, 1.0) * 20
+        day_specific_score = min(n_same_day / 5, 1.0) * 25
     else:
         n_same_day = None
-        day_specific_score = 10  # neutral if we can't check
+        day_specific_score = 12.5  # neutral if we can't check
 
-    # ---- Factor 4: school calendar match (0-20 points) ----
+    # ---- Factor 4: school calendar match (0-25 points) ----
     school_col_candidates = [c for c in tracker_df.columns if 'caryhigh' in c.lower().replace(' ', '').replace('_', '')]
     if school_status_tomorrow and school_col_candidates:
         school_col = school_col_candidates[0]
         matching_shifts = tracker_df[tracker_df[school_col] == school_status_tomorrow]
         coverage_ratio = min(len(matching_shifts) / 10, 1.0)
-        school_score = coverage_ratio * 20
+        school_score = coverage_ratio * 25
         n_school_matches = len(matching_shifts)
     else:
-        school_score = 10  # neutral placeholder
+        school_score = 12.5  # neutral placeholder
         n_school_matches = None
 
-    # ---- Factor 5: weather similarity (0-15 points) — placeholder until Weather API integrated ----
-    # TODO: implement real weather-similarity matching once WEATHER_KEY is integrated
-    weather_score = 7.5  # neutral placeholder
-    n_weather_matches = None
-
     # ---- Combine and clamp — hard safety net against NaN/inf from any factor ----
-    raw_score = sample_size_score + day_type_score + day_specific_score + school_score + weather_score
+    raw_score = sample_size_score + day_type_score + day_specific_score + school_score
     if raw_score != raw_score or raw_score in (float('inf'), float('-inf')):
         raw_score = 50
     total_score = max(0, min(100, round(raw_score)))
@@ -189,7 +188,7 @@ def compute_daily_confidence(tracker_df, is_weekend_tomorrow, tomorrow_day_name=
         {
             'factor': 'Historical Sample Size',
             'points': round(sample_size_score, 1),
-            'max_points': 25,
+            'max_points': 30,
             'detail': f"{n_shifts} shifts logged — more data generally means more reliable predictions"
         },
         {
@@ -202,22 +201,16 @@ def compute_daily_confidence(tracker_df, is_weekend_tomorrow, tomorrow_day_name=
         {
             'factor': f'{tomorrow_day_name or "Day"}-Specific History',
             'points': round(day_specific_score, 1),
-            'max_points': 20,
+            'max_points': 25,
             'detail': (f"{n_same_day} historical {tomorrow_day_name} shifts logged" if n_same_day is not None
                        else "Day-specific data not available")
         },
         {
             'factor': 'School Calendar Match',
             'points': round(school_score, 1),
-            'max_points': 20,
+            'max_points': 25,
             'detail': (f"{n_school_matches} shifts match tomorrow's school status" if n_school_matches is not None
                        else "School status not yet integrated")
-        },
-        {
-            'factor': 'Weather Similarity',
-            'points': round(weather_score, 1),
-            'max_points': 15,
-            'detail': "Weather matching not yet integrated"
         },
     ]
 
