@@ -1316,9 +1316,9 @@ with tab_latest:
     # ── Main 4 numbers — the headline metrics ──────────────────────────────
     col1, col2, col3, col4 = st.columns(4)
     with col1:
-        st.markdown(f'<div class="anim-pop-in metric-card"><div class="metric-value">{total_waste}<span style="font-size:0.9rem !important;font-weight:400 !important;font-family:\'DM Sans\',sans-serif !important"></span></div><div class="metric-label">Units of Projected Waste Tomorrow</div></div>', unsafe_allow_html=True)
+        st.markdown(f'<div class="anim-pop-in metric-card"><div class="metric-value">{total_waste}<span style="font-size:0.9rem !important;font-weight:400 !important;font-family:\'DM Sans\',sans-serif !important"></span></div><div class="metric-label">Total Units of Predicted Waste Tomorrow</div></div>', unsafe_allow_html=True)
     with col2:
-        st.markdown(f'<div class="anim-pop-in metric-card" style="transition-delay:0.1s"><div class="metric-value">${total_loss_val}</div><div class="metric-label">of Projected Financial Loss</div></div>', unsafe_allow_html=True)
+        st.markdown(f'<div class="anim-pop-in metric-card" style="transition-delay:0.1s"><div class="metric-value">${total_loss_val}</div><div class="metric-label">of Total Predicted Dollar Loss</div></div>', unsafe_allow_html=True)
     with col3:
         st.markdown(f'<div class="anim-pop-in metric-card" style="transition-delay:0.2s"><div class="metric-value">{products_expected_to_waste}/{total_products_evaluated}</div><div class="metric-label">Products Expected to Waste</div></div>', unsafe_allow_html=True)
     with col4:
@@ -1351,8 +1351,6 @@ with tab_latest:
 with tab_insights:
     from core.data_loader import get_weekday_weekend_waste
 
-    st.markdown("Before any forecasting happens, two patterns in the raw shift data directly shaped how the system is designed — which days it treats with more caution, and which products it prioritizes for prediction.")
-
     st.markdown('<div style="height:1rem"></div>', unsafe_allow_html=True)
 
     # ── Weekend vs weekday waste volatility ──────────────────────────────
@@ -1382,7 +1380,7 @@ with tab_insights:
         height=320
     )
     st.plotly_chart(fig_weekend, use_container_width=True)
-    st.caption(f"Weekend waste is {vol_ratio:.1f}× more volatile than weekday waste — not simply higher, but harder to predict. Based on {len(tracker_df)} logged shifts: {len(weekday_totals)} weekday, {len(weekend_totals)} weekend.")
+    st.caption(f"Weekend waste is {vol_ratio:.1f}x more volatile than weekday waste, making weekends significantly harder to predict.")
 
     st.markdown('<div style="height:2rem"></div>', unsafe_allow_html=True)
 
@@ -1424,13 +1422,13 @@ with tab_insights:
         height=380
     )
     st.plotly_chart(fig_loss, use_container_width=True)
-    st.caption(f"The top 10 highest-loss products account for {top10_share}% of total dollar waste across all 65 SKUs, based on {len(tracker_df)} logged shifts.")
+    st.caption(f"Just 10 products are responsible for {top10_share}% of our total dollar loss (out of 65 total products tracked).")
 
 with tab_volatility:
     st.markdown("""
-    Every day, the system selects the **12 pastries with the most volatile waste patterns** to forecast — unpredictable pastries are the ones that benefit the most from a predictive tool. That said, selection comes with two caveats:
+    The system selects the **12 pastries with the most volatile waste patterns** to forecast, since unpredictable pastries are the ones that benefit the most from a predictive tool. That said, selection comes with two caveats:
 
-    - **Dollar floor:** items with negligible financial impact (under $1/shift on average) are excluded, even if their waste count looks erratic. A product that occasionally wastes 1 unit instead of 0 can look "volatile" by the math alone without being worth predicting.
+    - **Dollar floor:** items with a negligible financial impact (under $1/shift on average) are excluded; a product that occasionally wastes 1 unit instead of 0 may look "volatile" by the math alone, but it's not worth predicting due to low financial stakes.
     - **Reliability filter:** items with a demonstrated track record of inaccurate backtested predictions are excluded, even if they'd otherwise rank as volatile enough to qualify. Some pastries swing unpredictably for legitimate reasons while others lack any observable pattern.
     """)
 
@@ -1536,7 +1534,7 @@ with tab_validation:
 
 with tab_confidence:
     st.markdown('<a name="confidence-detail"></a>', unsafe_allow_html=True)
-    st.markdown("How today's confidence score was calculated — each factor is scored independently based on historical data coverage, then combined into a single 0-100 score.")
+    st.markdown("To arrive at today's confidence score, each of the below factors were independently scored based on historical data, then combined into a single 0-100 score.")
 
     st.markdown('<div style="height:2rem"></div>', unsafe_allow_html=True)
 
@@ -1590,7 +1588,7 @@ with col5:
         <div class="arch-box-inner"><div style="font-size:1.3rem">📦</div><div class="arch-box-label">Per-Product Forecast</div><div class="arch-box-desc">Predicted closing leftover count</div></div>
     </div>
     <div class="anim-fade-left" style="transition-delay:0.2s">
-        <div class="arch-box-inner"><div style="font-size:1.3rem">💸</div><div class="arch-box-label">Dollar Risk</div><div class="arch-box-desc">Projected waste capital loss</div></div>
+        <div class="arch-box-inner"><div style="font-size:1.3rem">💸</div><div class="arch-box-label">Dollar Risk</div><div class="arch-box-desc">Predicted dollar loss</div></div>
     </div>
     <div class="anim-fade-left" style="transition-delay:0.3s">
         <div class="arch-box-inner"><div style="font-size:1.3rem">🧠</div><div class="arch-box-label">Strategic Logic</div><div class="arch-box-desc">One-sentence explanation of what drove the prediction</div></div>
