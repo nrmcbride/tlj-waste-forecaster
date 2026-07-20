@@ -1117,7 +1117,7 @@ with col_demo:
             st.stop()
 
         from google import genai
-        from core.forecast_engine import build_prompt, call_gemini_with_retry
+        from core.forecast_engine import build_prompt, call_gemini_with_retry, sanitize_explanation
         client = genai.Client(api_key=AI_KEY)
 
         waste_col = f"{selected_product}_Waste_Count"
@@ -1165,7 +1165,7 @@ with col_demo:
             elif line.startswith("FINANCIAL RISK:"):
                 st.session_state['financial_risk'] = line.replace("FINANCIAL RISK:", "").strip()
             elif line.startswith("STRATEGIC LOGIC:"):
-                st.session_state['strategic_logic'] = line.replace("STRATEGIC LOGIC:", "").strip()
+                st.session_state['strategic_logic'] = sanitize_explanation(line.replace("STRATEGIC LOGIC:", "").strip())
 
         st.rerun()
 
@@ -2160,7 +2160,7 @@ components.html("""
             var targetTab = null;
             tabs.forEach(function(t) {
                 var label = (t.textContent || '').replace(/\s+/g, ' ').trim();
-                if (label === 'Confidence Detail') targetTab = t;
+                if (label === 'Confidence Score Breakdown') targetTab = t;
             });
             if (!targetTab && tabs.length) targetTab = tabs[tabs.length - 1];
 
