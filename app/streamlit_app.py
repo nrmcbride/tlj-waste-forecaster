@@ -981,7 +981,7 @@ with col_demo:
         strategic_block = (
             '<div style="font-family:Playfair Display,serif;font-style:italic;'
             'font-size:0.82rem;color:#0B3D2E;text-align:center;line-height:1.5;'
-            'padding:0.8rem 0;border-top:1px solid rgba(11,61,46,0.08);">'
+            'padding:0.8rem 0;">'
             + reasons_html
             + '</div>'
         )
@@ -1571,16 +1571,16 @@ col1, col2, col3, col4, col5 = st.columns([2, 0.4, 2, 0.4, 2])
 with col1:
     st.markdown("""
     <div class="anim-fade-left">
-        <div class="arch-box-inner"><div style="font-size:1.3rem">📋</div><div class="arch-box-label">Shift Tracker</div><div class="arch-box-desc">Personal waste logs, foot traffic, weather observations, shift notes</div></div>
+        <div class="arch-box-inner"><div style="font-size:1.3rem">📋</div><div class="arch-box-label">Shift Tracker</div><div class="arch-box-desc">Every closing shift, I log waste across 65 items, plus foot traffic, weather, and school status</div></div>
     </div>
     <div class="anim-fade-left" style="transition-delay:0.1s">
-        <div class="arch-box-inner"><div style="font-size:1.3rem">🌤️</div><div class="arch-box-label">Weather API</div><div class="arch-box-desc">Live 3-point forecast for tomorrow's operating window</div></div>
+        <div class="arch-box-inner"><div style="font-size:1.3rem">🌤️</div><div class="arch-box-label">Weather API</div><div class="arch-box-desc">I pull tomorrow's weather at open, midday, and close, straight from a live weather API</div></div>
     </div>
     <div class="anim-fade-left" style="transition-delay:0.2s">
-        <div class="arch-box-inner"><div style="font-size:1.3rem">🏫</div><div class="arch-box-label">School Calendar</div><div class="arch-box-desc">WCPSS 2025–27 calendar — school status as a foot traffic signal</div></div>
+        <div class="arch-box-inner"><div style="font-size:1.3rem">🏫</div><div class="arch-box-label">School Calendar</div><div class="arch-box-desc">Cary High's calendar tells me when school's in or out, which shifts how busy we get</div></div>
     </div>
     <div class="anim-fade-left" style="transition-delay:0.3s">
-        <div class="arch-box-inner"><div style="font-size:1.3rem">📊</div><div class="arch-box-label">Proxy Dataset</div><div class="arch-box-desc">French-Korean bakery sales data for items with limited personal history</div></div>
+        <div class="arch-box-inner"><div style="font-size:1.3rem">📊</div><div class="arch-box-label">Proxy Dataset</div><div class="arch-box-desc">A Kaggle dataset from another French-Korean bakery, filling gaps while my own data is still young</div></div>
     </div>
     """, unsafe_allow_html=True)
 with col2:
