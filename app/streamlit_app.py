@@ -1292,12 +1292,22 @@ with tab_latest:
     tomorrow_dow = (_dt.date.today() + _dt.timedelta(days=1)).strftime("%A")
     is_weekend_tomorrow = tomorrow_dow in ["Saturday", "Sunday"]
 
+    def normalize_school_status(status_text):
+        """Map get_school_status()'s descriptive sentence to the same
+        REGULAR_SCHOOL_DAY / NO_STUDENT_DAY codes used in the tracker's
+        CaryHigh_ Status column, so the confidence calculation can match
+        against real historical rows."""
+        if not status_text:
+            return None
+        return "REGULAR_SCHOOL_DAY" if "regular school day" in status_text.lower() else "NO_STUDENT_DAY"
+
+    tomorrow_school_status = normalize_school_status(get_school_status())
+
     confidence_result = compute_daily_confidence(
         tracker_df,
         is_weekend_tomorrow=is_weekend_tomorrow,
         tomorrow_day_name=tomorrow_dow,
-        school_status_tomorrow=None
-        #TODO: add school_status_tomorrow once WCPSS API is integrated
+        school_status_tomorrow=tomorrow_school_status
     )
     score = confidence_result['score']
     if score >= 70:
