@@ -444,6 +444,7 @@ ul { padding-left: 1.3rem !important; margin-top: 0.6rem !important; }
     text-align: center;
     margin-bottom: 0.5rem;
     overflow: visible;
+    position: relative;
 }
 
 /* Ensure tab panels don't clip their last child */
@@ -752,7 +753,8 @@ div[data-testid="stTabs"] [data-baseweb="tab-highlight"] {
 }
 
 div[data-testid="stTabs"] div[data-testid="stTab"][role="tab"]:nth-child(1) p,
-div[data-testid="stTabs"] div[data-testid="stTab"][role="tab"]:nth-child(2) p {
+div[data-testid="stTabs"] div[data-testid="stTab"][role="tab"]:nth-child(2) p,
+div[data-testid="stTabs"] div[data-testid="stTab"][role="tab"]:nth-child(3) p {
     font-weight: 700 !important;
     color: #0B3D2E !important;
 }
@@ -880,6 +882,59 @@ div[data-testid="stTable"]:not(.tlj-secondary-table) td[style*="background-color
 .tlj-confidence-info:visited {
     color: #0B3D2E;
     text-decoration: none !important;
+}
+
+/* ── Secondary metric card info popups (native details/summary — no JS) ──── */
+.tlj-metric-info {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+}
+
+.tlj-metric-info summary {
+    list-style: none;
+    cursor: pointer;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: rgba(11,61,46,0.15);
+    color: #0B3D2E;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.68rem;
+    font-weight: 900;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.15s ease;
+}
+
+.tlj-metric-info summary::-webkit-details-marker,
+.tlj-metric-info summary::marker {
+    display: none;
+    content: "";
+}
+
+.tlj-metric-info summary:hover,
+.tlj-metric-info[open] summary {
+    background: rgba(11,61,46,0.3);
+}
+
+.tlj-metric-popup {
+    position: absolute;
+    top: 1.7rem;
+    right: 0;
+    z-index: 60;
+    width: 190px;
+    background: #FFFFFF;
+    border: 1px solid rgba(176,137,104,0.4);
+    border-radius: 8px;
+    padding: 0.65rem 0.8rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.66rem;
+    line-height: 1.5;
+    color: #3D2008;
+    text-align: left;
+    box-shadow: 0 6px 20px rgba(11,61,46,0.18);
 }
 </style>
 """, unsafe_allow_html=True)
@@ -1215,7 +1270,7 @@ else:
 from core.data_loader import get_top_volatile_products
 vol_df = get_top_volatile_products(tracker_df, pricing_df, n=12, backtest_path=backtest_path)
 
-tab_latest, tab_insights, tab_volatility, tab_validation, tab_confidence = st.tabs(["Latest Forecast Run", "Insights", "What Gets Forecasted", "Validation History", "Confidence Score Breakdown"])
+tab_latest, tab_validation, tab_insights, tab_volatility, tab_confidence = st.tabs(["Latest Forecast Run", "Backtesting Validation", "Insights", "What Gets Forecasted", "Confidence Score Breakdown"])
 
 with tab_latest:
     eastern_now_latest = datetime.datetime.now(ZoneInfo("America/New_York"))
@@ -1352,13 +1407,37 @@ with tab_latest:
     col1, col2, col3, col4 = st.columns(4)
     with col1:
         st.markdown('<div style="height:3rem"></div>', unsafe_allow_html=True)
-        st.markdown(f'<div class="metric-card-secondary"><div class="metric-value-sm">{annual_recovery_display}</div><div class="metric-label">Annual Recovery Potential</div></div>', unsafe_allow_html=True)
+        st.markdown(f"""
+        <div class="metric-card-secondary">
+            <div class="metric-value-sm">{annual_recovery_display}</div>
+            <div class="metric-label">Annual Recovery Potential</div>
+            <details class="tlj-metric-info"><summary>?</summary>
+                <div class="tlj-metric-popup">Daily backtested savings × 365 — a projection of what a full year could look like if this in-sample edge holds, not a guarantee.</div>
+            </details>
+        </div>
+        """, unsafe_allow_html=True)
     with col2:
         st.markdown('<div style="height:3rem"></div>', unsafe_allow_html=True)
-        st.markdown(f'<div class="metric-card-secondary"><div class="metric-value-sm">{daily_savings_display}</div><div class="metric-label">Daily Savings Opportunity</div></div>', unsafe_allow_html=True)
+        st.markdown(f"""
+        <div class="metric-card-secondary">
+            <div class="metric-value-sm">{daily_savings_display}</div>
+            <div class="metric-label">Daily Savings Opportunity</div>
+            <details class="tlj-metric-info"><summary>?</summary>
+                <div class="tlj-metric-popup">Average dollars saved per backtested shift by trusting the model's leftover count instead of over-baking.</div>
+            </details>
+        </div>
+        """, unsafe_allow_html=True)
     with col3:
         st.markdown('<div style="height:3rem"></div>', unsafe_allow_html=True)
-        st.markdown(f'<div class="metric-card-secondary"><div class="metric-value-sm">{accuracy_display}</div><div class="metric-label">of Predictions Within 3 Units</div></div>', unsafe_allow_html=True)
+        st.markdown(f"""
+        <div class="metric-card-secondary">
+            <div class="metric-value-sm">{accuracy_display}</div>
+            <div class="metric-label">of Predictions Within 3 Units</div>
+            <details class="tlj-metric-info"><summary>?</summary>
+                <div class="tlj-metric-popup">Share of backtested predictions that landed within 3 units of the actual closing leftover count — a looser bar than an exact match.</div>
+            </details>
+        </div>
+        """, unsafe_allow_html=True)
     with col4:
         st.markdown('<div style="height:3rem"></div>', unsafe_allow_html=True)
         st.markdown(f'<div class="metric-card-secondary"><div class="metric-value-sm">{len(tracker_df)}</div><div class="metric-label">Shifts Logged</div></div>', unsafe_allow_html=True)
