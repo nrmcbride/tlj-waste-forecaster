@@ -1,4 +1,39 @@
+import re
 import time
+
+
+_JARGON_REPLACEMENTS = [
+    (re.compile(r'\bNO_STUDENT_DAY\s+status\b', re.IGNORECASE), 'no school that day'),
+    (re.compile(r'\bREGULAR_SCHOOL_DAY\s+status\b', re.IGNORECASE), 'school being in session'),
+    (re.compile(r'\bNO_STUDENT_DAY\b', re.IGNORECASE), 'no school that day'),
+    (re.compile(r'\bREGULAR_SCHOOL_DAY\b', re.IGNORECASE), 'school was in session'),
+    (re.compile(r'\bBOGO deals?\b', re.IGNORECASE), 'a promotional deal'),
+    (re.compile(r'\bBOGO\b', re.IGNORECASE), 'promotional'),
+    (re.compile(r'\bCaryHigh_?\s*Status\b', re.IGNORECASE), 'school status'),
+    (re.compile(r'\bTraffic_Density\b', re.IGNORECASE), 'foot traffic'),
+    (re.compile(r'\bShift_Notes\b', re.IGNORECASE), 'shift notes'),
+    (re.compile(r'\bWeather_Description\b', re.IGNORECASE), 'the weather'),
+    (re.compile(r'\bHigh_Low_Temp\w*\b', re.IGNORECASE), 'the temperature'),
+    (re.compile(r'\bHumidity_From\w*\b', re.IGNORECASE), 'the humidity'),
+]
+
+
+def sanitize_explanation(text):
+    """Safety-net cleanup for Gemini's STRATEGIC LOGIC output.
+
+    The prompt instructs Gemini to avoid internal column names and raw
+    status codes (NO_STUDENT_DAY, BOGO, etc.), but LLMs don't always follow
+    negative instructions perfectly — especially when the source data it's
+    reasoning over literally contains those tokens. This deterministically
+    swaps any that slip through for plain-English equivalents, so the
+    displayed explanation is guaranteed clean regardless of model
+    compliance."""
+    if not isinstance(text, str):
+        return text
+    cleaned = text
+    for pattern, replacement in _JARGON_REPLACEMENTS:
+        cleaned = pattern.sub(replacement, cleaned)
+    return cleaned
 
 
 def build_prompt(target_product, tracker_extract, tracker_note,

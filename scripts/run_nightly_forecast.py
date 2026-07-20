@@ -27,7 +27,7 @@ from google import genai
 from core.data_loader import load_tracker, load_pricing, get_top_volatile_products
 from core.weather import get_tomorrow_weather
 from core.school_calendar import get_school_status
-from core.forecast_engine import build_prompt, call_gemini_with_retry
+from core.forecast_engine import build_prompt, call_gemini_with_retry, sanitize_explanation
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA_DIR = os.path.join(BASE_DIR, 'data')
@@ -101,7 +101,7 @@ def main():
                 elif line.startswith("FINANCIAL RISK:"):
                     financial_risk = line.replace("FINANCIAL RISK:", "").strip()
                 elif line.startswith("STRATEGIC LOGIC:"):
-                    strategic_logic = line.replace("STRATEGIC LOGIC:", "").strip()
+                    strategic_logic = sanitize_explanation(line.replace("STRATEGIC LOGIC:", "").strip())
         except RuntimeError as e:
             print(f"Stopping early — {e}")
             break
