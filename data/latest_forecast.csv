@@ -1,13 +1,13 @@
 Product,Predicted Waste,Loss,Explanation,Generated,Target Date
-ChestnutPanBread ($7.50),0,$0,"School is out for summer | Similar rainy, warm day sold out | Previous Wednesdays sold out",2026-07-21 06:38:34,2026-07-22
-ChocoCreamDonut ($4.50),2,$9,No sales promotion running | School is out for summer | Similar mild and rainy weather left two donuts,2026-07-21 06:38:34,2026-07-22
-UbeCreamDonut ($4.50),5,$22,School is out now | Rain and mild temperatures are expected | Similar past rainy day had 5 items left,2026-07-21 06:38:34,2026-07-22
-PlusMilkRoll ($6.50),0,$0,"School is out for summer | Similar rainy, mild day had no leftovers | No special discount today",2026-07-21 06:38:34,2026-07-22
-MontBlancPastry ($6.00),1,$6,Similar rainy weather previously had one leftover | School is out for summer | No buy-one-get-one promotion today,2026-07-21 06:38:34,2026-07-22
-ButterCreamBread ($7.50),0,$0,Similar rainy days had no leftovers | Wednesdays without school sold out | No discount offers tomorrow,2026-07-21 06:38:34,2026-07-22
-MorningBread ($6.75),0,$0,Similar rainy days sold out | School is out for summer break | No special discount deals today,2026-07-21 06:38:34,2026-07-22
-ChocoFilledCookie ($3.25),0,$0,Summer Wednesday with school out saw no leftovers | Similar rainy days with no school also had no waste | No store promotion to boost sales,2026-07-21 06:38:34,2026-07-22
-StrawberrySoftBread ($4.25),1,$4,"Similar rainy, warm day had one leftover | School is out for summer break | No buy-one-get-one promotion",2026-07-21 06:38:34,2026-07-22
-JalapenoCheeseCroissant ($4.25),0,$0,Rainy weather tends to reduce sales | Temperatures are similar to a day with no leftovers | No buy-one-get-one deal will be active,2026-07-21 06:38:34,2026-07-22
-CurryCroquette ($3.50),0,$0,School is out for summer | Similar rainy day sold out | No special deals on product,2026-07-21 06:38:34,2026-07-22
-MangoCreamDonut ($4.50),1,$4,"School is out, similar to a previous day with leftovers | Light rain expected, matching a day with items left | No special store deal running today",2026-07-21 06:38:34,2026-07-22
+ChestnutPanBread ($7.50),0,$0,Similar cool and damp weather days sold out completely | Past rainy days had no leftovers | No special deals are offered tomorrow,2026-07-22 06:39:36,2026-07-23
+ChocoCreamDonut ($4.50),3,$14,Rainy weather all day will likely reduce customer traffic | No special store promotion is running to boost sales | Previous rainy days with low traffic had higher leftovers,2026-07-22 06:39:36,2026-07-23
+UbeCreamDonut ($4.50),5,$22,Similar rainy weather previously had leftover donuts | School is out for summer break | No special discount deal running tomorrow,2026-07-22 06:39:36,2026-07-23
+PlusMilkRoll ($6.50),0,$0,No buy-one-get-one deal | School is out for summer | Similar rainy days had no leftovers,2026-07-22 06:39:36,2026-07-23
+MontBlancPastry ($6.00),1,$6,"It will be rainy and humid, similar to a day when one pastry was left | School is out, which can mean fewer regular customers | No special promotions are planned, unlike some past days",2026-07-22 06:39:36,2026-07-23
+ButterCreamBread ($7.50),0,$0,Rainy weather expected today | School is out for summer | Similar past rainy days had no leftovers,2026-07-22 06:39:36,2026-07-23
+MorningBread ($6.75),0,$0,"Similar cool, rainy days sold out | No buy-one-get-one offer today | Schools are closed for summer",2026-07-22 06:39:36,2026-07-23
+ChocoFilledCookie ($3.25),0,$0,"Rainy summer days previously had no leftovers | Cooler, damp weather has also sold out before | No special discount deals are available",2026-07-22 06:39:36,2026-07-23
+StrawberrySoftBread ($4.25),1,$4,"Rainy weather is forecast, similar to a prior day when one item was left | Kids are out of school for summer break, which impacts store activity | No special promotions will be offered, which could reduce sales",2026-07-22 06:39:36,2026-07-23
+JalapenoCheeseCroissant ($4.25),1,$4,"Cooler, damp weather previously left one item | No special deals are running today | Thursday during summer break can mean quieter traffic",2026-07-22 06:39:36,2026-07-23
+CurryCroquette ($3.50),0,$0,"Past Thursdays show no leftovers | Similar rainy, cool days had no leftovers | No buy-one-get-one deal running",2026-07-22 06:39:36,2026-07-23
+MangoCreamDonut ($4.50),1,$4,"Similar rainy summer day had one leftover | School is out, impacting customer flow | No special discount deals tomorrow",2026-07-22 06:39:36,2026-07-23
