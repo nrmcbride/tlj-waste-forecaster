@@ -1289,12 +1289,13 @@ if scoped_products:
 else:
     annual_recovery_display = "—"
 
-if has_backtest and 'abs_error' in backtest_df.columns:
-    within_3_units = (backtest_df['abs_error'] <= 3).sum()
-    within_3_pct = round(within_3_units / len(backtest_df) * 100)
-    median_error = backtest_df['abs_error'].median()
+if has_backtest and 'abs_error' in backtest_df.columns and scoped_products:
+    scoped_accuracy_df = backtest_df[backtest_df['product'].isin(scoped_products)]
+    within_3_units = (scoped_accuracy_df['abs_error'] <= 3).sum()
+    within_3_pct = round(within_3_units / len(scoped_accuracy_df) * 100) if len(scoped_accuracy_df) else None
+    median_error = scoped_accuracy_df['abs_error'].median()
     accuracy_display = f"{within_3_pct}%"
-    accuracy_caveat = f"within 3 units · median error {median_error:.0f} unit(s) · {len(backtest_df)} predictions"
+    accuracy_caveat = f"within 3 units · median error {median_error:.0f} unit(s) · {len(scoped_accuracy_df)} predictions · 12 tracked products"
 else:
     accuracy_display, accuracy_caveat = "—", "Populates as backtesting continues"
     within_3_pct = None
@@ -1439,9 +1440,9 @@ with tab_latest:
         st.markdown(f"""
         <div class="metric-card-secondary">
             <div class="metric-value-sm">{annual_real_loss_display}</div>
-            <div class="metric-label">Real Financial Loss — This Year</div>
+            <div class="metric-label">Real Financial Loss — This Year (12 Tracked)</div>
             <details class="tlj-metric-info"><summary>?</summary>
-                <div class="tlj-metric-popup">This is the average dollar value of the waste that actually happened, across every shift I've logged, multiplied by 365.</div>
+                <div class="tlj-metric-popup">This is the average dollar value of the waste that actually happened, across every shift I've logged, multiplied by 365 — scoped to the 12 products this system forecasts, not all 65 items the bakery sells.</div>
             </details>
         </div>
         """, unsafe_allow_html=True)
@@ -1450,9 +1451,9 @@ with tab_latest:
         st.markdown(f"""
         <div class="metric-card-secondary">
             <div class="metric-value-sm">{annual_recovery_display}</div>
-            <div class="metric-label">Annual Recovery Potential</div>
+            <div class="metric-label">Annual Recovery Potential (12 Tracked)</div>
             <details class="tlj-metric-info"><summary>?</summary>
-                <div class="tlj-metric-popup">This is the average dollar value of the waste my pipeline would have saved each shift (e.g. predicted 2, actual 3 → would have saved 2 of the 3 actual pastries), multiplied by 365.</div>
+                <div class="tlj-metric-popup">This is the average dollar value of the waste my pipeline would have saved each shift (e.g. predicted 2, actual 3 → would have saved 2 of the 3 actual pastries), multiplied by 365. Same 12 tracked products as Real Financial Loss, for a fair comparison.</div>
             </details>
         </div>
         """, unsafe_allow_html=True)
@@ -1461,9 +1462,9 @@ with tab_latest:
         st.markdown(f"""
         <div class="metric-card-secondary">
             <div class="metric-value-sm">{accuracy_display}</div>
-            <div class="metric-label">of Predictions Within 3 Units</div>
+            <div class="metric-label">of Predictions Within 3 Units (12 Tracked)</div>
             <details class="tlj-metric-info"><summary>?</summary>
-                <div class="tlj-metric-popup">For every backtested prediction, I check whether it landed within 3 units of what actually happened — e.g. predicted 4, actual 6 counts as a hit; predicted 4, actual 9 doesn't. This is the percentage that did.</div>
+                <div class="tlj-metric-popup">For every backtested prediction on the 12 tracked products, I check whether it landed within 3 units of what actually happened — e.g. predicted 4, actual 6 counts as a hit; predicted 4, actual 9 doesn't. This is the percentage that did.</div>
             </details>
         </div>
         """, unsafe_allow_html=True)
