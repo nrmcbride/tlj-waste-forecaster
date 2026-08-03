@@ -1275,20 +1275,6 @@ if scoped_products:
 else:
     annual_real_loss_display = "—"
 
-# ---- Annual Recovery Potential — same method, using min(actual, predicted) ----
-# per product: if the model matched or overestimated waste, the full predicted
-# cut would have avoided all of it; if the model underestimated, only the
-# smaller amount is credited, since that's genuinely what trusting the
-# forecast would have avoided that shift.
-if scoped_products:
-    scoped_backtest = backtest_df[backtest_df['product'].isin(scoped_products)].copy()
-    scoped_backtest['savings'] = scoped_backtest[['actual', 'predicted']].min(axis=1) * scoped_backtest['unit_price']
-    avg_shift_recovery = scoped_backtest.groupby('date')['savings'].sum().mean()
-    annual_recovery = round(avg_shift_recovery * 365)
-    annual_recovery_display = f"${annual_recovery:,}"
-else:
-    annual_recovery_display = "—"
-
 if has_backtest and 'abs_error' in backtest_df.columns and scoped_products:
     scoped_accuracy_df = backtest_df[backtest_df['product'].isin(scoped_products)]
     within_3_units = (scoped_accuracy_df['abs_error'] <= 3).sum()
@@ -1434,7 +1420,7 @@ with tab_latest:
 
     # ── Secondary row — supporting business-impact context, visually de-emphasized ──
     st.markdown('<div style="height:0.6rem"></div>', unsafe_allow_html=True)
-    col1, col2, col3, col4 = st.columns(4)
+    col1, col2, col3 = st.columns(3)
     with col1:
         st.markdown('<div style="height:3rem"></div>', unsafe_allow_html=True)
         st.markdown(f"""
@@ -1450,17 +1436,6 @@ with tab_latest:
         st.markdown('<div style="height:3rem"></div>', unsafe_allow_html=True)
         st.markdown(f"""
         <div class="metric-card-secondary">
-            <div class="metric-value-sm">{annual_recovery_display}</div>
-            <div class="metric-label">Annual Recovery Potential (12 Tracked)</div>
-            <details class="tlj-metric-info"><summary>?</summary>
-                <div class="tlj-metric-popup">This is the average dollar value of the waste my pipeline would have saved each shift (e.g. predicted 2, actual 3 → would have saved 2 of the 3 actual pastries), multiplied by 365. Same 12 tracked products as Real Financial Loss, for a fair comparison.</div>
-            </details>
-        </div>
-        """, unsafe_allow_html=True)
-    with col3:
-        st.markdown('<div style="height:3rem"></div>', unsafe_allow_html=True)
-        st.markdown(f"""
-        <div class="metric-card-secondary">
             <div class="metric-value-sm">{accuracy_display}</div>
             <div class="metric-label">of Predictions Within 3 Units (12 Tracked)</div>
             <details class="tlj-metric-info"><summary>?</summary>
@@ -1468,9 +1443,17 @@ with tab_latest:
             </details>
         </div>
         """, unsafe_allow_html=True)
-    with col4:
+    with col3:
         st.markdown('<div style="height:3rem"></div>', unsafe_allow_html=True)
-        st.markdown(f'<div class="metric-card-secondary"><div class="metric-value-sm">{len(tracker_df)}</div><div class="metric-label">Shifts Logged</div></div>', unsafe_allow_html=True)
+        st.markdown(f"""
+        <div class="metric-card-secondary">
+            <div class="metric-value-sm">{len(tracker_df)}</div>
+            <div class="metric-label">Shifts Logged</div>
+            <details class="tlj-metric-info"><summary>?</summary>
+                <div class="tlj-metric-popup">The model has {len(tracker_df)} logged shifts of real history to learn from so far — the more shifts I log, the more historical context it has to inform each prediction.</div>
+            </details>
+        </div>
+        """, unsafe_allow_html=True)
 
 with tab_insights:
     from core.data_loader import get_weekday_weekend_waste
