@@ -1,13 +1,13 @@
 Product,Predicted Waste,Loss,Explanation,Generated,Target Date
-ChestnutPanBread ($7.50),0,$0,School is out | No store promotion is active | Most similar days sold out,2026-08-05 06:51:20,2026-08-06
-ChocoCreamDonut ($4.50),0,$0,"School is out for summer break | Similar hot, clear Thursdays sold out | No special item promotions today",2026-08-05 06:51:20,2026-08-06
-UbeCreamDonut ($4.50),0,$0,School is out | No store promotions running | Similar warm Thursdays sold out,2026-08-05 06:51:20,2026-08-06
-PlusMilkRoll ($6.50),0,$0,Similar past Thursdays had no leftovers | No school is in session this time of year | No special deals are running today,2026-08-05 06:51:20,2026-08-06
-MontBlancPastry ($6.00),0,$0,"School is out, matching similar days with no leftovers | No promotional deal is running | Past clear, warm Thursdays also sold out",2026-08-05 06:51:20,2026-08-06
-ButterCreamBread ($7.50),0,$0,"Similar warm, clear days sold out | No special promotions running | Closest busy Thursday had no leftovers",2026-08-05 06:51:20,2026-08-06
-MorningBread ($6.75),1,$7,"Clear, warm weather | Typical customer traffic expected | No sales promotion.",2026-08-05 06:51:20,2026-08-06
-ChocoFilledCookie ($3.25),0,$0,School is out for summer | No store deals for this product | Similar hot summer days had zero waste,2026-08-05 06:51:20,2026-08-06
-StrawberrySoftBread ($4.25),0,$0,"Summer break Thursdays saw no waste | Very hot clear day, similar to sold-out times | No special discount deals running",2026-08-05 06:51:20,2026-08-06
-JalapenoCheeseCroissant ($4.25),1,$4,"Very hot Thursday, similar to day with one item left | No bakery-wide discount deal is active | School is out for summer break",2026-08-05 06:51:20,2026-08-06
-CurryCroquette ($3.50),0,$0,Similar hot summer Thursdays sold out | Previous busy days also had no leftovers | No special deal means regular demand,2026-08-05 06:51:20,2026-08-06
-MangoCreamDonut ($4.50),0,$0,"Similar hot, clear days previously sold out | Past Thursdays without promotions had no waste | Item typically sells out on summer break",2026-08-05 06:51:20,2026-08-06
+ChestnutPanBread ($7.50),0,$0,"School is out, so fewer walk-in customers | No sales promotion running tomorrow | Similar warm, cloudy days often sold out",2026-08-06 06:56:14,2026-08-07
+ChocoCreamDonut ($4.50),1,$4,"No promotion running on this item | School is out, implying more traffic | Similar hot summer days had 0 or 1 leftovers",2026-08-06 06:56:14,2026-08-07
+UbeCreamDonut ($4.50),1,$4,School is out | Similar warm Fridays had low waste | No special discount offered,2026-08-06 06:56:14,2026-08-07
+PlusMilkRoll ($6.50),0,$0,"School is out for summer | No special deals today | Warm, cloudy weather matches past days with no leftovers | Most comparable past shifts had zero leftovers",2026-08-06 06:56:14,2026-08-07
+MontBlancPastry ($6.00),0,$0,"School is on summer break | No store deals are running | Similar hot, cloudy days had zero waste",2026-08-06 06:56:14,2026-08-07
+ButterCreamBread ($7.50),1,$8,Similar warm summer Friday with a promotion sold out completely | No promotion tomorrow means slightly less demand | The product is historically unpredictable.,2026-08-06 06:56:14,2026-08-07
+MorningBread ($6.75),1,$7,No sales promotion running | Very hot weather expected | Similar hot days had leftover bread,2026-08-06 06:56:14,2026-08-07
+ChocoFilledCookie ($3.25),0,$0,"School is out | No buy-one-get-one deal | Similar warm, partly cloudy day had no leftovers",2026-08-06 06:56:14,2026-08-07
+StrawberrySoftBread ($4.25),0,$0,"School is out, so fewer potential customers | Most past hot summer days had no leftovers | No special sales will boost demand",2026-08-06 06:56:14,2026-08-07
+JalapenoCheeseCroissant ($4.25),9,$38,"Similar hot, cloudy summer Friday | Foot traffic expected to be typical | No special discount on this item",2026-08-06 06:56:14,2026-08-07
+CurryCroquette ($3.50),0,$0,"School is out for summer | Similar warm weekend days had no waste | No deals running, so normal demand",2026-08-06 06:56:14,2026-08-07
+MangoCreamDonut ($4.50),1,$4,Warm summer days with no school sometimes had a few unsold | No special deal means less demand than past Fridays with promotions | This donut's sales are often unpredictable,2026-08-06 06:56:14,2026-08-07
