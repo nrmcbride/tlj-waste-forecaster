@@ -1,13 +1,13 @@
 Product,Predicted Waste,Loss,Explanation,Generated,Target Date
-ChestnutPanBread ($7.50),0,$0,"School is out, so fewer walk-in customers | No sales promotion running tomorrow | Similar warm, cloudy days often sold out",2026-08-06 06:56:14,2026-08-07
-ChocoCreamDonut ($4.50),1,$4,"No promotion running on this item | School is out, implying more traffic | Similar hot summer days had 0 or 1 leftovers",2026-08-06 06:56:14,2026-08-07
-UbeCreamDonut ($4.50),1,$4,School is out | Similar warm Fridays had low waste | No special discount offered,2026-08-06 06:56:14,2026-08-07
-PlusMilkRoll ($6.50),0,$0,"School is out for summer | No special deals today | Warm, cloudy weather matches past days with no leftovers | Most comparable past shifts had zero leftovers",2026-08-06 06:56:14,2026-08-07
-MontBlancPastry ($6.00),0,$0,"School is on summer break | No store deals are running | Similar hot, cloudy days had zero waste",2026-08-06 06:56:14,2026-08-07
-ButterCreamBread ($7.50),1,$8,Similar warm summer Friday with a promotion sold out completely | No promotion tomorrow means slightly less demand | The product is historically unpredictable.,2026-08-06 06:56:14,2026-08-07
-MorningBread ($6.75),1,$7,No sales promotion running | Very hot weather expected | Similar hot days had leftover bread,2026-08-06 06:56:14,2026-08-07
-ChocoFilledCookie ($3.25),0,$0,"School is out | No buy-one-get-one deal | Similar warm, partly cloudy day had no leftovers",2026-08-06 06:56:14,2026-08-07
-StrawberrySoftBread ($4.25),0,$0,"School is out, so fewer potential customers | Most past hot summer days had no leftovers | No special sales will boost demand",2026-08-06 06:56:14,2026-08-07
-JalapenoCheeseCroissant ($4.25),9,$38,"Similar hot, cloudy summer Friday | Foot traffic expected to be typical | No special discount on this item",2026-08-06 06:56:14,2026-08-07
-CurryCroquette ($3.50),0,$0,"School is out for summer | Similar warm weekend days had no waste | No deals running, so normal demand",2026-08-06 06:56:14,2026-08-07
-MangoCreamDonut ($4.50),1,$4,Warm summer days with no school sometimes had a few unsold | No special deal means less demand than past Fridays with promotions | This donut's sales are often unpredictable,2026-08-06 06:56:14,2026-08-07
+ChestnutPanBread ($7.50),0,$0,"Similar warm, cloudy weekend days had zero leftovers | No special deals will be offered tomorrow | Bread often sells out on busy weekend days",2026-08-07 05:19:07,2026-08-08
+ChocoCreamDonut ($4.50),0,$0,"Similar warm, partly cloudy weekend day sold out | No buy-one-get-one deal will be running | School is out for the weekend",2026-08-07 05:19:07,2026-08-08
+UbeCreamDonut ($4.50),0,$0,"Every past Saturday sold out. | School is out, like all past zero-waste Saturdays. | Forecast is similar warm, overcast weather.",2026-08-07 05:19:07,2026-08-08
+PlusMilkRoll ($6.50),0,$0,"Similar warm Saturdays sold out | School is out, typical weekend sales | No buy-one-get-one promotion",2026-08-07 05:19:07,2026-08-08
+MontBlancPastry ($6.00),0,$0,"Similar warm, cloudy weekend days sold out | All past Saturdays had zero waste | No special promotion running",2026-08-07 05:19:07,2026-08-08
+ButterCreamBread ($7.50),0,$0,"School is out, so weekend foot traffic should be good | No promotions running today | Similar warm, overcast days sold out",2026-08-07 05:19:07,2026-08-08
+MorningBread ($6.75),0,$0,"All past weekend days with school out and no deal had zero waste | Similar warm, partly cloudy weather usually means a sell-out | No special offers running, so sales should be consistent",2026-08-07 05:19:07,2026-08-08
+ChocoFilledCookie ($3.25),4,$13,"Last Saturday with item not on deal had 4 items left | Warm, broken clouds match prior waste count | No price discount for this item",2026-08-07 05:19:07,2026-08-08
+StrawberrySoftBread ($4.25),0,$0,"Past Saturdays consistently had zero waste | Warm, cloudy weather matches a zero-waste day | No sales promotion means natural demand",2026-08-07 05:19:07,2026-08-08
+JalapenoCheeseCroissant ($4.25),0,$0,"School is out, similar to past zero-waste Saturdays | Warm, overcast weather matches other zero-waste days | No special discount running for customers today",2026-08-07 05:19:07,2026-08-08
+CurryCroquette ($3.50),0,$0,"Similar warm, cloudy Saturdays sold out | No customer deals expected tomorrow | Other comparable days also sold everything",2026-08-07 05:19:07,2026-08-08
+MangoCreamDonut ($4.50),0,$0,A similar past Saturday with warm weather sold out | This item usually sells out by closing | No special deal is running tomorrow,2026-08-07 05:19:07,2026-08-08
