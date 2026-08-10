@@ -1,13 +1,13 @@
 Product,Predicted Waste,Loss,Explanation,Generated,Target Date
-ChestnutPanBread ($7.50),2,$15,School is out | Similar warm cloudy day | No store-wide discounts,2026-08-09 05:01:37,2026-08-10
-ChocoCreamDonut ($4.50),1,$4,"School is out, so fewer customers | Similar warm, humid weather had low waste | No buy-one-get-one deals for donuts",2026-08-09 05:01:37,2026-08-10
-UbeCreamDonut ($4.50),1,$4,Summer weekday traffic is slow | No buy-one-get-one deal | Similar hot days had one left over,2026-08-09 05:01:37,2026-08-10
-PlusMilkRoll ($6.50),4,$26,"No promotions tomorrow | School is out for summer | Similar hot, cloudy weekday previously had 4 leftovers",2026-08-09 05:01:37,2026-08-10
-MontBlancPastry ($6.00),0,$0,"School is out, so fewer customers | No special discount today | Similar warm, cloudy days sold out",2026-08-09 05:01:37,2026-08-10
-ButterCreamBread ($7.50),1,$8,School is out for summer. | Overcast skies suggest slower foot traffic. | No special promotions are running.,2026-08-09 05:01:37,2026-08-10
-MorningBread ($6.75),0,$0,School is out for summer break | No special buy-one-get-one deals today | Most similar days had no leftover bread,2026-08-09 05:01:37,2026-08-10
-ChocoFilledCookie ($3.25),0,$0,"Similar warm, cloudy days sold out | School is out for summer | No sales promotions are active",2026-08-09 05:01:37,2026-08-10
-StrawberrySoftBread ($4.25),0,$0,School is out; lower weekday traffic | No current promotional deals | Similar summer days sold out,2026-08-09 05:01:37,2026-08-10
-JalapenoCheeseCroissant ($4.25),0,$0,"School is out for summer | No special discounts offered | Similar warm, overcast days sold out",2026-08-09 05:01:37,2026-08-10
-CurryCroquette ($3.50),3,$10,School is out for summer | Similar warm day had leftover bread | No special sales on this item,2026-08-09 05:01:37,2026-08-10
-MangoCreamDonut ($4.50),1,$4,No special deals running today | School is out for summer break | Similar warm days had one leftover,2026-08-09 05:01:37,2026-08-10
+ChestnutPanBread ($7.50),0,$0,"Day is Tuesday, school is out, no promo. | Past similar Tuesdays had no waste. | Similar hot days with typical traffic had no waste.",2026-08-10 05:49:41,2026-08-11
+ChocoCreamDonut ($4.50),0,$0,"Similar very hot summer days had no leftovers | It's a weekday, usually slower traffic | School is closed for summer",2026-08-10 05:49:41,2026-08-11
+UbeCreamDonut ($4.50),0,$0,Similar hot Tuesdays had no leftovers | School is currently out | No store promotion today,2026-08-10 05:49:41,2026-08-11
+PlusMilkRoll ($6.50),0,$0,"School is out, so fewer daily customers | Similar very hot days had no leftovers | No special deals are running",2026-08-10 05:49:41,2026-08-11
+MontBlancPastry ($6.00),0,$0,Extremely hot weather drives sales | Past very hot days had no leftovers | No special discount offered,2026-08-10 05:49:41,2026-08-11
+ButterCreamBread ($7.50),2,$15,"Very hot weather expected, usually means fewer customers | School is out, so fewer walk-in customers today | No store promotion, unlike similar days with waste",2026-08-10 05:49:41,2026-08-11
+MorningBread ($6.75),2,$14,No promotions running | Weather will be extremely hot | School is on summer break,2026-08-10 05:49:41,2026-08-11
+ChocoFilledCookie ($3.25),2,$6,School is out on a Tuesday | Very hot weather often means low waste | No special deals planned,2026-08-10 05:49:41,2026-08-11
+StrawberrySoftBread ($4.25),0,$0,Very hot weather should reduce sales | School is out for summer | No special deals planned,2026-08-10 05:49:41,2026-08-11
+JalapenoCheeseCroissant ($4.25),2,$8,Similar hot weather days saw some waste | School is out for summer break | No promotional deals tomorrow,2026-08-10 05:49:41,2026-08-11
+CurryCroquette ($3.50),3,$10,"Last hot, clear day had some leftovers | School is out, so more shoppers possible | No special discount running for this item",2026-08-10 05:49:41,2026-08-11
+MangoCreamDonut ($4.50),0,$0,"Very hot weather saw no leftovers | No special deals, matching past sold-out days | School is out, like most days with no waste",2026-08-10 05:49:41,2026-08-11
