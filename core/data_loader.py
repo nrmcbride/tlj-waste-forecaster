@@ -69,7 +69,17 @@ def get_top_volatile_products(tracker_df, pricing_df, n=12, min_shifts=MIN_SHIFT
       record of inaccurate backtested predictions, even if they'd
       otherwise rank as volatile enough to qualify.
 
-    Returns a DataFrame with columns ['product', 'cv'], sorted ascending by cv.
+    Returns a DataFrame with columns ['product', 'cv', 'mean_dollar_waste'],
+    sorted ascending by cv.
+
+    (A dollar-weighted volatility score — cv x mean_dollar_waste — was
+    explored as a possible ranking upgrade, since pure CV can let a cheap
+    but chaotic item outrank an expensive but moderately volatile one.
+    Deferred for now: switching rankings mid-cycle drops backtest coverage
+    to whatever overlaps the new selection, which would leave the site's
+    financial cards thin right before it needs to be shown to reviewers.
+    Worth revisiting once there's room to also rebuild backtest history
+    against the new selection.)
     """
     waste_cols = [c for c in tracker_df.columns if c.endswith('_Waste_Count')]
     pricing_dict = dict(zip(pricing_df.columns.tolist(), pricing_df.iloc[0].tolist()))
@@ -98,7 +108,12 @@ def get_top_volatile_products(tracker_df, pricing_df, n=12, min_shifts=MIN_SHIFT
 
     cv_series = pd.Series({p: s['cv'] for p, s in stats.items()}).sort_values(ascending=False)
     top_n = cv_series.head(n)
-    return pd.DataFrame({'product': top_n.index, 'cv': top_n.values}).sort_values('cv', ascending=True).reset_index(drop=True)
+    result = pd.DataFrame({
+        'product': top_n.index,
+        'cv': top_n.values,
+        'mean_dollar_waste': [stats[p]['mean_dollar_waste'] for p in top_n.index],
+    })
+    return result.sort_values('cv', ascending=True).reset_index(drop=True)
 
 
 def get_weekday_weekend_waste(tracker_df):

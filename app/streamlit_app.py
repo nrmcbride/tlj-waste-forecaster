@@ -1007,8 +1007,41 @@ with col_demo:
     tomorrow_date = eastern_now.date() + datetime.timedelta(days=1)
     tomorrow = "Tomorrow's Forecast — " + tomorrow_date.strftime("%A, %B %-d")
 
-    weather_string = "Forecast for tomorrow -> Open (9:00 AM): 74°F, Clear Sky | Midday (2:00 PM): 79°F, Scattered Clouds | Close (7:30 PM): 82°F, Clear Sky"
-    school_status = "Status of Cary High: Outside the 2025-2026 school year (Summer Break)."
+    import re
+
+    def get_live_weather_display(weather_key):
+        """Fetch live weather. Returns (full_prompt_string, short_display_string)."""
+        if not weather_key:
+            return ("Weather API key not configured. Defaulting to general averages.", "Weather N/A")
+        full = get_tomorrow_weather(weather_key)
+        match = re.search(r'Open \(9:00 AM\): (-?\d+(?:\.\d+)?)°F, ([^|]+?)\s*\|', full)
+        if match:
+            temp = round(float(match.group(1)))
+            cond = match.group(2).strip()
+            short = f"{temp}°F · {cond}"
+        else:
+            short = "Weather"
+        return (full, short)
+
+    def get_live_school_display():
+        """Fetch live school status. Returns (full_prompt_string, short_display_string)."""
+        full = get_school_status()
+        lower = full.lower()
+        if "regular school day" in lower:
+            short = "School In Session"
+        elif "weekend" in lower:
+            short = "Weekend"
+        elif "summer break" in lower:
+            short = "Summer Break"
+        elif "no students in school" in lower:
+            short = "No School Today"
+        else:
+            short = "School Status"
+        return (full, short)
+
+    WEATHER_KEY_DEMO = st.secrets.get("WEATHER_KEY", os.getenv("WEATHER_KEY", ""))
+    weather_string, weather_short = get_live_weather_display(WEATHER_KEY_DEMO)
+    school_status, school_short = get_live_school_display()
 
     forecast_count   = st.session_state.get('forecast_count', None)
     forecast_product = st.session_state.get('forecast_product', None)
@@ -1113,7 +1146,7 @@ with col_demo:
         '<path d="M2 12h1"/><path d="m20 10-1.5 2 1.5 2"/>'
         '<path d="m3.64 18.36.7-.7"/><path d="m4.34 6.34-.7-.7"/>'
         '</svg>'
-        '<div style="font-size:0.7rem;color:#0B3D2E;font-weight:500">74°F · Clear</div>'
+        '<div style="font-size:0.7rem;color:#0B3D2E;font-weight:500">' + weather_short + '</div>'
         '<div style="font-size:0.6rem;color:#9A7050;margin-top:0.08rem">Weather</div>'
         '</div>'
 
@@ -1124,7 +1157,7 @@ with col_demo:
         '<path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"/>'
         '<path d="M22 10v6"/><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"/>'
         '</svg>'
-        '<div style="font-size:0.7rem;color:#0B3D2E;font-weight:500">Summer Break</div>'
+        '<div style="font-size:0.7rem;color:#0B3D2E;font-weight:500">' + school_short + '</div>'
         '<div style="font-size:0.6rem;color:#9A7050;margin-top:0.08rem">WCPSS</div>'
         '</div>'
 
@@ -1291,14 +1324,6 @@ tab_latest, tab_validation, tab_insights, tab_volatility, tab_confidence = st.ta
 with tab_latest:
     eastern_now_latest = datetime.datetime.now(ZoneInfo("America/New_York"))
     run_date = eastern_now_latest.strftime("%B %-d, %Y")
-    tomorrow_date = eastern_now_latest.date() + datetime.timedelta(days=1)
-    tomorrow_label = tomorrow_date.strftime("%A, %B %-d")
-
-    st.markdown(f"""
-    <div style="font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:#0B3D2E;margin-bottom:0.3rem">
-        Tomorrow's Forecast — {tomorrow_label}
-    </div>
-    """, unsafe_allow_html=True)
 
     nightly_forecast_path = os.path.join(DATA_DIR, 'latest_forecast.csv')
     if os.path.exists(nightly_forecast_path) and os.path.getsize(nightly_forecast_path) > 0:
@@ -1306,9 +1331,29 @@ with tab_latest:
         generated_note = None
         if 'Generated' in latest_run_df.columns and not latest_run_df.empty:
             generated_note = latest_run_df['Generated'].iloc[0]
+
+        # Use the batch's own recorded Target Date rather than recomputing
+        # "tomorrow" from whenever the page happens to be viewed — otherwise
+        # a page load on the day AFTER a nightly run shows a date that's one
+        # day ahead of what the displayed predictions actually forecast.
+        # tomorrow_date_obj is kept as a real date (not just the formatted
+        # label) so the Confidence Score section below can reuse the exact
+        # same target date instead of independently recomputing "tomorrow"
+        # from live page-load time, which would let the two sections drift
+        # out of sync with each other.
+        if 'Target Date' in latest_run_df.columns and not latest_run_df.empty:
+            target_date_raw = latest_run_df['Target Date'].iloc[0]
+            tomorrow_date_obj = pd.to_datetime(target_date_raw).date()
+            tomorrow_label = tomorrow_date_obj.strftime("%A, %B %-d")
+        else:
+            tomorrow_date_obj = eastern_now_latest.date() + datetime.timedelta(days=1)
+            tomorrow_label = tomorrow_date_obj.strftime("%A, %B %-d")
+
         latest_run_df = latest_run_df.drop(columns=[c for c in ['Generated', 'Target Date'] if c in latest_run_df.columns])
     else:
         # Fallback demo rows — shown only until the nightly batch job has produced its first run.
+        tomorrow_date_obj = eastern_now_latest.date() + datetime.timedelta(days=1)
+        tomorrow_label = tomorrow_date_obj.strftime("%A, %B %-d")
         latest_run_df = pd.DataFrame({
             'Product': ['CroissantPlain ($1.50)', 'PainAuChocolat ($1.50)', 'BlueberryMuffin ($1.50)', 'CustardBun ($1.50)', 'KimchiCroquette ($1.50)'],
             'Predicted Waste': [11, 8, 6, 5, 4],
@@ -1322,6 +1367,12 @@ with tab_latest:
             ]
         })
         generated_note = None
+
+    st.markdown(f"""
+    <div style="font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:#0B3D2E;margin-bottom:0.3rem">
+        Tomorrow's Forecast — {tomorrow_label}
+    </div>
+    """, unsafe_allow_html=True)
 
     st.markdown('<div style="height:1.25rem"></div>', unsafe_allow_html=True)
 
@@ -1363,8 +1414,7 @@ with tab_latest:
     total_products_evaluated = len(latest_run_df)
 
     from core.data_loader import compute_daily_confidence
-    import datetime as _dt
-    tomorrow_dow = (datetime.datetime.now(ZoneInfo("America/New_York")).date() + _dt.timedelta(days=1)).strftime("%A")
+    tomorrow_dow = tomorrow_date_obj.strftime("%A")
     is_weekend_tomorrow = tomorrow_dow in ["Saturday", "Sunday"]
 
     def normalize_school_status(status_text):
@@ -1376,7 +1426,7 @@ with tab_latest:
             return None
         return "REGULAR_SCHOOL_DAY" if "regular school day" in status_text.lower() else "NO_STUDENT_DAY"
 
-    tomorrow_school_status = normalize_school_status(get_school_status())
+    tomorrow_school_status = normalize_school_status(get_school_status(target_date=tomorrow_date_obj))
 
     confidence_result = compute_daily_confidence(
         tracker_df,
@@ -1565,17 +1615,34 @@ with tab_volatility:
 
     pricing_dict = dict(zip(pricing_df.columns.tolist(), pricing_df.iloc[0].tolist()))
     vol_df['unit_price'] = vol_df['product'].map(lambda p: pricing_dict.get(p, 0))
-    vol_df['avg_nightly_waste'] = vol_df['product'].apply(
-        lambda p: tracker_df[f"{p}_Waste_Count"].mean() if f"{p}_Waste_Count" in tracker_df.columns else 0
-    )
-    vol_df['avg_nightly_loss'] = vol_df['avg_nightly_waste'] * vol_df['unit_price']
 
-    display_vol_df = vol_df[['product', 'unit_price', 'avg_nightly_loss', 'cv']].rename(
-        columns={'product': 'Product', 'unit_price': 'Price/Unit', 'avg_nightly_loss': 'Avg Nightly Loss', 'cv': 'Volatility (CV)'}
+    display_vol_df = vol_df[['product', 'unit_price', 'mean_dollar_waste', 'cv']].rename(
+        columns={'product': 'Product', 'unit_price': 'Price/Unit', 'mean_dollar_waste': 'Avg Nightly Loss', 'cv': 'Volatility (CV)'}
     ).sort_values('Volatility (CV)', ascending=False)
     display_vol_df['Price/Unit'] = display_vol_df['Price/Unit'].apply(lambda x: f"${x:.2f}")
     display_vol_df['Avg Nightly Loss'] = display_vol_df['Avg Nightly Loss'].apply(lambda x: f"${x:.2f}")
     display_vol_df['Volatility (CV)'] = display_vol_df['Volatility (CV)'].apply(lambda x: f"{x:.2f}")
+
+    st.markdown('<div style="height:2rem"></div>', unsafe_allow_html=True)
+    st.markdown('<h4 style="text-align:center">Price and Nightly Loss By Product</h4>', unsafe_allow_html=True)
+
+    def render_shortlist_table(df):
+        headers = df.columns.tolist()
+        head_cells = "".join(
+            f'<th style="padding:0.6rem 0.8rem;text-align:left;border-bottom:1px solid rgba(176,137,104,0.4);color:#3D2008;font-family:\'DM Sans\',sans-serif;font-size:14px;font-weight:500;line-height:1.4">{h}</th>'
+            for h in headers
+        )
+        rows_html = ""
+        for _, row in df.iterrows():
+            cells = "".join(
+                f'<td style="padding:0.6rem 0.8rem;border-bottom:1px solid rgba(176,137,104,0.2);color:#3D2008;font-family:\'DM Sans\',sans-serif;font-size:14px;line-height:1.4">{val}</td>'
+                for val in row
+            )
+            rows_html += f'<tr style="background-color:#FFFFFF">{cells}</tr>'
+        table_html = f'<div style="border:none solid rgba(176,137,104,0.4);overflow:hidden"><table style="width:100%;border-collapse:collapse"><thead><tr style="background:#FFFFFF">{head_cells}</tr></thead><tbody>{rows_html}</tbody></table></div>'
+        st.markdown(table_html, unsafe_allow_html=True)
+
+    render_shortlist_table(display_vol_df)
 
 with tab_validation:
     if has_backtest:
