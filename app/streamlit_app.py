@@ -1613,37 +1613,6 @@ with tab_volatility:
     )
     st.plotly_chart(fig3, use_container_width=True)
 
-    pricing_dict = dict(zip(pricing_df.columns.tolist(), pricing_df.iloc[0].tolist()))
-    vol_df['unit_price'] = vol_df['product'].map(lambda p: pricing_dict.get(p, 0))
-
-    display_vol_df = vol_df[['product', 'unit_price', 'mean_dollar_waste', 'cv']].rename(
-        columns={'product': 'Product', 'unit_price': 'Price/Unit', 'mean_dollar_waste': 'Avg Nightly Loss', 'cv': 'Volatility (CV)'}
-    ).sort_values('Volatility (CV)', ascending=False)
-    display_vol_df['Price/Unit'] = display_vol_df['Price/Unit'].apply(lambda x: f"${x:.2f}")
-    display_vol_df['Avg Nightly Loss'] = display_vol_df['Avg Nightly Loss'].apply(lambda x: f"${x:.2f}")
-    display_vol_df['Volatility (CV)'] = display_vol_df['Volatility (CV)'].apply(lambda x: f"{x:.2f}")
-
-    st.markdown('<div style="height:2rem"></div>', unsafe_allow_html=True)
-    st.markdown('<h4 style="text-align:center">Price and Nightly Loss By Product</h4>', unsafe_allow_html=True)
-
-    def render_shortlist_table(df):
-        headers = df.columns.tolist()
-        head_cells = "".join(
-            f'<th style="padding:0.6rem 0.8rem;text-align:left;border-bottom:1px solid rgba(176,137,104,0.4);color:#3D2008;font-family:\'DM Sans\',sans-serif;font-size:14px;font-weight:500;line-height:1.4">{h}</th>'
-            for h in headers
-        )
-        rows_html = ""
-        for _, row in df.iterrows():
-            cells = "".join(
-                f'<td style="padding:0.6rem 0.8rem;border-bottom:1px solid rgba(176,137,104,0.2);color:#3D2008;font-family:\'DM Sans\',sans-serif;font-size:14px;line-height:1.4">{val}</td>'
-                for val in row
-            )
-            rows_html += f'<tr style="background-color:#FFFFFF">{cells}</tr>'
-        table_html = f'<div style="border:none solid rgba(176,137,104,0.4);overflow:hidden"><table style="width:100%;border-collapse:collapse"><thead><tr style="background:#FFFFFF">{head_cells}</tr></thead><tbody>{rows_html}</tbody></table></div>'
-        st.markdown(table_html, unsafe_allow_html=True)
-
-    render_shortlist_table(display_vol_df)
-
 with tab_validation:
     if has_backtest:
         st.markdown("For each historical shift, the model was shown only prior shifts and asked to predict that day's waste. Predicted vs. actual are plotted below.")
