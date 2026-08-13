@@ -2,17 +2,26 @@ from datetime import datetime, timedelta, date
 from zoneinfo import ZoneInfo
 
 
-def get_school_status() -> str:
+def get_school_status(target_date: date = None) -> str:
     """
-    Returns the school status for tomorrow based on the WCPSS
-    2025-2026 and 2026-2027 traditional calendars.
+    Returns the school status for a given date, based on the WCPSS
+    2025-2026 and 2026-2027 traditional calendars. Defaults to "tomorrow"
+    (relative to real current Eastern time) if target_date isn't given —
+    that's what the Live Forecast Demo wants, since it should always
+    reflect the actual current day. Pass an explicit target_date when you
+    need the status for a specific date instead (e.g. a nightly batch's
+    recorded target date), so it doesn't silently drift if this function
+    is called well after that date was actually "tomorrow."
     Uses Eastern time to avoid Colab/server UTC clock mismatch.
     Sources:
       https://cdn.northcarolinaschools.us/printables/wake-county-schools-calendar-2025-2026.pdf
       https://cdn.northcarolinaschools.us/printables/wake-county-schools-calendar-2026-2027.pdf
     """
-    eastern_now = datetime.now(ZoneInfo("America/New_York"))
-    tomorrow = (eastern_now + timedelta(days=1)).date()
+    if target_date is not None:
+        tomorrow = target_date
+    else:
+        eastern_now = datetime.now(ZoneInfo("America/New_York"))
+        tomorrow = (eastern_now + timedelta(days=1)).date()
 
     # --- 2025-2026 ---
     SCHOOL_START_2526 = date(2025, 8, 25)
