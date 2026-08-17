@@ -1,13 +1,13 @@
 Product,Predicted Waste,Loss,Explanation,Generated,Target Date
-ChestnutPanBread ($7.50),2,$15,"No buy-one-get-one promotion is running | Similar warm, cloudy days with quiet foot traffic left leftovers | Rainy weather is forecast, which may reduce customers",2026-08-16 04:47:42,2026-08-17
-ChocoCreamDonut ($4.50),2,$9,"School is out, fewer daily customers. | Similar rainy, humid weather previously resulted in two items left. | No store deals running, unlike other low-waste days.",2026-08-16 04:47:42,2026-08-17
-UbeCreamDonut ($4.50),5,$22,"Similar rainy weekday showed 5 leftovers | School is out for summer, altering usual traffic | No special discount will boost sales",2026-08-16 04:47:42,2026-08-17
-PlusMilkRoll ($6.50),0,$0,Rainy forecast typically means zero waste | School is out for summer | No special deals or promotions today,2026-08-16 04:47:42,2026-08-17
-MontBlancPastry ($6.00),1,$6,School is out for summer | No buy-one-get-one deals running | Similar rainy weather led to one leftover,2026-08-16 04:47:42,2026-08-17
-ButterCreamBread ($7.50),1,$8,"School is out, so demand is less predictable | Similar quiet days had some leftover items | No special deal to encourage sales",2026-08-16 04:47:42,2026-08-17
-MorningBread ($6.75),2,$14,"School is out, so fewer potential customers | No buy-one-get-one deal will be running | Similar hot, partly cloudy days with very quiet foot traffic had leftover bread",2026-08-16 04:47:42,2026-08-17
-ChocoFilledCookie ($3.25),0,$0,"School is out for summer, similar to past zero-waste days | Expected warm weather matches past days with no leftovers | Forecasted rain and clouds align with past days where everything sold out",2026-08-16 04:47:42,2026-08-17
-StrawberrySoftBread ($4.25),1,$4,Light rain forecast like previous waste day | School is out for summer break | No special promotions boosting sales,2026-08-16 04:47:42,2026-08-17
-JalapenoCheeseCroissant ($4.25),0,$0,"School is out, and early rain usually means fewer customers | No special discount deals are running | Similar warm cloudy days without deals had no leftovers",2026-08-16 04:47:42,2026-08-17
-CurryCroquette ($3.50),3,$10,"Hot weather and rain. | School is out for summer. | Similar hot, humid, busy day had 3 leftover.",2026-08-16 04:47:42,2026-08-17
-MangoCreamDonut ($4.50),0,$0,"School is out, so steady demand | No special discount running | Similar warm days sold out completely",2026-08-16 04:47:42,2026-08-17
+ChestnutPanBread ($7.50),0,$0,Similar Tuesdays during summer had no leftovers | No promotional offers are running today | Store traffic is expected to be average,2026-08-17 04:59:21,2026-08-18
+ChocoCreamDonut ($4.50),1,$4,School is out for summer | No bakery wide sales promotion | Weather similar to prior moderate demand days,2026-08-17 04:59:21,2026-08-18
+UbeCreamDonut ($4.50),1,$4,School is on summer break | Weather similar to days with low waste | No special deals running,2026-08-17 04:59:21,2026-08-18
+PlusMilkRoll ($6.50),0,$0,School is out for summer | Similar warm and clear days sold out | Morning rain usually slows sales,2026-08-17 04:59:21,2026-08-18
+MontBlancPastry ($6.00),0,$0,School is out | No buy-one-get-one deal | Similar warm and clear days had no leftovers,2026-08-17 04:59:21,2026-08-18
+ButterCreamBread ($7.50),0,$0,"School is out for summer | Similar hot, clear Tuesdays sold out | No special promotions running",2026-08-17 04:59:21,2026-08-18
+MorningBread ($6.75),0,$0,Similar warm days sold out completely | School is out for summer break | No special promotions are running,2026-08-17 04:59:21,2026-08-18
+ChocoFilledCookie ($3.25),4,$13,School is out for summer | Similar warm day had leftover cookies | No buy-one-get-one deal today,2026-08-17 04:59:21,2026-08-18
+StrawberrySoftBread ($4.25),0,$0,"School is out for summer break | Similar clear, warm Tuesdays had no waste | No special promotions or deals today",2026-08-17 04:59:21,2026-08-18
+JalapenoCheeseCroissant ($4.25),0,$0,School is out | Similar rainy warm days sold out | No promotions running,2026-08-17 04:59:21,2026-08-18
+CurryCroquette ($3.50),3,$10,No buy-one-get-one deal means higher waste chance | Past summer Tuesdays have left items | Product sales are usually unpredictable,2026-08-17 04:59:21,2026-08-18
+MangoCreamDonut ($4.50),1,$4,Similar warm summer days with mixed weather had one leftover | No buy-one-get-one promotion is running | The single zero-waste day was unusually busy,2026-08-17 04:59:21,2026-08-18
