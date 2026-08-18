@@ -1,13 +1,13 @@
 Product,Predicted Waste,Loss,Explanation,Generated,Target Date
-ChestnutPanBread ($7.50),0,$0,Similar Tuesdays during summer had no leftovers | No promotional offers are running today | Store traffic is expected to be average,2026-08-17 04:59:21,2026-08-18
-ChocoCreamDonut ($4.50),1,$4,School is out for summer | No bakery wide sales promotion | Weather similar to prior moderate demand days,2026-08-17 04:59:21,2026-08-18
-UbeCreamDonut ($4.50),1,$4,School is on summer break | Weather similar to days with low waste | No special deals running,2026-08-17 04:59:21,2026-08-18
-PlusMilkRoll ($6.50),0,$0,School is out for summer | Similar warm and clear days sold out | Morning rain usually slows sales,2026-08-17 04:59:21,2026-08-18
-MontBlancPastry ($6.00),0,$0,School is out | No buy-one-get-one deal | Similar warm and clear days had no leftovers,2026-08-17 04:59:21,2026-08-18
-ButterCreamBread ($7.50),0,$0,"School is out for summer | Similar hot, clear Tuesdays sold out | No special promotions running",2026-08-17 04:59:21,2026-08-18
-MorningBread ($6.75),0,$0,Similar warm days sold out completely | School is out for summer break | No special promotions are running,2026-08-17 04:59:21,2026-08-18
-ChocoFilledCookie ($3.25),4,$13,School is out for summer | Similar warm day had leftover cookies | No buy-one-get-one deal today,2026-08-17 04:59:21,2026-08-18
-StrawberrySoftBread ($4.25),0,$0,"School is out for summer break | Similar clear, warm Tuesdays had no waste | No special promotions or deals today",2026-08-17 04:59:21,2026-08-18
-JalapenoCheeseCroissant ($4.25),0,$0,School is out | Similar rainy warm days sold out | No promotions running,2026-08-17 04:59:21,2026-08-18
-CurryCroquette ($3.50),3,$10,No buy-one-get-one deal means higher waste chance | Past summer Tuesdays have left items | Product sales are usually unpredictable,2026-08-17 04:59:21,2026-08-18
-MangoCreamDonut ($4.50),1,$4,Similar warm summer days with mixed weather had one leftover | No buy-one-get-one promotion is running | The single zero-waste day was unusually busy,2026-08-17 04:59:21,2026-08-18
+ChestnutPanBread ($7.50),0,$0,"Similar summer Wednesday saw no leftovers | Weather is warm and clear, like past sell-out days | No special promotions are offered",2026-08-18 04:54:35,2026-08-19
+ChocoCreamDonut ($4.50),1,$4,School is out for summer | No promotions planned today | Similar hot weekdays averaged one leftover,2026-08-18 04:54:35,2026-08-19
+UbeCreamDonut ($4.50),0,$0,"School is out, so fewer customers | No buy-one-get-one deal running | Similar warm, clear days sold out",2026-08-18 04:54:35,2026-08-19
+PlusMilkRoll ($6.50),0,$0,"Summer weekdays like this often sell out | Similar warm, clear days had no leftovers | No special promotions are running",2026-08-18 04:54:35,2026-08-19
+MontBlancPastry ($6.00),0,$0,School is out for summer | No special deals are offered | Last similar warm day had no waste,2026-08-18 04:54:35,2026-08-19
+ButterCreamBread ($7.50),0,$0,"School is out, like most days with zero leftovers | Similar warm, clear weather saw no waste | No special promotions are running today",2026-08-18 04:54:35,2026-08-19
+MorningBread ($6.75),1,$7,"School is out, so fewer customers | No promotions running | Similar quiet days had a few items left",2026-08-18 04:54:35,2026-08-19
+ChocoFilledCookie ($3.25),0,$0,"Wednesday is a slower day | School is out, so fewer walk-in customers | Similar hot, clear day had no waste",2026-08-18 04:54:35,2026-08-19
+StrawberrySoftBread ($4.25),0,$0,A similar warm Wednesday on summer break had no leftover bread | Most comparable warm summer days with no deals sold out | No promotions or unusual store traffic expected,2026-08-18 04:54:35,2026-08-19
+JalapenoCheeseCroissant ($4.25),4,$17,Hot summer Wednesday is a close match | No special deal running today | Foot traffic was very slow,2026-08-18 04:54:35,2026-08-19
+CurryCroquette ($3.50),0,$0,"School is out, like past hot Wednesday | Similar hot, clear days sold out | No croquette deal running",2026-08-18 04:54:35,2026-08-19
+MangoCreamDonut ($4.50),0,$0,School is out now | Similar hot and clear days sold out | No special deal offered,2026-08-18 04:54:35,2026-08-19
