@@ -1,13 +1,13 @@
 Product,Predicted Waste,Loss,Explanation,Generated,Target Date
-ChestnutPanBread ($7.50),0,$0,"School is in session, so fewer customers | Rainy and cloudy forecast often means slow sales | No special discount deals planned for the day",2026-08-26 05:02:05,2026-08-27
-ChocoCreamDonut ($4.50),3,$14,"Similar rainy, slow day previously had 3 leftovers | School is back in session | No special discount deal running",2026-08-26 05:02:05,2026-08-27
-UbeCreamDonut ($4.50),2,$9,Rainy weather often leads to some leftover donuts | A similar weekday with rain previously showed 2 leftover | No promotional deal is expected for this donut,2026-08-26 05:02:05,2026-08-27
-PlusMilkRoll ($6.50),0,$0,A similar Thursday when school was open had no leftovers | Every past Thursday without a sales promo had no leftovers | Rainy weather has not typically caused extra leftovers,2026-08-26 05:02:05,2026-08-27
-MontBlancPastry ($6.00),1,$6,Similar rainy weather and temperature in the past had one leftover | Expected typical foot traffic for the day | No special store promotion to boost sales,2026-08-26 05:02:05,2026-08-27
-ButterCreamBread ($7.50),0,$0,"School is in session, like prior sell-out days | No special promotion is scheduled | Similar rainy days had no leftovers",2026-08-26 05:02:05,2026-08-27
-MorningBread ($6.75),0,$0,"Similar rainy weather days consistently had no leftovers | School is in session, typically ensuring steady demand | No special promotions are offered to reduce stock",2026-08-26 05:02:05,2026-08-27
-ChocoFilledCookie ($3.25),10,$32,School is in session | No storewide deals today | Rainy weather makes for slow foot traffic,2026-08-26 05:02:05,2026-08-27
-StrawberrySoftBread ($4.25),0,$0,Similar rainy school day resulted in zero waste | No deals are running tomorrow | Rain likely means slow foot traffic,2026-08-26 05:02:05,2026-08-27
-JalapenoCheeseCroissant ($4.25),2,$8,"School is in session, no deals | Rainy weather likely means fewer customers | Similar high humidity days had some leftovers",2026-08-26 05:02:05,2026-08-27
-CurryCroquette ($3.50),0,$0,"Previous rainy days sold completely | Last time school was in session on a Thursday, all sold | No promotional offers are running",2026-08-26 05:02:05,2026-08-27
-MangoCreamDonut ($4.50),1,$4,"Similar mild, rainy day previously had one leftover | No buy-one-get-one promotion to boost sales | Rainy weather may slightly reduce walk-in traffic",2026-08-26 05:02:05,2026-08-27
+ChestnutPanBread ($7.50),0,$0,Rainy weather usually leads to fewer customers | Past rainy days saw no unsold products | No special deals are planned tomorrow,2026-08-27 15:11:22,2026-08-28
+ChocoCreamDonut ($4.50),3,$14,"Similar rainy, slower day led to some waste | School is in session, similar to a prior day with leftovers | No buy-one-get-one deal, unlike a past high-waste Friday",2026-08-27 15:11:22,2026-08-28
+UbeCreamDonut ($4.50),3,$14,Similar to a previous Friday with very low foot traffic | No special deal will be running on this item | Rainy weather can reduce customer visits,2026-08-27 15:11:22,2026-08-28
+PlusMilkRoll ($6.50),1,$6,No promo running today | Rainy weather may slow down traffic | Similar weekday with slow traffic had one leftover,2026-08-27 15:11:22,2026-08-28
+MontBlancPastry ($6.00),1,$6,"Similar cool, rainy weather left one item | No special discounts today | Last rainy school day was unusually quiet",2026-08-27 15:11:22,2026-08-28
+ButterCreamBread ($7.50),0,$0,"School is in session, similar days sold out | Rainy weather historically had no leftovers | No product deal running today",2026-08-27 15:11:22,2026-08-28
+MorningBread ($6.75),0,$0,"Rainy weather often causes demand to drop, resulting in no leftovers | No special deals are offered today to boost sales | Similar school-in-session days with rain also saw zero waste",2026-08-27 15:11:22,2026-08-28
+ChocoFilledCookie ($3.25),10,$32,"School is in session, like a past high waste day | No store promotions are planned | Similar rainy weather made sales slow before",2026-08-27 15:11:22,2026-08-28
+StrawberrySoftBread ($4.25),1,$4,"Rain forecast usually means fewer shoppers | Cooler temperature compared to typical busy days | No sales promotion today, unlike most Fridays",2026-08-27 15:11:22,2026-08-28
+JalapenoCheeseCroissant ($4.25),1,$4,"No promotion running, so demand isn't boosted | Rainy weather expected, so fewer customers | Past slow, wet days showed one or two items left",2026-08-27 15:11:22,2026-08-28
+CurryCroquette ($3.50),0,$0,Rainy weather historically means slow sales | No store promotion for this item | Cooler temperature should reduce traffic,2026-08-27 15:11:22,2026-08-28
+MangoCreamDonut ($4.50),0,$0,School is in session; waste has been zero then | No special deal is running today | A similar rainy school day also had no leftovers,2026-08-27 15:11:22,2026-08-28
