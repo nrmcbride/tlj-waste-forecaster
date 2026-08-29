@@ -1,13 +1,13 @@
 Product,Predicted Waste,Loss,Explanation,Generated,Target Date
-ChestnutPanBread ($7.50),0,$0,Similar rainy weather shifts sold out completely | Saturdays without special deals sold out | No promotional offer will be running,2026-08-28 16:16:02,2026-08-29
-ChocoCreamDonut ($4.50),2,$9,Past rainy days had some unsold items | No store promotions are scheduled | Saturday customer traffic can vary with rain,2026-08-28 16:16:02,2026-08-29
-UbeCreamDonut ($4.50),5,$22,"Rainy, mild weather led to similar waste recently | No promotions, so sales won't be boosted | Foot traffic may be typical, not super busy",2026-08-28 16:16:02,2026-08-29
-PlusMilkRoll ($6.50),0,$0,Saturdays have always sold out | Rain did not cause leftovers before | No prior waste on busy days,2026-08-28 16:16:02,2026-08-29
-MontBlancPastry ($6.00),1,$6,Similar rainy weather led to some leftovers | No special deal to boost sales | Expected Saturday crowd may be smaller due to rain,2026-08-28 16:16:02,2026-08-29
-ButterCreamBread ($7.50),0,$0,Saturdays consistently sell out | No special deals running | Previous rainy Saturday also sold out,2026-08-28 16:16:02,2026-08-29
-MorningBread ($6.75),0,$0,Similar Saturdays showed no leftovers | Previous rainy day also sold out | No special promotions planned for tomorrow,2026-08-28 16:16:02,2026-08-29
-ChocoFilledCookie ($3.25),0,$0,Similar rainy weather previously sold out | Many weekend days with no school sold out | Warmer days previously saw small leftovers,2026-08-28 16:16:02,2026-08-29
-StrawberrySoftBread ($4.25),1,$4,Similar rainy day without deals had one leftover | No sales deals are planned to boost demand | Rainy weather may reduce usual Saturday crowds,2026-08-28 16:16:02,2026-08-29
-JalapenoCheeseCroissant ($4.25),3,$13,Based on a similar past Saturday with rain | Warm and humid conditions expected | Weekend customer traffic patterns apply,2026-08-28 16:16:02,2026-08-29
-CurryCroquette ($3.50),0,$0,"Similar rainy day with school out had no waste | Past Saturdays with no croquette promotion sold out | Tomorrow's temperature is mild, unlike high waste day",2026-08-28 16:16:02,2026-08-29
-MangoCreamDonut ($4.50),1,$4,"Similar light rain days had one donut left over | No special discounts are planned for tomorrow | It's a weekend, often has typical foot traffic",2026-08-28 16:16:02,2026-08-29
+ChestnutPanBread ($7.50),0,$0,"Past Sundays without deals sold out | Similar mild, rainy days had no leftovers | No special promotions running",2026-08-29 09:53:43,2026-08-30
+ChocoCreamDonut ($4.50),2,$9,Similar rainy weather with no school | Temperatures are comparable to a low-waste day | No special deals or promotions today,2026-08-29 09:53:43,2026-08-30
+UbeCreamDonut ($4.50),5,$22,Rainy weather likely means fewer shoppers | No deals mean sales might be slower | Similar conditions previously had five unsold,2026-08-29 09:53:43,2026-08-30
+PlusMilkRoll ($6.50),0,$0,Similar rainy days had no leftovers | Similar busy weekends sold out | No sales promotion running today,2026-08-29 09:53:43,2026-08-30
+MontBlancPastry ($6.00),1,$6,Light rain with similar temperatures led to one leftover | No special deals are offered today | It's a weekend with school out,2026-08-29 09:53:43,2026-08-30
+ButterCreamBread ($7.50),0,$0,Past Sundays consistently sold out | Similar mild rainy days also sold out | No customer discounts offered,2026-08-29 09:53:43,2026-08-30
+MorningBread ($6.75),0,$0,Similar rainy day had no leftovers | Similar busy Sunday had no leftovers | No sales promotions are planned,2026-08-29 09:53:43,2026-08-30
+ChocoFilledCookie ($3.25),0,$0,"Similar rainy weather led to no waste before | School is out, so more customers come | Day is Sunday, which usually means more sales",2026-08-29 09:53:43,2026-08-30
+StrawberrySoftBread ($4.25),1,$4,Similar rainy weather | Moderate temperatures match | No discount promotion today,2026-08-29 09:53:43,2026-08-30
+JalapenoCheeseCroissant ($4.25),1,$4,No promotional deal running | Weekend with school out brings more people | Similar cloudy weekend previously had 1 leftover,2026-08-29 09:53:43,2026-08-30
+CurryCroquette ($3.50),0,$0,"Similar rainy days had zero leftovers | Temperatures are moderate, not extreme | No customer promotions for this item",2026-08-29 09:53:43,2026-08-30
+MangoCreamDonut ($4.50),1,$4,Similar rainy weather and temperature to a past shift | No holiday weekend traffic boost today | No buy-one-get-one promotion today,2026-08-29 09:53:43,2026-08-30
