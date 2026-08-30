@@ -1,13 +1,11 @@
 Product,Predicted Waste,Loss,Explanation,Generated,Target Date
-ChestnutPanBread ($7.50),0,$0,"Past Sundays without deals sold out | Similar mild, rainy days had no leftovers | No special promotions running",2026-08-29 09:53:43,2026-08-30
-ChocoCreamDonut ($4.50),2,$9,Similar rainy weather with no school | Temperatures are comparable to a low-waste day | No special deals or promotions today,2026-08-29 09:53:43,2026-08-30
-UbeCreamDonut ($4.50),5,$22,Rainy weather likely means fewer shoppers | No deals mean sales might be slower | Similar conditions previously had five unsold,2026-08-29 09:53:43,2026-08-30
-PlusMilkRoll ($6.50),0,$0,Similar rainy days had no leftovers | Similar busy weekends sold out | No sales promotion running today,2026-08-29 09:53:43,2026-08-30
-MontBlancPastry ($6.00),1,$6,Light rain with similar temperatures led to one leftover | No special deals are offered today | It's a weekend with school out,2026-08-29 09:53:43,2026-08-30
-ButterCreamBread ($7.50),0,$0,Past Sundays consistently sold out | Similar mild rainy days also sold out | No customer discounts offered,2026-08-29 09:53:43,2026-08-30
-MorningBread ($6.75),0,$0,Similar rainy day had no leftovers | Similar busy Sunday had no leftovers | No sales promotions are planned,2026-08-29 09:53:43,2026-08-30
-ChocoFilledCookie ($3.25),0,$0,"Similar rainy weather led to no waste before | School is out, so more customers come | Day is Sunday, which usually means more sales",2026-08-29 09:53:43,2026-08-30
-StrawberrySoftBread ($4.25),1,$4,Similar rainy weather | Moderate temperatures match | No discount promotion today,2026-08-29 09:53:43,2026-08-30
-JalapenoCheeseCroissant ($4.25),1,$4,No promotional deal running | Weekend with school out brings more people | Similar cloudy weekend previously had 1 leftover,2026-08-29 09:53:43,2026-08-30
-CurryCroquette ($3.50),0,$0,"Similar rainy days had zero leftovers | Temperatures are moderate, not extreme | No customer promotions for this item",2026-08-29 09:53:43,2026-08-30
-MangoCreamDonut ($4.50),1,$4,Similar rainy weather and temperature to a past shift | No holiday weekend traffic boost today | No buy-one-get-one promotion today,2026-08-29 09:53:43,2026-08-30
+ChestnutPanBread ($7.50),3,$22,"School is in session | Similar warm, clear weather | No special promotion running",2026-08-30 09:58:05,2026-08-31
+UbeCreamDonut ($4.50),2,$9,"School is in session, so foot traffic might be lower | No buy-one-get-one deal, unlike prior promotions | Similar warm days resulted in two items left",2026-08-30 09:58:05,2026-08-31
+PlusMilkRoll ($6.50),0,$0,"School is in session, like past relevant dates | No store promotions running tomorrow | Similar warm, clear weather day had no leftover",2026-08-30 09:58:05,2026-08-31
+MontBlancPastry ($6.00),2,$12,"School is in session | No store deals running | Similar warm, clear days had two left",2026-08-30 09:58:05,2026-08-31
+ButterCreamBread ($7.50),0,$0,"School is in session, which historically leads to no waste | No store deals running, unlike past days with waste | Similar warm, clear weather saw no leftovers",2026-08-30 09:58:05,2026-08-31
+MorningBread ($6.75),1,$7,"School is in session, so more usual weekday sales | Similar warm, clear weather days had minimal waste | No special deals running to boost sales",2026-08-30 09:58:05,2026-08-31
+ChocoFilledCookie ($3.25),0,$0,"School is in session, usually lower waste | Clear weather expected, not slow rain day | No buy-one-get-one promotion",2026-08-30 09:58:05,2026-08-31
+StrawberrySoftBread ($4.25),3,$13,"School is in session, no deals boosting sales | Similar warm days had slow sales, leaving some waste | Product is often unpredictable, so avoid forecasting zero",2026-08-30 09:58:05,2026-08-31
+JalapenoCheeseCroissant ($4.25),0,$0,No special deals are planned | Most similar school days had no leftovers | Past days with similar warm weather sold out,2026-08-30 09:58:05,2026-08-31
+CurryCroquette ($3.50),0,$0,"Warm, clear weather often means sell-outs | School is open, bringing steady traffic | No promotions today, so normal demand expected",2026-08-30 09:58:05,2026-08-31
