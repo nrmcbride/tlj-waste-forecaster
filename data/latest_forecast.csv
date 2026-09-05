@@ -1,13 +1,5 @@
 Product,Predicted Waste,Loss,Explanation,Generated,Target Date
-ChestnutPanBread ($7.50),3,$22,"A similar hot Saturday recently left product, even with a deal | Tomorrow has no customer promotion running | Very high temperatures forecast may slow foot traffic",2026-09-04 08:47:22,2026-09-05
-ChocoCreamDonut ($4.50),3,$14,Extreme heat usually slows customer traffic | No special price deal to clear products | Past very hot Saturdays had some leftover,2026-09-04 08:47:22,2026-09-05
-UbeCreamDonut ($4.50),0,$0,"It's a weekend, so school is out | No buy-one-get-one deal is running | Similar hot Saturdays sold out completely",2026-09-04 08:47:22,2026-09-05
-PlusMilkRoll ($6.50),0,$0,It's a weekend with school out | No special deals offered tomorrow | Similar hot days recently sold out,2026-09-04 08:47:22,2026-09-05
-MontBlancPastry ($6.00),0,$0,"Weekend and school is out, matching past days with no leftovers | Very hot weather is expected, similar to times when nothing was left | No special discount deal is running, which consistently led to no leftovers",2026-09-04 08:47:22,2026-09-05
-ButterCreamBread ($7.50),0,$0,All past Saturdays sold out | Similar hot days sold out completely | No special deals running today,2026-09-04 08:47:22,2026-09-05
-MorningBread ($6.75),0,$0,"Weekend days consistently sold out | Past hot, cloudy days had no leftovers | No special discount running",2026-09-04 08:47:22,2026-09-05
-ChocoFilledCookie ($3.25),0,$0,"Similar weekend days with no special deals sold out completely | Past warm, cloudy weather also saw no leftovers | Foot traffic on weekends is generally strong",2026-09-04 08:47:22,2026-09-05
-StrawberrySoftBread ($4.25),0,$0,All previous Saturdays showed no leftovers | No promotional deals are running tomorrow | Similar warm weekend days sold out,2026-09-04 08:47:22,2026-09-05
-JalapenoCheeseCroissant ($4.25),1,$4,Hot weather on a Saturday | No promotions running today | Item's sales are typically unpredictable,2026-09-04 08:47:22,2026-09-05
-CurryCroquette ($3.50),10,$35,Similar hot Saturday had 10 items leftover | No product promotion running today | Weekend with school out can mean inconsistent traffic,2026-09-04 08:47:22,2026-09-05
-MangoCreamDonut ($4.50),0,$0,"Similar very hot, cloudy days sold out | No buy-one-get-one deal tomorrow | School is out for the weekend",2026-09-04 08:47:22,2026-09-05
+ChestnutPanBread ($7.50),0,$0,"Closest matching Sunday sales showed no leftovers | Similar rainy day without school also sold out | No special deals, yet similar days sold out",2026-09-05 08:14:16,2026-09-06
+PlusMilkRoll ($6.50),4,$26,Previous Sundays had no leftovers due to sales deals or holiday crowds | Tomorrow is a normal Sunday with no special sales | Some busy days without deals still had notable leftovers,2026-09-05 08:14:16,2026-09-06
+ButterCreamBread ($7.50),0,$0,"All past Sundays had no leftover bread | Similar cloudy, rainy days had no leftovers | No special deals running to affect sales",2026-09-05 08:14:16,2026-09-06
+ChocoFilledCookie ($3.25),0,$0,School is out for the weekend | Similar moderate weather and rainy days sold out | No special discounts are running,2026-09-05 08:14:16,2026-09-06
