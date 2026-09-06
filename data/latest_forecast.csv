@@ -1,5 +1,9 @@
 Product,Predicted Waste,Loss,Explanation,Generated,Target Date
-ChestnutPanBread ($7.50),0,$0,"Closest matching Sunday sales showed no leftovers | Similar rainy day without school also sold out | No special deals, yet similar days sold out",2026-09-05 08:14:16,2026-09-06
-PlusMilkRoll ($6.50),4,$26,Previous Sundays had no leftovers due to sales deals or holiday crowds | Tomorrow is a normal Sunday with no special sales | Some busy days without deals still had notable leftovers,2026-09-05 08:14:16,2026-09-06
-ButterCreamBread ($7.50),0,$0,"All past Sundays had no leftover bread | Similar cloudy, rainy days had no leftovers | No special deals running to affect sales",2026-09-05 08:14:16,2026-09-06
-ChocoFilledCookie ($3.25),0,$0,School is out for the weekend | Similar moderate weather and rainy days sold out | No special discounts are running,2026-09-05 08:14:16,2026-09-06
+ChestnutPanBread ($7.50),2,$15,"No deals running, unlike many days with no leftovers | School is out for holiday, but Monday traffic can be slow | Similar past days had leftover items",2026-09-06 08:32:05,2026-09-07
+ChocoCreamDonut ($4.50),0,$0,"School is out for holiday, meaning more customers | Weather is clear and pleasant, drawing more shoppers | Similar holidays and clear weather sold out completely",2026-09-06 08:32:05,2026-09-07
+PlusMilkRoll ($6.50),0,$0,"School is out, typically leading to low waste | Similar cool, clear holiday had no leftover bread | No sales promotion is happening tomorrow",2026-09-06 08:32:05,2026-09-07
+MontBlancPastry ($6.00),0,$0,"School is out for holiday, boosting sales | Similar warm, clear days had no leftovers | No special discount will be offered",2026-09-06 08:32:05,2026-09-07
+ButterCreamBread ($7.50),0,$0,"School is out for the holiday | No special deals are running | Similar cool, clear weather days sold out",2026-09-06 08:32:05,2026-09-07
+MorningBread ($6.75),0,$0,School is out for holiday | Milder weather days sold out | Foot traffic not expected to be dead,2026-09-06 08:32:05,2026-09-07
+ChocoFilledCookie ($3.25),0,$0,"No students in school for holiday, similar to past sell-outs | No promotions running, so demand is at normal levels | Mild weather matches prior days with no waste",2026-09-06 08:32:05,2026-09-07
+CurryCroquette ($3.50),0,$0,Similar holiday had no leftovers | Pleasant weather supports normal sales | No special deal to reduce sales,2026-09-06 08:32:05,2026-09-07
