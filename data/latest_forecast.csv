@@ -1,13 +1,12 @@
 Product,Predicted Waste,Loss,Explanation,Generated,Target Date
-ChestnutPanBread ($7.50),3,$22,"Last regular school Thursday with no deals had 3 items | Similar warm, clear days previously left some product | No buy-one-get-one deal means typical sales",2026-09-09 08:59:51,2026-09-10
-ChocoCreamDonut ($4.50),0,$0,"Day of week and school status match | Similar warm, clear day had no leftovers | No buy-one-get-one deal expected tomorrow",2026-09-09 08:59:51,2026-09-10
-UbeCreamDonut ($4.50),0,$0,"Similar warm, clear day sold out | School is in session, like that day | No special promotion is running",2026-09-09 08:59:51,2026-09-10
-PlusMilkRoll ($6.50),0,$0,"Similar warm, clear Thursday had no waste | School is in session, so normal demand | No promotion today, unlike some past days",2026-09-09 08:59:51,2026-09-10
-MontBlancPastry ($6.00),2,$12,"Similar warm, clear day had 2 leftover | No special discount deals planned | School is in session, expect typical traffic",2026-09-09 08:59:51,2026-09-10
-ButterCreamBread ($7.50),0,$0,"All similar regular school days without deals had no leftovers | Matched a sunny, warm weekday with no waste | No buy-one-get-one deal running",2026-09-09 08:59:51,2026-09-10
-MorningBread ($6.75),1,$7,Closest match was a Thursday with school | Warm clear day is very similar | No promotion running for artificial sales,2026-09-09 08:59:51,2026-09-10
-ChocoFilledCookie ($3.25),0,$0,"Similar warm, clear weekday sold out | No special deal running today | School is in session, influencing daily flow",2026-09-09 08:59:51,2026-09-10
-StrawberrySoftBread ($4.25),3,$13,"Similar warm, clear day with typical customer foot traffic | School is open, which generally increases sales | No deal offered, just like the best match day",2026-09-09 08:59:51,2026-09-10
-JalapenoCheeseCroissant ($4.25),0,$0,Similar sunny Thursdays had no waste | No special deals are planned | Most school days had zero waste,2026-09-09 08:59:51,2026-09-10
-CurryCroquette ($3.50),0,$0,"Past Thursdays with school saw no leftovers | Similar warm, clear days had no product left | No special promotion on this item tomorrow",2026-09-09 08:59:51,2026-09-10
-MangoCreamDonut ($4.50),0,$0,"Similar warm school day Thursday had no leftovers | No deals running, unlike days with past leftovers",2026-09-09 08:59:51,2026-09-10
+ChestnutPanBread ($7.50),3,$22,"No buy-one-get-one deal, unlike past Fridays | School is in session, similar to a day with 3 left | Hot weather might reduce demand for heavy bread",2026-09-10 09:01:59,2026-09-11
+ChocoCreamDonut ($4.50),0,$0,"School is in session | No special promotion running | Similar warm, cloudy days sold out",2026-09-10 09:01:59,2026-09-11
+UbeCreamDonut ($4.50),0,$0,School is in session | Forecast is hot and partly cloudy | Similar hot days sold out completely,2026-09-10 09:01:59,2026-09-11
+PlusMilkRoll ($6.50),1,$6,"Another hot, cloudy day had one leftover | No store promotions are running | Foot traffic on this day can vary",2026-09-10 09:01:59,2026-09-11
+MontBlancPastry ($6.00),2,$12,"Similar warm, cloudy school day without promotions had two leftovers | No buy-one-get-one deal means higher potential for leftovers | Past Fridays with deals had varied leftover counts",2026-09-10 09:01:59,2026-09-11
+ButterCreamBread ($7.50),0,$0,School is in session | All comparable days without deals sold out | No special promotions boosting sales,2026-09-10 09:01:59,2026-09-11
+MorningBread ($6.75),1,$7,"School is in session | No store promotions are running | Similar warm, cloudy days with moderate foot traffic left one item",2026-09-10 09:01:59,2026-09-11
+ChocoFilledCookie ($3.25),0,$0,School is in session today | No special deals are running | Comparable warm days had no leftovers,2026-09-10 09:01:59,2026-09-11
+StrawberrySoftBread ($4.25),13,$55,"No buy-one-get-one deal means more leftovers are possible | A past day with school and hot weather showed 13 unsold | This bread is difficult to predict, so higher waste is possible",2026-09-10 09:01:59,2026-09-11
+JalapenoCheeseCroissant ($4.25),1,$4,"No promotions today | Similar warm, cloudy weather | School day may reduce shoppers",2026-09-10 09:01:59,2026-09-11
+CurryCroquette ($3.50),1,$4,"No deals for curry croquettes | School is open, like prior days with few leftovers | Similar warm, cloudy days had some leftovers",2026-09-10 09:01:59,2026-09-11
