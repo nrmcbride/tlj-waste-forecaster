@@ -1,12 +1,11 @@
 Product,Predicted Waste,Loss,Explanation,Generated,Target Date
-ChestnutPanBread ($7.50),0,$0,Tuesdays with school in session historically sold out | Weather similar to previous days with zero waste | No current special deals on this bread item,2026-09-14 11:08:22,2026-09-15
-ChocoCreamDonut ($4.50),0,$0,School is in session | No buy-one-get-one promotion | Similar days without promos had no waste,2026-09-14 11:08:22,2026-09-15
-UbeCreamDonut ($4.50),2,$9,"School is in session, similar to a past Tuesday | Warm, humid weather matches a past slow day | No product discount running today",2026-09-14 11:08:22,2026-09-15
-PlusMilkRoll ($6.50),0,$0,"School is in session, no deals | Similar Tuesdays had zero leftovers | Even with slow traffic, items sold out",2026-09-14 11:08:22,2026-09-15
-ButterCreamBread ($7.50),0,$0,"Past Tuesdays with school sold out | Cloudy weather, moderate temp, similar prior sellouts | No deals like those that left product",2026-09-14 11:08:22,2026-09-15
-MorningBread ($6.75),0,$0,Past Tuesdays when school was in session sold out completely | No store-wide promotion is currently running | Similar days without deals often resulted in selling all items,2026-09-14 11:08:22,2026-09-15
-ChocoFilledCookie ($3.25),2,$6,"Day of week and school are typical | No buy-one-get-one deal running | Weather is mild, not rainy or very slow.",2026-09-14 11:08:22,2026-09-15
-StrawberrySoftBread ($4.25),0,$0,"Similar school-day Tuesday had no leftovers | Expected cooler, overcast weather | No special promotion is planned",2026-09-14 11:08:22,2026-09-15
-JalapenoCheeseCroissant ($4.25),0,$0,"All past Tuesdays sold out | Similar warm, cloudy day last time | No special deal running",2026-09-14 11:08:22,2026-09-15
-CurryCroquette ($3.50),0,$0,Past Tuesdays with school in session had no leftovers | Temperatures were similar to today | Overcast weather often means fewer shoppers,2026-09-14 11:08:22,2026-09-15
-MangoCreamDonut ($4.50),0,$0,Every past workday with school in session sold out | No promotions scheduled for this donut tomorrow | Warm weather days also had no waste,2026-09-14 11:08:22,2026-09-15
+ChocoCreamDonut ($4.50),0,$0,"School is in session, typically lower sales | No special promotion today to boost sales | Similar past Wednesdays had no leftovers",2026-09-15 09:40:48,2026-09-16
+UbeCreamDonut ($4.50),0,$0,"Past Wednesdays with similar warm weather and school in session had no leftover items | Similar warm, partly cloudy days with light customer traffic also sold out | No special deals are planned for tomorrow to boost sales",2026-09-15 09:40:48,2026-09-16
+PlusMilkRoll ($6.50),1,$6,Past Wednesdays with school had 1 leftover | Weather is similar to those days | No discount deals planned,2026-09-15 09:40:48,2026-09-16
+MontBlancPastry ($6.00),0,$0,"Similar warm, partly cloudy conditions saw no leftovers | No special deals are planned for today | Past similar weekdays had very low foot traffic",2026-09-15 09:40:48,2026-09-16
+ButterCreamBread ($7.50),0,$0,"Similar warm Wednesdays had no leftover bread | School is open, like previous comparable days | No buy-one-get-one promotions happening",2026-09-15 09:40:48,2026-09-16
+MorningBread ($6.75),0,$0,"Comparable warm Wednesdays with school in session sold out | No store promotions are running tomorrow | Even with typical low foot traffic on similar days, nothing was left over",2026-09-15 09:40:48,2026-09-16
+ChocoFilledCookie ($3.25),1,$3,"Similar warm, mixed-cloud day | School is in, so foot traffic is likely quieter | No special promotions or deals today",2026-09-15 09:40:48,2026-09-16
+JalapenoCheeseCroissant ($4.25),2,$8,Similar warm Wednesday had two leftover | School is in session | No buy-one-get-one deal,2026-09-15 09:40:48,2026-09-16
+CurryCroquette ($3.50),1,$4,Similar Wednesday school days resulted in one leftover. | No store deals running today to reduce waste. | Past days with comparable mild weather left one item.,2026-09-15 09:40:48,2026-09-16
+MangoCreamDonut ($4.50),0,$0,"No special deal running tomorrow | Similar school days sold out completely | Warm, clear weather matches past zero waste",2026-09-15 09:40:48,2026-09-16
