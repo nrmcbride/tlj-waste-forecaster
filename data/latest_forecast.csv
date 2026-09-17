@@ -1,13 +1,13 @@
 Product,Predicted Waste,Loss,Explanation,Generated,Target Date
-ChestnutPanBread ($7.50),3,$22,"Similar warm, clear Thursday | School is in session | No special promotions running",2026-09-16 09:31:33,2026-09-17
-ChocoCreamDonut ($4.50),0,$0,Similar warm Thursday with school in session sold out | Clear weather likely means typical customer traffic | No special discount deal running today,2026-09-16 09:31:33,2026-09-17
-UbeCreamDonut ($4.50),0,$0,Matched sunny Thursday had no waste | No buy-one-get-one promotion | School is back in session,2026-09-16 09:31:33,2026-09-17
-PlusMilkRoll ($6.50),0,$0,"Last Thursday with school and no deal sold out | Clear, warm weather often means no leftovers | No special sales offer is active",2026-09-16 09:31:33,2026-09-17
-MontBlancPastry ($6.00),2,$12,"Similar warm, clear weather to a past Thursday | School is in session, which often brings moderate foot traffic | No special buy-one-get-one promotion planned",2026-09-16 09:31:33,2026-09-17
-ButterCreamBread ($7.50),0,$0,"School is in session | No special deal today | Past clear, warm Thursdays sold out",2026-09-16 09:31:33,2026-09-17
-MorningBread ($6.75),1,$7,"Similar warm, clear weather | School is in session, like a past day | No special discounts offered today",2026-09-16 09:31:33,2026-09-17
-ChocoFilledCookie ($3.25),0,$0,"Similar warm, clear days previously sold out | School is in session, so traffic should be typical | No special promotion is offered for the product",2026-09-16 09:31:33,2026-09-17
-StrawberrySoftBread ($4.25),3,$13,Matches a previous Thursday with school in session | Clear skies and temperatures are very similar | No sales promotion running for this product,2026-09-16 09:31:33,2026-09-17
-JalapenoCheeseCroissant ($4.25),0,$0,"Past Thursdays with school in session sold out | Similar clear, warm weather saw good sales | No store promotions running today",2026-09-16 09:31:33,2026-09-17
-CurryCroquette ($3.50),0,$0,Similar warm weekday with school in session sold out completely | Clear skies and sunny weather historically sold out | No special discount promotions running,2026-09-16 09:31:33,2026-09-17
-MangoCreamDonut ($4.50),0,$0,School is in session | Similar warm days sold out completely | No store promotions are active,2026-09-16 09:31:33,2026-09-17
+ChestnutPanBread ($7.50),1,$8,Last Friday had similar warm weather | School is in session with typical foot traffic | No special promotions running,2026-09-17 09:29:28,2026-09-18
+ChocoCreamDonut ($4.50),0,$0,"Similar hot Friday sold out even with a special deal | Many hot, clear days without deals also sold out | No slow traffic or rain expected",2026-09-17 09:29:28,2026-09-18
+UbeCreamDonut ($4.50),2,$9,"Similar warm school days without a deal had some leftovers | The last warm Friday only sold out because of a deal | Today has no deal, so expect higher leftovers",2026-09-17 09:29:28,2026-09-18
+PlusMilkRoll ($6.50),0,$0,No buy-one-get-one deal | Very hot weather will reduce customers | Similar hot days had zero waste,2026-09-17 09:29:28,2026-09-18
+MontBlancPastry ($6.00),2,$12,"Warm days with school in session often left 2 items | No special deal today, unlike similar past Fridays | Clear weather and more customers expected on Friday",2026-09-17 09:29:28,2026-09-18
+ButterCreamBread ($7.50),1,$8,Often unpredictable sales for this item | Similar hot weather once left 1 unsold | No store deals to boost sales,2026-09-17 09:29:28,2026-09-18
+MorningBread ($6.75),1,$7,"School is in session, like a day we had one leftover | No buy-one-get-one deal is boosting sales | Very hot weather and expected customer traffic",2026-09-17 09:29:28,2026-09-18
+ChocoFilledCookie ($3.25),0,$0,"Similar hot Fridays sold out | School is open, so standard customer flow | No cookie deal running",2026-09-17 09:29:28,2026-09-18
+StrawberrySoftBread ($4.25),3,$13,Clear skies and students at school | Similar warm weather to past shifts | No promotions are planned,2026-09-17 09:29:28,2026-09-18
+JalapenoCheeseCroissant ($4.25),0,$0,"School is in session, increasing customer flow | Forecast is clear and very hot, drawing shoppers | No deals running, unlike past Fridays",2026-09-17 09:29:28,2026-09-18
+CurryCroquette ($3.50),0,$0,Similar hot days with school in session and typical foot traffic sold out. | Clear skies and hot weather often bring good demand. | No store-wide deals are planned for tomorrow.,2026-09-17 09:29:28,2026-09-18
+MangoCreamDonut ($4.50),0,$0,"School is in session, and similar non-deal days consistently sold out | Weather is clear and warm, matching other sell-out days | No promotions running, so demand for this item is likely unaffected by deals",2026-09-17 09:29:28,2026-09-18
