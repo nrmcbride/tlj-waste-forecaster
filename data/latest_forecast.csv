@@ -1,13 +1,13 @@
 Product,Predicted Waste,Loss,Explanation,Generated,Target Date
-ChestnutPanBread ($7.50),0,$0,Similar cool Saturday had no waste | No special deal running | Nice clear weather should attract customers,2026-10-23 09:23:47,2026-10-24
-ChocoCreamDonut ($4.50),0,$0,"Weekend means generally high foot traffic | Past Saturdays without promotions sold out | Similar cool, clear days had no leftovers",2026-10-23 09:23:47,2026-10-24
-UbeCreamDonut ($4.50),0,$0,Similar cool Saturday sold out | Saturdays are usually busy | No buy-one-get-one promotion,2026-10-23 09:23:47,2026-10-24
-PlusMilkRoll ($6.50),0,$0,"It's a weekend, usually busy time | Similar cool, clear days had no leftovers | No special offers running today",2026-10-23 09:23:47,2026-10-24
-MontBlancPastry ($6.00),0,$0,Similar cool Saturday sold out completely | No special promotion running | Busy weekend foot traffic expected,2026-10-23 09:23:47,2026-10-24
-ButterCreamBread ($7.50),0,$0,"It's a weekend, and local school is out | All recorded Saturdays show zero waste | A past day with similar cool weather also sold out",2026-10-23 09:23:47,2026-10-24
-MorningBread ($6.75),0,$0,Weekend day with similar mild temperature sold out | No buy-one-get-one promotion is active | Historical Saturdays with no deals had zero waste,2026-10-23 09:23:47,2026-10-24
-ChocoFilledCookie ($3.25),0,$0,"Past similar Saturdays with no deals had no leftovers | Moderate temperatures on busy days drove high sales | School is out for the weekend, generally increasing foot traffic",2026-10-23 09:23:47,2026-10-24
-StrawberrySoftBread ($4.25),0,$0,Past Saturdays always had zero waste | Similar cool weather days sold out completely | No special deals are offered today,2026-10-23 09:23:47,2026-10-24
-JalapenoCheeseCroissant ($4.25),1,$4,Similar cool weather to a past Saturday | School is out for the weekend | No special deals offered today,2026-10-23 09:23:47,2026-10-24
-CurryCroquette ($3.50),0,$0,Closest cool Saturday sold out | No buy-one-get-one promotion today | Expect a busy weekend crowd,2026-10-23 09:23:47,2026-10-24
-MangoCreamDonut ($4.50),0,$0,Similar cool weekend day sold out | No deals running | Weekend traffic usually sells it all,2026-10-23 09:23:47,2026-10-24
+ChestnutPanBread ($7.50),0,$0,Similar weekend days sold out completely | No special discount is offered | This bread typically sells out,2026-10-24 08:43:07,2026-10-25
+ChocoCreamDonut ($4.50),1,$4,No sales promotion running | Cooler weather might affect demand | Weekends are usually busy,2026-10-24 08:43:07,2026-10-25
+UbeCreamDonut ($4.50),0,$0,Similar warm days saw no leftovers | Weekend with school out brings many shoppers | No rain or product deals planned,2026-10-24 08:43:07,2026-10-25
+PlusMilkRoll ($6.50),0,$0,Past Sundays consistently had no leftovers | Today's cool weather matches days with zero waste | No special discount running for customers,2026-10-24 08:43:07,2026-10-25
+MontBlancPastry ($6.00),0,$0,Weekend days with no deals consistently sold out | No special discount will be offered | Mild weather usually means good store traffic,2026-10-24 08:43:07,2026-10-25
+ButterCreamBread ($7.50),0,$0,"Past weekend shifts without deals often sold out | All previous Sunday shifts showed no leftovers | Mild, clear weather generally brings good customer traffic",2026-10-24 08:43:07,2026-10-25
+MorningBread ($6.75),0,$0,"School is out for weekend, usually busy | Nice clear weather encourages shoppers | No promotion to boost sales today",2026-10-24 08:43:07,2026-10-25
+ChocoFilledCookie ($3.25),0,$0,"Similar cool weekend days sold out completely | No promotion runs tomorrow | School is closed, often boosts traffic",2026-10-24 08:43:07,2026-10-25
+StrawberrySoftBread ($4.25),0,$0,"Weekend day, so school is out | No special deal running | Similar cool days had no waste",2026-10-24 08:43:07,2026-10-25
+JalapenoCheeseCroissant ($4.25),1,$4,Weekend day means good store traffic | Similar cooler temperatures previously left one | No special buy-one-get-one deal today,2026-10-24 08:43:07,2026-10-25
+CurryCroquette ($3.50),0,$0,Similar cool weekend day sold out completely | Weekend days usually have good customer traffic | No special deal is active to influence sales,2026-10-24 08:43:07,2026-10-25
+MangoCreamDonut ($4.50),0,$0,It's a weekend day with no school | No promotion is running | Similar mild weather days sold out completely,2026-10-24 08:43:07,2026-10-25
