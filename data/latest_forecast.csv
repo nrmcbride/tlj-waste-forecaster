@@ -1,12 +1,13 @@
 Product,Predicted Waste,Loss,Explanation,Generated,Target Date
-ChestnutPanBread ($7.50),0,$0,"No buy-one-get-one promotion is offered | Cooler, cloudy days typically sell out | Weekday foot traffic is usually lower",2026-11-01 10:07:40,2026-11-02
-ChocoCreamDonut ($4.50),0,$0,"Similar cooler, cloudy weather days sold out | Most regular school days without deals sold out | No special promotions running tomorrow",2026-11-01 10:07:40,2026-11-02
-UbeCreamDonut ($4.50),0,$0,School is in session | Similar cloudy weekdays had no waste | No special deals are running,2026-11-01 10:07:40,2026-11-02
-PlusMilkRoll ($6.50),1,$6,School is in session | No promotion running | Lower foot traffic likely,2026-11-01 10:07:40,2026-11-02
-ButterCreamBread ($7.50),0,$0,"School is in session, historically leads to sell-outs | No buy-one-get-one deal running | Similar cool weather days sold completely",2026-11-01 10:07:40,2026-11-02
-MorningBread ($6.75),1,$7,No buy-one-get-one deal | Cooler weather on a school day | Foot traffic likely typical for a Monday,2026-11-01 10:07:40,2026-11-02
-ChocoFilledCookie ($3.25),1,$3,Monday with school likely means less busy foot traffic | No special sales promotion to clear stock | Overcast sky might keep customers away,2026-11-01 10:07:40,2026-11-02
-StrawberrySoftBread ($4.25),0,$0,Tomorrow's cooler weather is unlike most selling days | Past weekdays with school open often had no leftovers | No special deals are scheduled for this item,2026-11-01 10:07:40,2026-11-02
-JalapenoCheeseCroissant ($4.25),1,$4,Cooler weather is like a previous day that had waste | No special deal running today | Weekday usually means slower traffic,2026-11-01 10:07:40,2026-11-02
-CurryCroquette ($3.50),0,$0,"School is in session; similar past days often had no leftover | No special promotions running today | Colder weather is forecast, an unknown demand factor",2026-11-01 10:07:40,2026-11-02
-MangoCreamDonut ($4.50),0,$0,"School is in session, usually means lower waste | Similar cooler days had zero leftovers | No buy-one-get-one deal running today",2026-11-01 10:07:40,2026-11-02
+ChestnutPanBread ($7.50),0,$0,Similar days when school was out had no leftovers | No buy-one-get-one deal is planned | Moderate temperatures should not deter customers,2026-11-02 13:17:37,2026-11-03
+ChocoCreamDonut ($4.50),1,$4,"School is out today | Good, clear weather | Past normal Tuesday saw one leftover",2026-11-02 13:17:37,2026-11-03
+UbeCreamDonut ($4.50),2,$9,School is out today | No store-wide deals are running | Similar days had varying leftovers,2026-11-02 13:17:37,2026-11-03
+PlusMilkRoll ($6.50),0,$0,"No promotions today | School is out, similar days sold out | Moderate weather matches past zero waste",2026-11-02 13:17:37,2026-11-03
+MontBlancPastry ($6.00),1,$6,Tuesday with no school and warm weather matches a day with one leftover. | No sales promotion today.,2026-11-02 13:17:37,2026-11-03
+ButterCreamBread ($7.50),0,$0,"Past Tuesday holidays showed no leftovers | Mild, cloudy weather matches zero waste days | No special promotions unlike past high waste",2026-11-02 13:17:37,2026-11-03
+MorningBread ($6.75),0,$0,School is out today | No sales promotions are active | Similar weekday holidays saw no waste,2026-11-02 13:17:37,2026-11-03
+ChocoFilledCookie ($3.25),0,$0,Similar cooler days had no leftovers | Two out of three past Tuesdays sold out | No promotions are running,2026-11-02 13:17:37,2026-11-03
+StrawberrySoftBread ($4.25),2,$8,Product sales are historically unpredictable | No special deals to clear product | Past similar Tuesdays showed varied outcomes,2026-11-02 13:17:37,2026-11-03
+JalapenoCheeseCroissant ($4.25),0,$0,Similar Tuesdays with no school had no leftovers | No special deals running tomorrow | Comparable warm weather days sold well,2026-11-02 13:17:37,2026-11-03
+CurryCroquette ($3.50),0,$0,"Other Tuesdays when school was closed sold out | Comparable warm, partly cloudy days had no leftovers | No special promotion for this item tomorrow",2026-11-02 13:17:37,2026-11-03
+MangoCreamDonut ($4.50),1,$4,School holiday usually means fewer customers | Similar Tuesday holidays had very low waste | No special deal is offered today,2026-11-02 13:17:37,2026-11-03
