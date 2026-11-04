@@ -1,13 +1,13 @@
 Product,Predicted Waste,Loss,Explanation,Generated,Target Date
-ChestnutPanBread ($7.50),0,$0,Similar weekdays with school in session sold out | No buy-one-get-one deal running today | Comparable days had low foot traffic,2026-11-03 11:11:55,2026-11-04
-ChocoCreamDonut ($4.50),0,$0,"Similar weekdays with school in session sold out | No buy-one-get-one deal planned | Clear weather, not rainy or humid",2026-11-03 11:11:55,2026-11-04
-UbeCreamDonut ($4.50),0,$0,"Similar past Wednesdays had no leftovers | School is in session, so traffic is usually quiet | No Ube donut promotions scheduled",2026-11-03 11:11:55,2026-11-04
-PlusMilkRoll ($6.50),1,$6,Similar past Wednesdays had one item left | No special deals planned for tomorrow | Foot traffic was low on matching days,2026-11-03 11:11:55,2026-11-04
-MontBlancPastry ($6.00),2,$12,Similar weekday without deals had some leftovers | Weather matches a day with leftovers | No special slow day noted for tomorrow,2026-11-03 11:11:55,2026-11-04
-ButterCreamBread ($7.50),0,$0,Similar weekdays with school in session sold out | No promotions are running for this item | Past non-deal days usually have no leftovers,2026-11-03 11:11:55,2026-11-04
-MorningBread ($6.75),1,$7,Similar weekday showed one leftover | No sales promotions are active | Product waste is often inconsistent,2026-11-03 11:11:55,2026-11-04
-ChocoFilledCookie ($3.25),1,$3,Similar quiet weekdays had one or zero left | No store deals will boost sales | Cooler weather may impact demand,2026-11-03 11:11:55,2026-11-04
-StrawberrySoftBread ($4.25),0,$0,"Wednesday sales typically sell out | School is in session, bringing usual customers | Similar cooler days saw no leftovers",2026-11-03 11:11:55,2026-11-04
-JalapenoCheeseCroissant ($4.25),1,$4,"Similar weekdays saw low leftovers | School is in session, which helps sales | No special deals are running tomorrow",2026-11-03 11:11:55,2026-11-04
-CurryCroquette ($3.50),1,$4,Past Wednesdays with school in session had one leftover | There are no special promotions running | Store foot traffic was low on comparable days,2026-11-03 11:11:55,2026-11-04
-MangoCreamDonut ($4.50),0,$0,"School is in session, likely less busy | Similar Wednesday shifts had no waste | No special promotions running tomorrow",2026-11-03 11:11:55,2026-11-04
+ChestnutPanBread ($7.50),0,$0,Rain forecast typically slows foot traffic | Similar rainy days had zero leftovers | No deals are running tomorrow,2026-11-04 11:16:21,2026-11-05
+ChocoCreamDonut ($4.50),3,$14,"Similar rainy, warm day had leftovers | School is in session today | No buy-one-get-one promotion today",2026-11-04 11:16:21,2026-11-05
+UbeCreamDonut ($4.50),2,$9,"School is in session, like a past day with 2 leftovers | Similar rainy and humid weather expected | No special discount deals planned for tomorrow",2026-11-04 11:16:21,2026-11-05
+PlusMilkRoll ($6.50),0,$0,"Last time on a regular Thursday, we sold out | Similar rainy conditions previously sold completely | No promotions are expected to influence demand",2026-11-04 11:16:21,2026-11-05
+MontBlancPastry ($6.00),0,$0,Similar rainy weather sold out | No special sales deals | School is in session,2026-11-04 11:16:21,2026-11-05
+ButterCreamBread ($7.50),0,$0,"School is in session, historically leading to no waste | No buy-one-get-one deal running today | Similar rainy, humid days with school had zero leftovers",2026-11-04 11:16:21,2026-11-05
+MorningBread ($6.75),0,$0,Light rain often means fewer customers | Similar rainy school days had zero leftovers | The store usually sells out of this bread,2026-11-04 11:16:21,2026-11-05
+ChocoFilledCookie ($3.25),10,$32,Similar rainy day with school had high waste | No buy-one-get-one promotion is happening | Expected slow customer traffic due to rain,2026-11-04 11:16:21,2026-11-05
+StrawberrySoftBread ($4.25),0,$0,Light rain expected to slow foot traffic | Previous rainy days also sold out completely | No special deals are running today,2026-11-04 11:16:21,2026-11-05
+JalapenoCheeseCroissant ($4.25),0,$0,"Similar Thursdays had no leftovers | School is in session, which lowers waste | Rainy, slow days previously had no waste",2026-11-04 11:16:21,2026-11-05
+CurryCroquette ($3.50),0,$0,"Similar warm, rainy day had zero leftover | Previous Thursdays with school in session sold out | No special promotion running today",2026-11-04 11:16:21,2026-11-05
+MangoCreamDonut ($4.50),0,$0,Similar rainy school days sold out | Past Thursdays with no deals sold out | No promotions are scheduled for tomorrow,2026-11-04 11:16:21,2026-11-05
