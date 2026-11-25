@@ -1,13 +1,13 @@
 Product,Predicted Waste,Loss,Explanation,Generated,Target Date
-ChestnutPanBread ($7.50),0,$0,"School is out for holiday, similar days sold out | No special discount deal running today | Cool, overcast, and rainy weather today",2026-11-24 14:36:40,2026-11-25
-ChocoCreamDonut ($4.50),2,$9,"Rainy weather forecast, similar to past day with leftover product | School is out for the day, which often means fewer customers | No special promotions planned, unlike many past sales days",2026-11-24 14:36:40,2026-11-25
-UbeCreamDonut ($4.50),5,$22,"Similar rainy day with no students had five leftovers | No product promotions today | Cold, rainy weather may affect customer traffic",2026-11-24 14:36:40,2026-11-25
-PlusMilkRoll ($6.50),0,$0,"School is out for a holiday | Forecast calls for cold, rainy weather | No promotions are planned",2026-11-24 14:36:40,2026-11-25
-MontBlancPastry ($6.00),1,$6,Similar rainy weather caused a leftover | School out for holiday break | No sales promotions today,2026-11-24 14:36:40,2026-11-25
-ButterCreamBread ($7.50),1,$8,"Cold, rainy weather may lower customer traffic | School is out on a slower weekday | No special discounts offered today",2026-11-24 14:36:40,2026-11-25
-MorningBread ($6.75),1,$7,"School is out, which can reduce foot traffic | No buy-one-get-one deal boosts sales | Cold, rainy weather often keeps customers home",2026-11-24 14:36:40,2026-11-25
-ChocoFilledCookie ($3.25),0,$0,"School is out; similar days had no leftovers | No special promotions running today | Similar cold, cloudy, and rainy days had no waste",2026-11-24 14:36:40,2026-11-25
-StrawberrySoftBread ($4.25),0,$0,Similar cooler days had zero leftovers | No special discount is running | School is closed for students,2026-11-24 14:36:40,2026-11-25
-JalapenoCheeseCroissant ($4.25),4,$17,"School is out for holiday | No special deal offered | Expected quiet foot traffic on a cold, rainy day",2026-11-24 14:36:40,2026-11-25
-CurryCroquette ($3.50),0,$0,Cold and rainy weather | School holiday today | No product promotion running,2026-11-24 14:36:40,2026-11-25
-MangoCreamDonut ($4.50),0,$0,All past Wednesdays had no waste | No special deals planned | Holiday with cold rain suggests quiet traffic,2026-11-24 14:36:40,2026-11-25
+ChestnutPanBread ($7.50),2,$15,School is out for holiday | Heavy rain implies very slow foot traffic | Similar quiet Thursday had two items left,2026-11-25 13:42:27,2026-11-26
+ChocoCreamDonut ($4.50),0,$0,"Holiday traffic usually brings many customers | Similar cool, rainy, busy days had zero waste | No discounts planned for this item",2026-11-25 13:42:27,2026-11-26
+UbeCreamDonut ($4.50),5,$22,School is out for the holiday | Heavy rain predicted all day | No special sales promotion,2026-11-25 13:42:27,2026-11-26
+PlusMilkRoll ($6.50),3,$20,No buy-one-get-one deal today | School is out for the holiday | Heavy rain will likely keep shoppers away,2026-11-25 13:42:27,2026-11-26
+MontBlancPastry ($6.00),0,$0,"Similar cool, damp day had no waste | Holiday foot traffic likely to be very busy | No promotion is active today",2026-11-25 13:42:27,2026-11-26
+ButterCreamBread ($7.50),1,$8,"School is out, reducing customer numbers | Rainy weather will likely deter shoppers | Similar slow day historically left one bread",2026-11-25 13:42:27,2026-11-26
+MorningBread ($6.75),0,$0,"Similar cool, rainy days sold out | School is out for the holiday | No special promotions offered",2026-11-25 13:42:27,2026-11-26
+ChocoFilledCookie ($3.25),0,$0,"Similar rainy, cool days when school was out sold out completely | No promotions planned, so expected sales are standard | Even on slower days, these cookies often sell out",2026-11-25 13:42:27,2026-11-26
+StrawberrySoftBread ($4.25),1,$4,"Heavy rain is coming, likely fewer customers | School is out for holiday | No special discount offers today",2026-11-25 13:42:27,2026-11-26
+JalapenoCheeseCroissant ($4.25),0,$0,"Heavy rain keeps many people away | With school out, usual morning rush is gone | Past rainy days often had zero leftovers",2026-11-25 13:42:27,2026-11-26
+CurryCroquette ($3.50),0,$0,"School is out for holiday | Similar cool, wet days previously sold out completely | No special deal for this item",2026-11-25 13:42:27,2026-11-26
+MangoCreamDonut ($4.50),1,$4,A past rainy day had one leftover. | Cooler forecast for this tropical flavor. | Demand is hard to predict on holidays.,2026-11-25 13:42:27,2026-11-26
