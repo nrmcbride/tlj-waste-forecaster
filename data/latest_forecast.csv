@@ -1,12 +1,13 @@
 Product,Predicted Waste,Loss,Explanation,Generated,Target Date
-ChocoCreamDonut ($4.50),0,$0,Similar weekend days had zero leftovers | No special buy-one-get-one deals running | Clear weather means good foot traffic,2026-11-27 13:11:33,2026-11-28
-UbeCreamDonut ($4.50),0,$0,"Saturday sales are typically high | Similar cool, clear day had no leftovers | No product promotion to distort sales",2026-11-27 13:11:33,2026-11-28
-PlusMilkRoll ($6.50),0,$0,Past Saturdays with no school had no waste | Similar mild temperature days had no waste | No buy-one-get-one deal will affect this item,2026-11-27 13:11:33,2026-11-28
-MontBlancPastry ($6.00),0,$0,Similar cool Saturday had no leftovers | School is out and foot traffic was busy | No special promotion running tomorrow,2026-11-27 13:11:33,2026-11-28
-ButterCreamBread ($7.50),0,$0,"Similar cool Saturday with busy traffic had no leftovers | Other Saturdays without promotions also sold out | Saturday is a no-school day, attracting more families",2026-11-27 13:11:33,2026-11-28
-MorningBread ($6.75),0,$0,Past Saturdays with no deals had no waste | Similar cool weather days sold completely | No sales promotions are scheduled,2026-11-27 13:11:33,2026-11-28
-ChocoFilledCookie ($3.25),0,$0,"Weekend, so typically busy foot traffic | A similar cool Saturday sold out | No special discount deals today",2026-11-27 13:11:33,2026-11-28
-StrawberrySoftBread ($4.25),0,$0,Similar cool Saturday had no leftovers | School is out for the weekend | No special discounts offered,2026-11-27 13:11:33,2026-11-28
-JalapenoCheeseCroissant ($4.25),1,$4,"School's out on a Saturday, so expect good traffic | No promotions running today | A similar cool, busy day still had some left",2026-11-27 13:11:33,2026-11-28
-CurryCroquette ($3.50),0,$0,"Similar cool, busy Saturday sold out | No special store promotion running | Weekend with clear skies draws customers",2026-11-27 13:11:33,2026-11-28
-MangoCreamDonut ($4.50),0,$0,"It's a weekend, so school is out | No sales promotion running | All past Saturdays without a deal sold out",2026-11-27 13:11:33,2026-11-28
+ChestnutPanBread ($7.50),0,$0,"All past Sundays sold out completely | School is out, expecting more foot traffic | Similar cool, cloudy weather sold out before",2026-11-28 11:52:36,2026-11-29
+ChocoCreamDonut ($4.50),0,$0,"Similar cool, cloudy weekend sold out. | No buy-one-get-one promotion is running. | School is out, so foot traffic should be busy.",2026-11-28 11:52:36,2026-11-29
+UbeCreamDonut ($4.50),1,$4,No store promotions to boost sales | Colder weather is outside typical selling conditions | Past zero waste days had special demand boosts,2026-11-28 11:52:36,2026-11-29
+PlusMilkRoll ($6.50),0,$0,"Weekend day, typically busy with customers | No special promotions or deals today | Similar cool, cloudy days saw no waste",2026-11-28 11:52:36,2026-11-29
+MontBlancPastry ($6.00),0,$0,"School is out on a weekend | Similar cool, cloudy days sold out | No special deals to boost sales",2026-11-28 11:52:36,2026-11-29
+ButterCreamBread ($7.50),0,$0,Weekend day usually means more customers | Similar past Sundays had no leftover bread | Most non-deal days sold out.,2026-11-28 11:52:36,2026-11-29
+MorningBread ($6.75),0,$0,"Closest historical day with similar cool, cloudy weather had no leftovers | No buy-one-get-one deal expected, unlike many days | Weekend with no school usually brings more customer traffic",2026-11-28 11:52:36,2026-11-29
+ChocoFilledCookie ($3.25),0,$0,"Past Sundays always sold out | Cooler, cloudy days also sold out | No special deals are offered today",2026-11-28 11:52:36,2026-11-29
+StrawberrySoftBread ($4.25),0,$0,"Coldest similar day sold out completely | No buy-one-get-one deal means higher demand | School is out, typically busy weekend",2026-11-28 11:52:36,2026-11-29
+JalapenoCheeseCroissant ($4.25),1,$4,"Similar cool, cloudy weekend day | No buy-one-get-one sale | Expected busy weekend traffic",2026-11-28 11:52:36,2026-11-29
+CurryCroquette ($3.50),0,$0,"School is out tomorrow, like similar past weekend days | Comparable cool, cloudy days sold out | No buy-one-get-one deal on this product",2026-11-28 11:52:36,2026-11-29
+MangoCreamDonut ($4.50),0,$0,"Past weekend days without deals sold out | Cooler, cloudy days also sold out completely | No buy-one-get-one promotion is active",2026-11-28 11:52:36,2026-11-29
